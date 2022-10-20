@@ -20,6 +20,7 @@ class Actualites
     #[ORM\Column(type: Types::TEXT)]
     private ?string $texte = null;
 
+
     public function getId(): ?int
     {
         return $this->id;

@@ -23,7 +23,7 @@ class Recompenses
     private ?string $description = null;
 
     #[ORM\Column(type: Types::BLOB)]
-    private $image;
+    private $image = null;
 
     #[ORM\OneToMany(mappedBy: 'recompense', targetEntity: Participants::class)]
     private Collection $participants;

@@ -33,6 +33,7 @@ class Tournois
         $this->participants = new ArrayCollection();
     }
 
+
     public function getId(): ?int
     {
         return $this->id;
