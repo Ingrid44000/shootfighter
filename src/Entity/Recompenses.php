@@ -7,8 +7,12 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 #[ORM\Entity(repositoryClass: RecompensesRepository::class)]
+#[Vich\Uploadable]
+
 class Recompenses
 {
     #[ORM\Id]
@@ -19,11 +23,15 @@ class Recompenses
     #[ORM\Column(length: 180)]
     private ?string $nom = null;
 
+   #[Vich\UploadableField(mapping: 'recompense_images', fileNameProperty:
+        'imageName', size: 'imageSize')]
+    private ?File $imageFile = null;
+
+    #[ORM\Column(type: 'string')]
+    private ?string $imageName = null;
+
     #[ORM\Column(length: 180)]
     private ?string $description = null;
-
-    #[ORM\Column(type: Types::BLOB)]
-    private $image = null;
 
     #[ORM\OneToMany(mappedBy: 'recompense', targetEntity: Participants::class)]
     private Collection $participants;
@@ -62,17 +70,41 @@ class Recompenses
         return $this;
     }
 
-    public function getImage()
+    /**
+     * If manually uploading a file (i.e. not using Symfony Form) ensure an instance
+     * of 'UploadedFile' is injected into this setter to trigger the update. If this
+     * bundle's configuration parameter 'inject_on_load' is set to 'true' this setter
+     * must be able to accept an instance of 'File' as the bundle will inject one here
+     * during Doctrine hydration.
+     *
+     * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile|null $imageFile
+     */
+    public function setImageFile(?File $imageFile = null): void
     {
-        return $this->image;
+        $this->imageFile = $imageFile;
+
+        if (null !== $imageFile) {
+            // It is required that at least one field changes if you are using doctrine
+            // otherwise the event listeners won't be called and the file is lost
+            $this->updatedAt = new \DateTimeImmutable();
+        }
     }
 
-    public function setImage($image): self
+    public function getImageFile(): ?File
     {
-        $this->image = $image;
-
-        return $this;
+        return $this->imageFile;
     }
+
+    public function setImageName(?string $imageName): void
+    {
+        $this->imageName = $imageName;
+    }
+
+    public function getImageName(): ?string
+    {
+        return $this->imageName;
+    }
+
 
     /**
      * @return Collection<int, Participants>

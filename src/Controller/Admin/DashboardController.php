@@ -6,15 +6,18 @@ use App\Entity\Actualites;
 use App\Entity\Recompenses;
 use App\Entity\Tournois;
 use App\Entity\Participants;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class DashboardController extends AbstractDashboardController
 {
+
     #[Route('/admin', name: 'admin')]
     public function index(): Response
     {
@@ -48,11 +51,12 @@ class DashboardController extends AbstractDashboardController
     public function configureMenuItems(): iterable
     {
 
-        yield MenuItem::linktoRoute('Back to the website', 'fas fa-home', 'homepage');
-        yield MenuItem::linkToCrud('Participants', 'fa fa -participants', Participants::class);
-        yield MenuItem::linkToCrud('Tournois', 'fa fa -tournois', Tournois::class);
-        yield MenuItem::linkToCrud('Actualités', 'fa fa -actualites', Actualites::class);
-        yield MenuItem::linkToCrud('Récompenses', 'fa fa -recompenses', Recompenses::class);
+
+        yield MenuItem::linktoRoute('Retour à l accueil ', 'fas fa-home', 'app_login');
+        yield MenuItem::linkToCrud('Participants', 'fas fa -participants', Participants::class);
+        yield MenuItem::linkToCrud('Tournois', 'fas fa -tournois', Tournois::class);
+        yield MenuItem::linkToCrud('Actualités', 'fas fa -actualites', Actualites::class);
+        yield MenuItem::linkToCrud('Récompenses', 'fas fa -recompenses', Recompenses::class);
 
     }
 }
