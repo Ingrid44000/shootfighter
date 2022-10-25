@@ -3,7 +3,16 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Actualites;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+
+
 
 class ActualitesCrudController extends AbstractCrudController
 {
@@ -12,14 +21,21 @@ class ActualitesCrudController extends AbstractCrudController
         return Actualites::class;
     }
 
-    /*
     public function configureFields(string $pageName): iterable
     {
         return [
-            IdField::new('id'),
-            TextField::new('title'),
-            TextEditorField::new('description'),
+            TextField::new('nom'),
+            TextField::new('texte'),
+            DateField::new('dateCreation'),
+            DateField::new('dateActualisation')
         ];
     }
-    */
+    public function configureActions(Actions $actions): Actions
+    {
+        return $actions // Ajoute un bouton
+        ->add(Crud::PAGE_NEW, Action::INDEX)
+            ->add(Crud::PAGE_EDIT, Action::INDEX);
+
+    }
+
 }

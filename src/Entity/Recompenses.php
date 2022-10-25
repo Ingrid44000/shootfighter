@@ -24,7 +24,7 @@ class Recompenses
     private ?string $nom = null;
 
    #[Vich\UploadableField(mapping: 'recompense_images', fileNameProperty:
-        'imageName', size: 'imageSize')]
+        'imageName')]
     private ?File $imageFile = null;
 
     #[ORM\Column(type: 'string')]
@@ -36,9 +36,13 @@ class Recompenses
     #[ORM\OneToMany(mappedBy: 'recompense', targetEntity: Participants::class)]
     private Collection $participants;
 
+    #[ORM\ManyToMany(targetEntity: Tournois::class, inversedBy: 'recompenses')]
+    private Collection $tournois;
+
     public function __construct()
     {
         $this->participants = new ArrayCollection();
+        $this->tournois = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -83,11 +87,6 @@ class Recompenses
     {
         $this->imageFile = $imageFile;
 
-        if (null !== $imageFile) {
-            // It is required that at least one field changes if you are using doctrine
-            // otherwise the event listeners won't be called and the file is lost
-            $this->updatedAt = new \DateTimeImmutable();
-        }
     }
 
     public function getImageFile(): ?File
@@ -132,6 +131,30 @@ class Recompenses
                 $participant->setRecompense(null);
             }
         }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Tournois>
+     */
+    public function getTournois(): Collection
+    {
+        return $this->tournois;
+    }
+
+    public function addTournoi(Tournois $tournoi): self
+    {
+        if (!$this->tournois->contains($tournoi)) {
+            $this->tournois->add($tournoi);
+        }
+
+        return $this;
+    }
+
+    public function removeTournoi(Tournois $tournoi): self
+    {
+        $this->tournois->removeElement($tournoi);
 
         return $this;
     }

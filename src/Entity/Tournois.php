@@ -28,9 +28,16 @@ class Tournois
     #[ORM\ManyToMany(targetEntity: Participants::class, mappedBy: 'tournois')]
     private Collection $participants;
 
+    #[ORM\ManyToMany(targetEntity: Recompenses::class, mappedBy: 'tournois')]
+    private Collection $recompenses;
+
+    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
+    private ?\DateTimeInterface $dateLimiteInscription = null;
+
     public function __construct()
     {
         $this->participants = new ArrayCollection();
+        $this->recompenses = new ArrayCollection();
     }
 
 
@@ -98,6 +105,45 @@ class Tournois
         if ($this->participants->removeElement($participant)) {
             $participant->removeTournoi($this);
         }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Recompenses>
+     */
+    public function getRecompenses(): Collection
+    {
+        return $this->recompenses;
+    }
+
+    public function addRecompense(Recompenses $recompense): self
+    {
+        if (!$this->recompenses->contains($recompense)) {
+            $this->recompenses->add($recompense);
+            $recompense->addTournoi($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRecompense(Recompenses $recompense): self
+    {
+        if ($this->recompenses->removeElement($recompense)) {
+            $recompense->removeTournoi($this);
+        }
+
+        return $this;
+    }
+
+    public function getDateLimiteInscription(): ?\DateTimeInterface
+    {
+        return $this->dateLimiteInscription;
+    }
+
+    public function setDateLimiteInscription(?\DateTimeInterface $dateLimiteInscription): self
+    {
+        $this->dateLimiteInscription = $dateLimiteInscription;
 
         return $this;
     }

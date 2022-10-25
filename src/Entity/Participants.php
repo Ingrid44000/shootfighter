@@ -45,6 +45,9 @@ class Participants
     #[ORM\ManyToOne(inversedBy: 'participants')]
     private ?Recompenses $recompense = null;
 
+    #[ORM\Column(length: 180)]
+    private ?string $motdepasse = null;
+
     public function __construct()
     {
         $this->tournois = new ArrayCollection();
@@ -183,6 +186,18 @@ class Participants
     public function setRecompense(?Recompenses $recompense): self
     {
         $this->recompense = $recompense;
+
+        return $this;
+    }
+
+    public function getMotdepasse(): ?string
+    {
+        return $this->motdepasse;
+    }
+
+    public function setMotdepasse(string $motdepasse): self
+    {
+        $this->motdepasse = $motdepasse;
 
         return $this;
     }

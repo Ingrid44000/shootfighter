@@ -4,6 +4,8 @@ namespace App\Controller\Admin;
 
 
 use App\Entity\Recompenses;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Filters;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
@@ -24,5 +26,21 @@ class RecompensesCrudController extends AbstractCrudController
     {
         return Recompenses::class;
     }
+    public function configureFields(string $pageName): iterable
 
+    {
+        yield TextField::new('nom');
+        yield TextField::new('description');
+        yield ImageField::new('imageName')
+            ->setBasePath('images/recompense')
+            ->setUploadDir('public/images/recompense');
+
+    }
+    public function configureActions(Actions $actions): Actions
+    {
+        return $actions // Ajoute un bouton
+           ->add(Crud::PAGE_NEW, Action::INDEX)
+        ->add(Crud::PAGE_EDIT, Action::INDEX);
+
+    }
 }

@@ -30,6 +30,16 @@ class ActualitesRepository extends ServiceEntityRepository
         }
     }
 
+    public function dernieresActualites ()
+    {
+
+        $qb = $this->createQueryBuilder('a')
+            ->orderBy('a.dateCreation', 'ASC');
+        $query = $qb->getQuery();
+
+        return $query->execute();
+    }
+
     public function remove(Actualites $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);

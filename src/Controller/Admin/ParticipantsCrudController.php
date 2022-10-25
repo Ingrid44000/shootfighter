@@ -3,6 +3,9 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Participants;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 
 class ParticipantsCrudController extends AbstractCrudController
@@ -11,7 +14,13 @@ class ParticipantsCrudController extends AbstractCrudController
     {
         return Participants::class;
     }
+    public function configureActions(Actions $actions): Actions
+    {
+        return $actions // Ajoute un bouton
+        ->add(Crud::PAGE_NEW, Action::INDEX)
+            ->add(Crud::PAGE_EDIT, Action::INDEX);
 
+    }
     /*
     public function configureFields(string $pageName): iterable
     {
