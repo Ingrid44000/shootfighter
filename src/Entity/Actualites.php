@@ -3,13 +3,14 @@
 namespace App\Entity;
 
 use App\Repository\ActualitesRepository;
+use DateTime;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
-use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * @method getRepository(string $class)
  */
+
 #[ORM\Entity(repositoryClass: ActualitesRepository::class)]
 class Actualites
 {
@@ -25,9 +26,7 @@ class Actualites
     private ?string $texte = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
-
     private ?\DateTimeInterface $dateCreation = null;
-
 
     public function getId(): ?int
     {
@@ -70,3 +69,4 @@ class Actualites
         return $this;
     }
 }
+

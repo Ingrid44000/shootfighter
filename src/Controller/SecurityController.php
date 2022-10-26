@@ -18,7 +18,7 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
  */
 class SecurityController extends AbstractController
 {
-    #[Route(path: '/', name: 'app_login')]
+    #[Route(path: '/login', name: 'app_login')]
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
         // if ($this->getUser()) {
@@ -39,14 +39,14 @@ class SecurityController extends AbstractController
         throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
     }
 
-    #[Route(path: '/actualites', name: 'app_actualites')]
+    #[Route(path: '/', name: 'app_actualites')]
     public function actualites(ManagerRegistry $doctrine): Response
     {
         $entityManager = $doctrine->getManager();
         $actualites = $entityManager->getRepository(Actualites::class)->findAll();
 
 
-        return $this->render('actualites.html.twig', ['actualites' =>$actualites]);
+        return $this->render('accueil.html.twig', ['actualites' =>$actualites]);
     }
 
 

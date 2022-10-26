@@ -26,8 +26,7 @@ class ActualitesCrudController extends AbstractCrudController
         return [
             TextField::new('nom'),
             TextField::new('texte'),
-            DateField::new('dateCreation'),
-            DateField::new('dateActualisation')
+            DateField::new('dateCreation')
         ];
     }
     public function configureActions(Actions $actions): Actions
