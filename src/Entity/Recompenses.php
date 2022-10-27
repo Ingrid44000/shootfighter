@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use DateTimeInterface;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
@@ -32,6 +33,15 @@ class Recompenses
 
     #[ORM\Column(length: 180)]
     private ?string $description = null;
+
+
+    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
+    private ?\DateTimeInterface $createdAt = null;
+
+
+    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable:true)]
+    private ?\DateTimeInterface $updatedAt = null;
+
 
     #[ORM\OneToMany(mappedBy: 'recompense', targetEntity: Participants::class)]
     private Collection $participants;
@@ -155,6 +165,33 @@ class Recompenses
     public function removeTournoi(Tournois $tournoi): self
     {
         $this->tournois->removeElement($tournoi);
+
+        return $this;
+    }
+
+    public function getCreatedAt(): \DateTimeInterface
+    {
+        return $this->createdAt;
+    }
+
+
+    public function setCreatedAt(\DateTimeInterface $createdAt)
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+
+    public function getUpdatedAt(): \DateTimeInterface
+    {
+        return $this->updatedAt;
+    }
+
+
+    public function setUpdatedAt(\DateTimeInterface $updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
 
         return $this;
     }

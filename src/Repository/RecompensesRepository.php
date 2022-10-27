@@ -39,6 +39,15 @@ class RecompensesRepository extends ServiceEntityRepository
         }
     }
 
+        public function afficherRecompenses ()
+    {
+
+        $qb = $this->createQueryBuilder('r');
+        $query = $qb->getQuery();
+        return $query->execute();
+    }
+
+
 //    /**
 //     * @return Recompenses[] Returns an array of Recompenses objects
 //     */

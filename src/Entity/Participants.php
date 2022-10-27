@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\ParticipantsRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ParticipantsRepository::class)]
@@ -38,6 +39,13 @@ class Participants
 
     #[ORM\Column(length: 180)]
     private ?string $pays = null;
+
+    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
+    private ?\DateTimeInterface $createdAt = null;
+
+    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable:true)]
+    private ?\DateTimeInterface $updatedAt = null;
+
 
     #[ORM\ManyToMany(targetEntity: Tournois::class, inversedBy: 'participants')]
     private Collection $tournois;
@@ -198,6 +206,32 @@ class Participants
     public function setMotdepasse(string $motdepasse): self
     {
         $this->motdepasse = $motdepasse;
+
+        return $this;
+    }
+    public function getCreatedAt(): \DateTimeInterface
+    {
+        return $this->createdAt;
+    }
+
+
+    public function setCreatedAt(\DateTimeInterface $createdAt)
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+
+    public function getUpdatedAt(): \DateTimeInterface
+    {
+        return $this->updatedAt;
+    }
+
+
+    public function setUpdatedAt(\DateTimeInterface $updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
 
         return $this;
     }

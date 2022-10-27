@@ -25,6 +25,13 @@ class Tournois
     #[ORM\Column]
     private ?int $nbPlacesMax = null;
 
+    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
+    private ?\DateTimeInterface $createdAt = null;
+
+    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable:true)]
+    private ?\DateTimeInterface $updatedAt = null;
+
+
     #[ORM\ManyToMany(targetEntity: Participants::class, mappedBy: 'tournois')]
     private Collection $participants;
 
@@ -144,6 +151,33 @@ class Tournois
     public function setDateLimiteInscription(?\DateTimeInterface $dateLimiteInscription): self
     {
         $this->dateLimiteInscription = $dateLimiteInscription;
+
+        return $this;
+    }
+
+    public function getCreatedAt(): \DateTimeInterface
+    {
+        return $this->createdAt;
+    }
+
+
+    public function setCreatedAt(\DateTimeInterface $createdAt)
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+
+    public function getUpdatedAt(): \DateTimeInterface
+    {
+        return $this->updatedAt;
+    }
+
+
+    public function setUpdatedAt(\DateTimeInterface $updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
 
         return $this;
     }
