@@ -14,7 +14,6 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
  * @method getTexte()
  * @method getDoctrine()
  * @method getRepository(string $class)
- * @method getDateCreation()
  */
 class SecurityController extends AbstractController
 {
@@ -39,15 +38,14 @@ class SecurityController extends AbstractController
         throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
     }
 
-    #[Route(path: '/', name: 'app_actualites')]
+    #[Route(path: '/', name: 'app_accueil')]
     public function actualites(ManagerRegistry $doctrine): Response
     {
         $entityManager = $doctrine->getManager();
-        $actualites = $entityManager->getRepository(Actualites::class)->findAll();
+        $actualites = $entityManager->getRepository(Actualites::class)->dernieresActualites();
 
 
         return $this->render('accueil.html.twig', ['actualites' =>$actualites]);
     }
-
 
 }

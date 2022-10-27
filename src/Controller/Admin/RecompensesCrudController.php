@@ -32,6 +32,7 @@ class RecompensesCrudController extends AbstractCrudController
         yield TextField::new('nom');
         yield TextField::new('description');
         yield ImageField::new('imageName')
+            ->setLabel('Image')
             ->setBasePath('images/recompense')
             ->setUploadDir('public/images/recompense');
 

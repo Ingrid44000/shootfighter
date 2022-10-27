@@ -34,9 +34,8 @@ class ActualitesRepository extends ServiceEntityRepository
     {
 
         $qb = $this->createQueryBuilder('a')
-            ->orderBy('a.dateCreation', 'ASC');
+            ->orderBy('a.createdAt', 'DESC');
         $query = $qb->getQuery();
-
         return $query->execute();
     }
 

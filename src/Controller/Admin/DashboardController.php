@@ -52,7 +52,7 @@ class DashboardController extends AbstractDashboardController
     {
 
 
-        yield MenuItem::linktoRoute('Retour à l accueil ', 'fas fa -home', 'app_actualites');
+        yield MenuItem::linktoRoute('Retour à l accueil ', 'fas fa -home', 'app_accueil');
         yield MenuItem::linkToCrud('Participants', 'fas fa -participants', Participants::class);
         yield MenuItem::linkToCrud('Tournois', 'fas fa -tournois', Tournois::class);
         yield MenuItem::linkToCrud('Actualités', 'fas fa -actualites', Actualites::class);

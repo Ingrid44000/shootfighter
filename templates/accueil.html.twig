@@ -13,19 +13,17 @@
     <a href="{{ path('app_login') }}" title = "admin">Administrateur</a>
 </button>
 <br>
-
+{%  if app.user %}
 <button class="btn btn-lg btn-secondary" type="submit">
     <a href="{{ path('app_logout') }}" title = "admin">Se déconnecter</a>
 </button>
 <br><br>
-
-
-<tbody class="affichageSorties">
+{% endif %}
 {% for actualite in actualites %}
 
     {{ actualite.nom }} <br>
     {{ actualite.texte }}<br>
-
+    {{ actualite.createdAt | date ('d-m-Y')}}<br>
     <br>
 
 {% endfor %}
