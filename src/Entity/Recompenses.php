@@ -28,6 +28,7 @@ class Recompenses
         'imageName')]
     private ?File $imageFile = null;
 
+   //imageName sert à stocker le nom en base de données
     #[ORM\Column(type: 'string')]
     private ?string $imageName = null;
 
@@ -96,6 +97,10 @@ class Recompenses
     public function setImageFile(?File $imageFile = null): void
     {
         $this->imageFile = $imageFile;
+
+        if (null !== $imageFile){
+            $this->updatedAt = new \DateTime();
+        }
 
     }
 

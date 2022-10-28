@@ -45,7 +45,7 @@ class AppFixtures extends Fixture
         $recompense = new Recompenses();
         $recompense->setNom('Tshirt');
         $recompense->setDescription('Tshirt avec image Shootfighter');
-        $recompense->setImageName('289376590_996996334300225_4308925016891625078_n.jpg');
+        $recompense->setImageName('Tshirt.jpg');
         $manager->persist($recompense);
 
         //Creation tournois
