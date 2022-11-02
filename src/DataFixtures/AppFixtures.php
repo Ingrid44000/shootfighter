@@ -7,6 +7,7 @@ use App\Entity\Admin;
 use App\Entity\Participants;
 use App\Entity\Recompenses;
 use App\Entity\Tournois;
+use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 
@@ -20,13 +21,6 @@ class AppFixtures extends Fixture
         $actualite->setNom('sortie jeu video 2023');
         $actualite->setTexte('Le jeu va sortir en 2023');
         $manager->persist($actualite);
-
-        // Creation admin
-        $admin = new Admin();
-        $admin->setUsername('administrateur');
-        $admin->setPassword('administrateur');
-        $admin->setRoles((array)'ROLE_ADMIN');
-        $manager->persist($admin);
 
         //Creation participants
         $participant = new Participants();
@@ -57,6 +51,12 @@ class AppFixtures extends Fixture
         $tournois->setDateLimiteInscription($dateLimite);
         $tournois->setNbPlacesMax(150);
         $manager->persist($tournois);
+
+        //Creation user
+        $user = new User();
+        $user->setUsername('user');
+        $user->setRoles((array)'ROLE_USER');
+        $user->setPassword('user');
 
         $manager->flush();
     }

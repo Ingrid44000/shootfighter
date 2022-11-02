@@ -4,7 +4,7 @@
 
 {% block body %}
 
-    <h1>Page administrateur</h1>
+    <h1>Page de connexion </h1>
 
 <form method="post">
     {% if error %}
@@ -17,7 +17,9 @@
         </div>
     {% endif %}
 
-    <h4 class="h3 mb-3 font-weight-normal">Accès administrateur</h4>
+
+
+    <h4 class="h3 mb-3 font-weight-normal">Connexion</h4>
     <label for="inputUsername">Identifiant</label>
     <input type="text" value="{{ last_username }}" name="username" id="inputUsername" class="form-control" autocomplete="username" required autofocus>
     <br>

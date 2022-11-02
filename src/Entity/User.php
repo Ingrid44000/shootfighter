@@ -2,13 +2,13 @@
 
 namespace App\Entity;
 
-use App\Repository\AdminRepository;
+use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
-#[ORM\Entity(repositoryClass: AdminRepository::class)]
-class Admin implements UserInterface, PasswordAuthenticatedUserInterface
+#[ORM\Entity(repositoryClass: UserRepository::class)]
+class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -20,6 +20,10 @@ class Admin implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column]
     private array $roles = [];
+
+    #[ORM\Column]
+    private ?bool $administrateur = null;
+
 
     /**
      * @var string The hashed password
@@ -59,11 +63,7 @@ class Admin implements UserInterface, PasswordAuthenticatedUserInterface
      */
     public function getRoles(): array
     {
-        $roles = $this->roles;
-        // guarantee every user at least has ROLE_USER
-        $roles[] = 'ROLE_USER';
-
-        return array_unique($roles);
+        return ($this->administrateur) ? ['ROLE_ADMIN'] : ['ROLE_USER'];
     }
 
     public function setRoles(array $roles): self
@@ -95,5 +95,17 @@ class Admin implements UserInterface, PasswordAuthenticatedUserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    public function getAdministrateur(): ?string
+    {
+        return $this->administrateur;
+    }
+
+    public function setAdministrateur(string $administrateur): self
+    {
+        $this->administrateur = $administrateur;
+
+        return $this;
     }
 }
