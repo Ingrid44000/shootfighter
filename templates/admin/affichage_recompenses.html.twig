@@ -8,25 +8,19 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
 </head>
-<body>
-<h1>Récompenses </h1>
-{% block body %}
+<thead>
 
+</thead>
+<h1>Récompenses </h1>
 
 {% for recompense in recompenses %}
 
     {{ recompense.nom }} <br>
     {{ recompense.description }}<br>
-    <img src="{{ asset('images/recompense/' ~ recompense.imageName) }}" alt="image goodie">
+   <img src="{{asset('images/recompense/Kayak.jpg')}}" alt="image goodie">
     <br>
 
 {% endfor %}
 
-    <button class="btn btn-link btn-secondary" type="submit">
-        <a href="{{ path('app_tournois') }}" title = "tournois">Tournois</a>
-    </button>
-{% endblock %}
-</body>
 </html>
-
 

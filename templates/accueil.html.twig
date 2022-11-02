@@ -19,6 +19,15 @@
 </button>
 <br><br>
 {% endif %}
+
+<button class="btn btn-link btn-primary" type="submit">
+    <a href="{{ path('app_recompenses') }}" title = "admin">Récompenses</a>
+</button>
+
+<button class="btn btn-link btn-secondary" type="submit">
+    <a href="{{ path('app_tournois') }}" title = "admin">Tournois</a>
+</button>
+<br>
 {% for actualite in actualites %}
 
     {{ actualite.nom }} <br>

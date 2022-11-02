@@ -12,6 +12,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
+
 class TournoisCrudController extends AbstractCrudController
 {
     public static function getEntityFqcn(): string
@@ -25,6 +26,11 @@ class TournoisCrudController extends AbstractCrudController
         yield DateTimeField::new('date');
         yield IntegerField::new('nbPlacesMax');
         yield DateTimeField::new('dateLimiteInscription');
+        yield ImageField::new('imageName')
+            ->setLabel('Image')
+            ->setBasePath('images/tournois')
+            ->setUploadDir('public/images/tournois')
+        ->setRequired(false);
 
     }
     public function configureActions(Actions $actions): Actions

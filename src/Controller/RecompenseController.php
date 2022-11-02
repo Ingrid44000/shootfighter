@@ -14,7 +14,7 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 class RecompenseController extends AbstractController
 {
 
-    #[Route(path: '/recompenses', name: 'app_recompenses')]
+    #[Route(path: '/recompenses', name: 'app_recompenses', methods: ['GET', 'POST'])]
     public function Recompenses (ManagerRegistry $doctrine): Response
 
     {

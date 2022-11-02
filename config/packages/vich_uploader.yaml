@@ -7,3 +7,8 @@ vich_uploader:
             uri_prefix: /images/recompense
             upload_destination: '%kernel.project_dir%/public/images/recompense'
             namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+
+        tournois_images:
+                uri_prefix: /images/tournois
+                upload_destination: '%kernel.project_dir%/public/images/tournois'
+                namer: Vich\UploaderBundle\Naming\SmartUniqueNamer

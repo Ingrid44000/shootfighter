@@ -38,6 +38,14 @@ class TournoisRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
+        public function afficherTournois ()
+    {
+
+        $qb = $this->createQueryBuilder('t');
+        $query = $qb->getQuery();
+        return $query->execute();
+    }
+
 
 //    /**
 //     * @return Tournois[] Returns an array of Tournois objects
