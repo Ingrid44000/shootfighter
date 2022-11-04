@@ -26,7 +26,7 @@ class Recompenses
 
    #[Vich\UploadableField(mapping: 'recompense_images', fileNameProperty:
         'imageName')]
-    private ?File $imageFile;
+    private ?File $imageFile = null;
 
    //imageName sert à stocker le nom en base de données
     #[ORM\Column(type: 'string')]

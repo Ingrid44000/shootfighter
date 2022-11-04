@@ -4,10 +4,13 @@ namespace App\Entity;
 
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
+#[UniqueEntity(fields: ['username'], message: 'There is already an account with this username')]
+#[UniqueEntity(fields: ['username'], message: 'There is already an account with this username')]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
@@ -16,20 +19,24 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?int $id = null;
 
     #[ORM\Column(length: 180, unique: true)]
-    private ?string $username = null;
+    private ?string $username;
 
     #[ORM\Column]
-    private array $roles = [];
-
-    #[ORM\Column]
-    private ?bool $administrateur = null;
+    private array $roles = ['ROLE_USER'];
 
 
     /**
      * @var string The hashed password
      */
     #[ORM\Column]
-    private ?string $password = null;
+    private ?string $password;
+
+    #[ORM\Column(length: 180)]
+    private ?string $email;
+
+    #[ORM\Column(type: 'boolean')]
+    private $is_verified = false;
+
 
     public function getId(): ?int
     {
@@ -63,7 +70,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     public function getRoles(): array
     {
-        return ($this->administrateur) ? ['ROLE_ADMIN'] : ['ROLE_USER'];
+        return ($this->roles);
     }
 
     public function setRoles(array $roles): self
@@ -97,14 +104,25 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         // $this->plainPassword = null;
     }
 
-    public function getAdministrateur(): ?string
+    public function getEmail(): ?string
     {
-        return $this->administrateur;
+        return $this->email;
     }
 
-    public function setAdministrateur(string $administrateur): self
+    public function setEmail(string $email): self
     {
-        $this->administrateur = $administrateur;
+        $this->email = $email;
+
+        return $this;
+    }
+    public function getIsVerified(): ?bool
+    {
+        return $this->is_verified;
+    }
+
+    public function setIsVerified(bool $is_verified): self
+    {
+        $this->is_verified = $is_verified;
 
         return $this;
     }

@@ -25,8 +25,8 @@ class RecompensesCrudController extends AbstractCrudController
         yield ImageField::new('imageName')
             ->setLabel('Image')
             ->setBasePath('images/recompense')
-            ->setUploadDir('public/images/recompense');
-
+            ->setUploadDir('public/images/recompense')
+            ->setRequired(false);
     }
     public function configureActions(Actions $actions): Actions
     {

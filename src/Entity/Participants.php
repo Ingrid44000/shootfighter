@@ -7,6 +7,8 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: ParticipantsRepository::class)]
 class Participants
@@ -17,44 +19,41 @@ class Participants
     private ?int $id = null;
 
     #[ORM\Column(length: 180)]
-    private ?string $pseudo = null;
+    private ?string $pseudo;
 
     #[ORM\Column(length: 180)]
-    private ?string $nom = null;
+    private ?string $nom;
 
     #[ORM\Column(length: 180)]
-    private ?string $prenom = null;
+    private ?string $prenom;
 
     #[ORM\Column(length: 180)]
-    private ?string $email = null;
+    private ?string $email;
 
     #[ORM\Column(length: 255)]
-    private ?string $adresse_postale = null;
+    private ?string $adresse_postale;
 
     #[ORM\Column]
-    private ?int $code_postal = null;
+    private ?int $code_postal;
 
     #[ORM\Column(length: 180)]
-    private ?string $ville = null;
+    private ?string $ville;
 
     #[ORM\Column(length: 180)]
-    private ?string $pays = null;
+    private ?string $pays;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
-    private ?\DateTimeInterface $createdAt = null;
+    private ?\DateTimeInterface $createdAt;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable:true)]
-    private ?\DateTimeInterface $updatedAt = null;
+    private ?\DateTimeInterface $updatedAt;
 
 
     #[ORM\ManyToMany(targetEntity: Tournois::class, inversedBy: 'participants')]
     private Collection $tournois;
 
     #[ORM\ManyToOne(inversedBy: 'participants')]
-    private ?Recompenses $recompense = null;
-
-    #[ORM\Column(length: 180)]
-    private ?string $motdepasse = null;
+    private ?Recompenses $recompense;
 
     public function __construct()
     {
@@ -77,7 +76,15 @@ class Participants
 
         return $this;
     }
-
+    /**
+     * A visual identifier that represents this user.
+     *
+     * @see UserInterface
+     */
+    public function getUserIdentifier(): string
+    {
+        return (string) $this->pseudo;
+    }
     public function getNom(): ?string
     {
         return $this->nom;
@@ -198,23 +205,6 @@ class Participants
         return $this;
     }
 
-    public function getMotdepasse(): ?string
-    {
-        return $this->motdepasse;
-    }
-
-    public function setMotdepasse(string $motdepasse): self
-    {
-        $this->motdepasse = $motdepasse;
-
-        return $this;
-    }
-    public function getCreatedAt(): \DateTimeInterface
-    {
-        return $this->createdAt;
-    }
-
-
     public function setCreatedAt(\DateTimeInterface $createdAt)
     {
         $this->createdAt = $createdAt;
@@ -235,4 +225,7 @@ class Participants
 
         return $this;
     }
+
+
+
 }

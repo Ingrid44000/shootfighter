@@ -9,26 +9,36 @@
 </head>
 <h1>Shootfighter </h1>
 
-<button class="btn btn-lg btn-primary" type="submit">
-    <a href="{{ path('app_login') }}" title = "admin">Administrateur</a>
-</button>
-<br>
-{%  if app.user %}
+{%  if not app.user %}
 <button class="btn btn-lg btn-secondary" type="submit">
-    <a href="{{ path('app_logout') }}" title = "admin">Se déconnecter</a>
+<a href="{{ path('app_login') }}" title = "connexion">Se connecter</a>
 </button>
-<br><br>
+{% elseif app.user%}
+    <button class="btn btn-lg btn-secondary" type="submit">
+        <a href="{{ path('app_logout') }}" title = "deconnexion">Se déconnecter</a>
+    </button>
+    <br><br>
 {% endif %}
 
 <button class="btn btn-link btn-primary" type="submit">
-    <a href="{{ path('app_recompenses') }}" title = "recompenses">Récompenses</a>
+    <a href="{{ path('app_register') }}" title = "creation compte">Créer un compte</a>
 </button>
 
 <button class="btn btn-link btn-secondary" type="submit">
+    <a href="{{ path('app_recompenses') }}" title = "recompenses">Récompenses</a>
+</button>
+
+<button class="btn btn-link btn-tertiary" type="submit">
     <a href="{{ path('app_tournois') }}" title = "tournois">Tournois</a>
 </button>
 <br>
 
+{% if app.user %}
+<button class="btn btn-link admin" type="submit">
+    <a href="{{ path('admin') }}" title = "admin">Page administrateur</a>
+</button>
+{% endif %}
+<br>
 
 {% for actualite in actualites %}
 
