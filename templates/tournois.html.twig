@@ -18,7 +18,8 @@
         {{ tournois.nom }} <br>
         {{ tournois.date | date ('d-m-Y') }}
 
-         <img src="{{ asset('images/tournois/' ~ tournois.imageName) }}" alt="image goodie">
+         <img src="{{ asset('images/tournois/' ~ tournois.imageName) }}" alt="image goodie"height="400px"
+              width="300px">
         <br>
 
         <button class="btn btn-link btn-secondary" type="submit">

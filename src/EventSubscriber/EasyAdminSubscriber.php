@@ -3,7 +3,10 @@
 namespace App\EventSubscriber;
 
 use App\Entity\Actualites;
+use App\Entity\Recompenses;
+use App\Entity\Tournois;
 use DateTimeZone;
+use Doctrine\ORM\QueryBuilder;
 use EasyCorp\Bundle\EasyAdminBundle\Event\AfterEntityPersistedEvent;
 use DateTime;
 use EasyCorp\Bundle\EasyAdminBundle\Event\AfterEntityUpdatedEvent;
@@ -37,4 +40,6 @@ class EasyAdminSubscriber implements EventSubscriberInterface
         $now = new \DateTime('now', new DateTimeZone('Europe/Paris'));
         $entity->setUpdatedAt($now);
     }
+
+
 }

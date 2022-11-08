@@ -3,6 +3,8 @@ namespace App\Service;
 
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Translation\Translator;
+use Symfony\Component\Translation\Loader\ArrayLoader;
 
 class SendMailService
 {
@@ -31,5 +33,16 @@ class SendMailService
 
         // On envoie le mail
         $this->mailer->send($email);
-    }
+
+    //On crée le mail d'inscription aux tournois
+            $mailTournois = (new TemplatedEmail())
+            ->from($from)
+            ->to($to)
+            ->subject($subject)
+            ->htmlTemplate("emails/inscriptionTournois.html.twig")
+            ->context($context);
+
+    // On envoie le mail
+$this->mailer->send($mailTournois);
+}
 }

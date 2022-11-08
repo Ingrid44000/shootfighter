@@ -30,12 +30,12 @@ class Actualites
     private ?string $texte = null;
 
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private ?\DateTimeInterface $createdAt;
+    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
+    private ?\DateTimeInterface $createdAt = null;
 
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private ?\DateTimeInterface $updatedAt;
+    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
+    private ?\DateTimeInterface $updatedAt = null;
 
     public function getId(): ?int
     {
@@ -71,7 +71,6 @@ class Actualites
         return $this->createdAt;
     }
 
-
     public function setCreatedAt(\DateTimeInterface $createdAt)
     {
         $this->createdAt = $createdAt;
@@ -79,12 +78,10 @@ class Actualites
         return $this;
     }
 
-
     public function getUpdatedAt(): \DateTimeInterface
     {
         return $this->updatedAt;
     }
-
 
     public function setUpdatedAt(\DateTimeInterface $updatedAt)
     {

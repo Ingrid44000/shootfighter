@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Form\FormTypeInterface;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
@@ -59,6 +60,10 @@ class Tournois
         $this->recompenses = new ArrayCollection();
     }
 
+    public function __toString(): string{
+
+        return $this->getNom();
+    }
 
     public function getId(): ?int
     {

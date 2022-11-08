@@ -9,11 +9,11 @@
 </head>
 <h1>Shootfighter </h1>
 
-{%  if not app.user %}
+{% if not app.user %}
 <button class="btn btn-lg btn-secondary" type="submit">
 <a href="{{ path('app_login') }}" title = "connexion">Se connecter</a>
 </button>
-{% elseif app.user%}
+{% elseif app.user %}
     <button class="btn btn-lg btn-secondary" type="submit">
         <a href="{{ path('app_logout') }}" title = "deconnexion">Se déconnecter</a>
     </button>
@@ -33,7 +33,7 @@
 </button>
 <br>
 
-{% if app.user %}
+{% if is_granted('ROLE_ADMIN') %}
 <button class="btn btn-link admin" type="submit">
     <a href="{{ path('admin') }}" title = "admin">Page administrateur</a>
 </button>

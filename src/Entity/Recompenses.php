@@ -44,18 +44,23 @@ class Recompenses
     private ?\DateTimeInterface $updatedAt = null;
 
 
-    #[ORM\OneToMany(mappedBy: 'recompense', targetEntity: Participants::class)]
-    private Collection $participants;
-
     #[ORM\ManyToMany(targetEntity: Tournois::class, inversedBy: 'recompenses')]
     private Collection $tournois;
 
+    #[ORM\OneToMany(mappedBy: 'recompense', targetEntity: Participants::class)]
+    private Collection $participants;
+
+
+
     public function __construct()
     {
-        $this->participants = new ArrayCollection();
         $this->tournois = new ArrayCollection();
+        $this->participants = new ArrayCollection();
     }
+    public function __toString(): string{
 
+        return $this->nom;
+    }
     public function getId(): ?int
     {
         return $this->id;
@@ -197,6 +202,23 @@ class Recompenses
     public function setUpdatedAt(\DateTimeInterface $updatedAt)
     {
         $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    public function setParticipants(?Participants $participants): self
+    {
+        // unset the owning side of the relation if necessary
+        if ($participants === null && $this->participants !== null) {
+            $this->participants->setRecompense(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($participants !== null && $participants->getRecompense() !== $this) {
+            $participants->setRecompense($this);
+        }
+
+        $this->participants = $participants;
 
         return $this;
     }

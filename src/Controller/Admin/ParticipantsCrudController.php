@@ -3,10 +3,16 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Participants;
+use App\Entity\Recompenses;
+use App\Entity\Tournois;
+use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\QueryBuilder;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Event\AfterEntityPersistedEvent;
+use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
@@ -27,7 +33,16 @@ class ParticipantsCrudController extends AbstractCrudController
         yield IntegerField::new('codePostal');
         yield TextField::new('ville');
         yield TextField::new('pays');
+        yield AssociationField::new('tournois');
+        yield AssociationField::new('recompense')->setQueryBuilder(
+            fn (QueryBuilder $queryBuilder) => $queryBuilder->
+            getEntityManager()->getRepository(Recompenses::class)->afficherRecompenses());
 
+    }
+    public function afficherNomTournois(AfterEntityPersistedEvent $event)
+    {
+        $entity = $event->getEntityInstance()->getEntityManager()->getRepository(Tournois::class)->afficherRecompenses();
+        $entity->getNom();
     }
 
     public function configureActions(Actions $actions): Actions

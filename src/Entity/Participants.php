@@ -53,11 +53,16 @@ class Participants
     private Collection $tournois;
 
     #[ORM\ManyToOne(inversedBy: 'participants')]
-    private ?Recompenses $recompense;
+    private ?Recompenses $recompense = null;
+
 
     public function __construct()
     {
         $this->tournois = new ArrayCollection();
+    }
+    public function __toString(): string{
+
+        return $this->getNom();
     }
 
     public function getId(): ?int

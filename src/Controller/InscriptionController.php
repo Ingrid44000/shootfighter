@@ -6,6 +6,7 @@ use App\Entity\Participants;
 use App\Entity\User;
 use App\Form\InscriptionFormType;
 use App\Form\RegistrationFormType;
+use App\Service\SendMailService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
@@ -19,7 +20,8 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 class InscriptionController extends AbstractController
 {
     #[Route(path: '/inscription', name: 'app_inscription')]
-    public function inscription (Request $request, UserPasswordHasherInterface $passwordHasher, EntityManagerInterface $entityManager): Response{
+    public function inscription (Request $request, UserPasswordHasherInterface $passwordHasher, EntityManagerInterface $entityManager
+    , SendMailService $mailTournois): Response{
 
         {
             $participant = new Participants ();
@@ -32,8 +34,16 @@ class InscriptionController extends AbstractController
                 $entityManager->flush();
                 // do anything else you need here, like send an email
 
+                // On envoie un mail
+                $mailTournois->send(
+                    'no-reply@monsite.net',
+                    $participant->getEmail(),
+                    'Inscription tournois',
+                    'inscriptionTournois',
+                    compact('participant'));
 
-        }
+
+            }
             return $this->render('inscription.html.twig', [
                 'inscriptionForm' => $form->createView()]);
 }}}

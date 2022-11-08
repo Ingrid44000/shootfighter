@@ -28,7 +28,6 @@ class AppFixtures extends Fixture
         $participant->setNom('Tessier');
         $participant->setPrenom('Marina');
         $participant->setEmail('ma.tessier@gmail.com');
-        $participant->setMotdepasse('toto44');
         $participant->setAdressePostale('15 rue Joachim du Bellay');
         $participant->setCodePostal('44000');
         $participant->setVille('Nantes');
@@ -52,11 +51,8 @@ class AppFixtures extends Fixture
         $tournois->setNbPlacesMax(150);
         $manager->persist($tournois);
 
-        //Creation user
-        $user = new User();
-        $user->setUsername('user');
-        $user->setRoles((array)'ROLE_USER');
-        $user->setPassword('user');
+
+
 
         $manager->flush();
     }
