@@ -39,11 +39,6 @@ class ParticipantsCrudController extends AbstractCrudController
             getEntityManager()->getRepository(Recompenses::class)->afficherRecompenses());
 
     }
-    public function afficherNomTournois(AfterEntityPersistedEvent $event)
-    {
-        $entity = $event->getEntityInstance()->getEntityManager()->getRepository(Tournois::class)->afficherRecompenses();
-        $entity->getNom();
-    }
 
     public function configureActions(Actions $actions): Actions
     {
