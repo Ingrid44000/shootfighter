@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Shootfighter{% endblock %}
+
+{% block body %}
+<body>
+<h1>Tournois </h1>
+
+        {{ tournois.nom }} <br>
+        {{ tournois.date | date ('d-m-Y') }}
+
+
+        <img src="{{ asset('images/tournois/' ~ tournois.imageName) }}" alt="image goodie"height="400px"
+             width="300px">
+        <br>
+    <button class="btn btn-link btn-secondary" type="submit">
+        <a href="{{ path('app_inscription') }}" title = "inscription">S'inscrire</a>
+    </button>
+
+</body>
+{% endblock %}
+
+
+
+

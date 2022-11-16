@@ -1,0 +1,78 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block body %}
+    <h1>Inscription tournois</h1>
+
+    {{ form_start(inscriptionForm) }}
+
+<div style="float:left;width:25%;">
+    <div class="input-field tournois">
+        {{ form_row(inscriptionForm.tournois)}}
+        <br>
+    </div>
+
+    <div class="input-field recompenses">
+        {{ form_row(inscriptionForm.recompenses )}}
+        <br>
+    <div class="input-field nom pseudo">
+        {{ form_row(inscriptionForm.pseudo)}}
+        <br>
+    </div>
+
+    <div class="input-field nom participant">
+        {{ form_row(inscriptionForm.nom)}}
+        <br>
+    </div>
+
+    <div class="input-field prénom participant">
+        {{ form_row(inscriptionForm.prenom)}}
+        <br>
+    </div>
+    <div class="input-field email">
+        {{ form_row(inscriptionForm.email)}}
+        <br>
+    </div>
+    </div>
+</div>
+    <div style="float:left;width:75%;">
+    <div class="input-field adresse postale">
+        {{ form_row(inscriptionForm.adresse_postale)}}
+        <br>
+    </div>
+        <div class="input-field code postal">
+    {{ form_row(inscriptionForm.code_postal)}}
+    <br>
+    </div>
+
+
+    <div class="input-field ville">
+        {{ form_row(inscriptionForm.ville)}}
+        <br>
+    </div>
+
+    <div class="input-field pays">
+        {{ form_row(inscriptionForm.pays)}}
+        <br>
+    </div>
+    </div>
+     {#  <script type="text/javascript" >
+        function onSelectionTournois() {
+
+            document.getElementById("inscription_form_recompenses").innerHTML = "<option value= </option>";
+        }
+        var elt = document.getElementById("inscription_form_tournois");
+        elt.onchange = onSelectionTournois;
+
+    </script>#}
+
+
+    <button type="submit" class="btn">Valider</button>
+    {{ form_end(inscriptionForm) }}
+    <button class="btn btn-lg btn-secondary" type="submit">
+        <a href="{{ path('app_accueil') }}" title = "retour">Retour</a>
+    </button>
+
+{% endblock %}
+

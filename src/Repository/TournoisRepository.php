@@ -2,8 +2,10 @@
 
 namespace App\Repository;
 
+use App\Entity\Recompenses;
 use App\Entity\Tournois;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -45,6 +47,8 @@ class TournoisRepository extends ServiceEntityRepository
         $query = $qb->getQuery();
         return $query->execute();
     }
+
+
 
 
 //    /**

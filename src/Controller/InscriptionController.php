@@ -3,9 +3,11 @@
 namespace App\Controller;
 
 use App\Entity\Participants;
+use App\Entity\Tournois;
 use App\Entity\User;
 use App\Form\InscriptionFormType;
 use App\Form\RegistrationFormType;
+use App\Repository\TournoisRepository;
 use App\Service\SendMailService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Doctrine\ORM\EntityManagerInterface;
@@ -19,22 +21,24 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class InscriptionController extends AbstractController
 {
+    //créé le formulaire d'inscription à un tournois
     #[Route(path: '/inscription', name: 'app_inscription')]
     public function inscription (Request $request, UserPasswordHasherInterface $passwordHasher, EntityManagerInterface $entityManager
-    , SendMailService $mailTournois): Response{
+    , SendMailService $mailTournois) : Response{
 
         {
+
             $participant = new Participants ();
             $form = $this->createForm(InscriptionFormType::class, $participant);
             $form->handleRequest($request);
+
 
             if ($form->isSubmitted() && $form->isValid()) {
 
                 $entityManager->persist($participant);
                 $entityManager->flush();
-                // do anything else you need here, like send an email
 
-                // On envoie un mail
+                // On envoie un mail de confirmation de participation au tournois
                 $mailTournois->send(
                     'no-reply@monsite.net',
                     $participant->getEmail(),
@@ -44,6 +48,7 @@ class InscriptionController extends AbstractController
 
 
             }
-            return $this->render('inscription.html.twig', [
-                'inscriptionForm' => $form->createView()]);
+            return $this->render('inscription/inscription.html.twig', [
+                'inscriptionForm' => $form->createView(),
+       ]);
 }}}

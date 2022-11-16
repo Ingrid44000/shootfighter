@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Recompenses;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -39,7 +40,7 @@ class RecompensesRepository extends ServiceEntityRepository
         }
     }
 
-        public function afficherRecompenses ()
+    public function afficherRecompenses(): array
     {
 
         $qb = $this->createQueryBuilder('r');
@@ -47,6 +48,13 @@ class RecompensesRepository extends ServiceEntityRepository
         return $query->execute();
     }
 
+    public function findRecompenseByTournois() : QueryBuilder
+    {
+        $qb = $this->createQueryBuilder('r')
+            ->leftJoin('r.tournois', 'tournois');
+        $query = $qb->getQuery();
+        return $query->execute();
+    }
 
 //    /**
 //     * @return Recompenses[] Returns an array of Recompenses objects

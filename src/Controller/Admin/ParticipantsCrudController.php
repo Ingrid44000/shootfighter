@@ -33,10 +33,8 @@ class ParticipantsCrudController extends AbstractCrudController
         yield IntegerField::new('codePostal');
         yield TextField::new('ville');
         yield TextField::new('pays');
-        yield AssociationField::new('tournois');
-        yield AssociationField::new('recompense')->setQueryBuilder(
-            fn (QueryBuilder $queryBuilder) => $queryBuilder->
-            getEntityManager()->getRepository(Recompenses::class)->afficherRecompenses());
+        yield TextField::new('tournois');
+        yield AssociationField::new('recompenses');
 
     }
 

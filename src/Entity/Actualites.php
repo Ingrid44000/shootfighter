@@ -31,7 +31,7 @@ class Actualites
 
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
-    private ?\DateTimeInterface $createdAt = null;
+    private ?\DateTimeInterface $createdAt;
 
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]

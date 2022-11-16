@@ -29,8 +29,8 @@ class Recompenses
     private ?File $imageFile = null;
 
    //imageName sert à stocker le nom en base de données
-    #[ORM\Column(type: 'string')]
-    private ?string $imageName;
+    #[ORM\Column(type: 'string', nullable: true)]
+    private ?string $imageName = null;
 
     #[ORM\Column(length: 180)]
     private ?string $description = null;
@@ -44,23 +44,23 @@ class Recompenses
     private ?\DateTimeInterface $updatedAt = null;
 
 
-    #[ORM\ManyToMany(targetEntity: Tournois::class, inversedBy: 'recompenses')]
-    private Collection $tournois;
+    #[ORM\ManyToOne(inversedBy: 'recompenses')]
+    private ?Tournois $tournois = null;
 
-    #[ORM\OneToMany(mappedBy: 'recompense', targetEntity: Participants::class)]
+    #[ORM\OneToMany(mappedBy: 'recompenses', targetEntity: Participants::class)]
     private Collection $participants;
 
+    public function __toString(): string{
 
+        return $this->getNom();
+    }
 
     public function __construct()
     {
-        $this->tournois = new ArrayCollection();
         $this->participants = new ArrayCollection();
     }
-    public function __toString(): string{
 
-        return $this->nom;
-    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -125,10 +125,7 @@ class Recompenses
     }
 
 
-    /**
-     * @return Collection<int, Participants>
-     */
-    public function getParticipants(): Collection
+    public function getParticipants(): ?Participants
     {
         return $this->participants;
     }
@@ -137,7 +134,7 @@ class Recompenses
     {
         if (!$this->participants->contains($participant)) {
             $this->participants->add($participant);
-            $participant->setRecompense($this);
+            $participant->setRecompenses($this);
         }
 
         return $this;
@@ -147,34 +144,37 @@ class Recompenses
     {
         if ($this->participants->removeElement($participant)) {
             // set the owning side to null (unless already changed)
-            if ($participant->getRecompense() === $this) {
-                $participant->setRecompense(null);
+            if ($participant->getRecompenses() === $this) {
+                $participant->setRecompenses(null);
             }
         }
 
         return $this;
     }
 
-    /**
-     * @return Collection<int, Tournois>
-     */
-    public function getTournois(): Collection
+    public function getTournois(): ?Tournois
     {
         return $this->tournois;
     }
-
-    public function addTournoi(Tournois $tournoi): self
+    public function setTournois(?Tournois $tournois): self
     {
-        if (!$this->tournois->contains($tournoi)) {
-            $this->tournois->add($tournoi);
+        $this->tournois = $tournois;
+
+        return $this;
+    }
+
+    public function addTournois(Tournois $tournois): self
+    {
+        if (!$this->tournois->contains($tournois)) {
+            $this->tournois->add($tournois);
         }
 
         return $this;
     }
 
-    public function removeTournoi(Tournois $tournoi): self
+    public function removeTournois(Tournois $tournois): self
     {
-        $this->tournois->removeElement($tournoi);
+        $this->tournois->removeElement($tournois);
 
         return $this;
     }
@@ -210,16 +210,19 @@ class Recompenses
     {
         // unset the owning side of the relation if necessary
         if ($participants === null && $this->participants !== null) {
-            $this->participants->setRecompense(null);
+            $this->participants->setRecompenses(null);
         }
 
         // set the owning side of the relation if necessary
-        if ($participants !== null && $participants->getRecompense() !== $this) {
-            $participants->setRecompense($this);
+        if ($participants !== null && $participants->getRecompenses() !== $this) {
+            $participants->setRecompenses($this);
         }
 
         $this->participants = $participants;
 
         return $this;
     }
+
+
+
 }

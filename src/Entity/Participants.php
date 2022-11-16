@@ -49,16 +49,16 @@ class Participants
     private ?\DateTimeInterface $updatedAt;
 
 
-    #[ORM\ManyToMany(targetEntity: Tournois::class, inversedBy: 'participants')]
-    private Collection $tournois;
+    #[ORM\ManyToOne(inversedBy: 'participants')]
+    private ?Recompenses $recompenses = null;
 
     #[ORM\ManyToOne(inversedBy: 'participants')]
-    private ?Recompenses $recompense = null;
+    private ?Tournois $tournois = null;
 
 
     public function __construct()
     {
-        $this->tournois = new ArrayCollection();
+
     }
     public function __toString(): string{
 
@@ -174,13 +174,6 @@ class Participants
         return $this;
     }
 
-    /**
-     * @return Collection<int, Tournois>
-     */
-    public function getTournois(): Collection
-    {
-        return $this->tournois;
-    }
 
     public function addTournoi(Tournois $tournoi): self
     {
@@ -198,14 +191,14 @@ class Participants
         return $this;
     }
 
-    public function getRecompense(): ?Recompenses
+    public function getRecompenses(): ?Recompenses
     {
-        return $this->recompense;
+        return $this->recompenses;
     }
 
-    public function setRecompense(?Recompenses $recompense): self
+    public function setRecompenses(?Recompenses $recompenses): self
     {
-        $this->recompense = $recompense;
+        $this->recompenses = $recompenses;
 
         return $this;
     }
@@ -229,6 +222,18 @@ class Participants
         $this->updatedAt = $updatedAt;
 
         return $this;
+    }
+
+    public function setTournois(?Tournois $tournois): self
+    {
+        $this->tournois = $tournois;
+
+        return $this;
+    }
+
+    public function getTournois(): ?Tournois
+    {
+        return $this->tournois;
     }
 
 

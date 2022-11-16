@@ -35,7 +35,7 @@ class Tournois
     private ?File $imageFile = null;
 
     //imageName sert à stocker le nom en base de données
-    #[ORM\Column(type: 'string')]
+    #[ORM\Column(type: 'string', nullable: true)]
     private ?string $imageName = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
@@ -44,20 +44,36 @@ class Tournois
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable:true)]
     private ?\DateTimeInterface $updatedAt = null;
 
-
-    #[ORM\ManyToMany(targetEntity: Participants::class, mappedBy: 'tournois')]
-    private Collection $participants;
-
-    #[ORM\ManyToMany(targetEntity: Recompenses::class, mappedBy: 'tournois')]
-    private Collection $recompenses;
-
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $dateLimiteInscription = null;
 
+    #[Vich\UploadableField(mapping: 'recompense_images', fileNameProperty:
+        'recompenses')]
+    private ?File $imageFichier = null;
+
+
+    #[ORM\Column(type: 'string', nullable: true)]
+    private ?string $recompense1= null;
+
+    #[ORM\Column(type: 'string', nullable: true)]
+    private ?string $recompense2= null;
+
+    #[ORM\Column(type: 'string', nullable: true)]
+    private ?string $recompense3= null;
+
+    #[ORM\OneToMany(mappedBy: 'tournois', targetEntity: Recompenses::class)]
+    private Collection $recompenses;
+
+    #[ORM\OneToMany(mappedBy: 'tournois', targetEntity: Participants::class)]
+    private Collection $participants;
+
+
     public function __construct()
     {
+
         $this->participants = new ArrayCollection();
         $this->recompenses = new ArrayCollection();
+
     }
 
     public function __toString(): string{
@@ -106,13 +122,6 @@ class Tournois
         return $this;
     }
 
-    /**
-     * @return Collection<int, Participants>
-     */
-    public function getParticipants(): Collection
-    {
-        return $this->participants;
-    }
 
     public function addParticipant(Participants $participant): self
     {
@@ -140,12 +149,15 @@ class Tournois
     {
         return $this->recompenses;
     }
-
+    public function setRecompenses(): Collection
+    {
+        return $this->recompenses;
+    }
     public function addRecompense(Recompenses $recompense): self
     {
         if (!$this->recompenses->contains($recompense)) {
             $this->recompenses->add($recompense);
-            $recompense->addTournoi($this);
+            $recompense->addTournois($this);
         }
 
         return $this;
@@ -154,7 +166,7 @@ class Tournois
     public function removeRecompense(Recompenses $recompense): self
     {
         if ($this->recompenses->removeElement($recompense)) {
-            $recompense->removeTournoi($this);
+            $recompense->removeTournois($this);
         }
 
         return $this;
@@ -219,6 +231,26 @@ class Tournois
         return $this->imageFile;
     }
 
+    /**
+     * If manually uploading a file (i.e. not using Symfony Form) ensure an instance
+     * of 'UploadedFile' is injected into this setter to trigger the update. If this
+     * bundle's configuration parameter 'inject_on_load' is set to 'true' this setter
+     * must be able to accept an instance of 'File' as the bundle will inject one here
+     * during Doctrine hydration.
+     *
+     * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile|null $imageFichier
+     */
+    public function setImageFichier(?File $imageFichier = null): void
+    {
+        $this->imageFichier= $imageFichier;
+
+    }
+
+    public function getImageFichier(): ?File
+    {
+        return $this->imageFichier;
+    }
+
     public function setImageName(?string $imageName): void
     {
         $this->imageName = $imageName;
@@ -227,5 +259,63 @@ class Tournois
     public function getImageName(): ?string
     {
         return $this->imageName;
+    }
+
+    public function setParticipants(?Participants $participants): self
+    {
+        // unset the owning side of the relation if necessary
+        if ($participants === null && $this->participants !== null) {
+            $this->participants->setTournois(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($participants !== null && $participants->getTournois() !== $this) {
+            $participants->setTournois($this);
+        }
+
+        $this->participants = $participants;
+
+        return $this;
+    }
+
+    public function getParticipants(): ?Participants
+    {
+        return $this->participants;
+    }
+
+    public function getRecompense1(): ?string
+    {
+        return $this->recompense1;
+    }
+
+    public function setRecompense1(?string $recompense1): self
+    {
+        $this->recompense1 = $recompense1;
+
+        return $this;
+    }
+
+    public function getRecompense2(): ?string
+    {
+        return $this->recompense2;
+    }
+
+    public function setRecompense2(?string $recompense2): self
+    {
+        $this->recompense2 = $recompense2;
+
+        return $this;
+    }
+
+    public function getRecompense3(): ?string
+    {
+        return $this->recompense3;
+    }
+
+    public function setRecompense3(?string $recompense3): self
+    {
+        $this->recompense3 = $recompense3;
+
+        return $this;
     }
 }
