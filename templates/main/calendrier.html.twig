@@ -1,4 +1,4 @@
-{% extends '../base.html.twig' %}
+{% extends 'base.html.twig' %}
 {% block title %} Calendrier {% endblock %}
 
 {% block body %}
@@ -17,6 +17,7 @@
 {% endblock %}
 
 {% block javascripts %}
+
 <script>
     window.onload = () => {
         let calendarElt = document.querySelector("#calendrier")

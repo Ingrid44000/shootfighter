@@ -1,48 +1,76 @@
-{% extends 'base.html.twig' %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Shootfighter{% endblock %}</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
 
-{% block title %}Shootfighter{% endblock %}
-
+    {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset ('css/app.css') }}">
+    <link rel="stylesheet" href="{{ asset ('css/accueil.css') }}">
+</head>
 {% block body %}
+    <body>
+    <div class="container">
+        <div class="header-content">
+            <nav>
+                <ul>
+                    {% if is_granted('ROLE_ADMIN') %}
 
-<h1>Shootfighter </h1>
+                        <li class="admin">
+                            <a href="{{ path('admin') }}" title = "admin">Page administrateur</a>
+                        </li>
+                    {% endif %}
 
-{% if not app.user %}
-<button class="btn btn-lg btn-secondary" type="submit">
-<a href="{{ path('app_login') }}" title = "connexion">Se connecter</a>
-</button>
-    <button class="btn btn-link btn-primary" type="submit">
-        <a href="{{ path('app_register') }}" title = "creation compte">Créer un compte</a>
-    </button>
-{% elseif app.user %}
-    <button class="btn btn-lg btn-secondary" type="submit">
-        <a href="{{ path('app_logout') }}" title = "deconnexion">Se déconnecter</a>
-    </button>
-    <br><br>
-{% endif %}
+                    <li class="recompenses">
+                        <a href="{{ path('app_recompenses') }}" title = "recompenses">
+                            <span>Récompenses</span>
+                        </a>
+                    </li>
 
 
+                    <li class="tournois">
+                        <a href="{{ path('app_tournois') }}" title = "tournois">
+                        <span>Tournois</span>
+                        </a>
+                    </li>
 
-<button class="btn btn-link btn-secondary" type="submit">
-    <a href="{{ path('app_recompenses') }}" title = "recompenses">Récompenses</a>
-</button>
+                    {% if not app.user %}
 
-<button class="btn btn-link btn-tertiary" type="submit">
-    <a href="{{ path('app_tournois') }}" title = "tournois">Tournois</a>
-</button>
-<br>
+                        <li id ="connexion">
+                        <a href="{{ path('app_login') }}" class = "menu-link" title = "connexion">
 
-{% if is_granted('ROLE_ADMIN') %}
-<button class="btn btn-link admin" type="submit">
-    <a href="{{ path('admin') }}" title = "admin">Page administrateur</a>
-</button>
-{% endif %}
-<br>
+                            <span>Se connecter</span>
+                        </a>
+                        </li>
 
- {% for actualite in actualites %}
+
+                {% elseif app.user %}
+                    <li class="menu_deconnexion">
+                        <a href="{{ path('app_logout') }}" title = "deconnexion">
+                            <span>Se déconnecter</span>
+                        </a>
+                    </li>{% endif %}
+
+            </ul>
+
+                </nav>
+
+        </div>
+
+        </div>
+    <div id="banniere"></div>
+<section>
+ <p>{% for actualite in actualites %}
 
     {{ actualite.nom }} <br>
     {{ actualite.texte }}<br>
     {{ actualite.createdAt | date ('d-m-Y')}}<br>
-    <br>
+
     {% endfor %}
-{% endblock %}
+{% endblock %}</p>
+</section>
+    </body>
+
+</html>

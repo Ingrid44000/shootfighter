@@ -2,8 +2,10 @@
 
 namespace App\Controller;
 
+use App\Entity\Tournois;
 use App\Entity\User;
 use App\Entity\Actualites;
+use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -39,7 +41,7 @@ class MainController extends AbstractController
         throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
     }
 
-    #[Route(path: '/', name: 'app_accueil')]
+    #[Route(path: '/', name: 'app_accueil', methods: ['GET', 'POST'])]
     public function actualites(ManagerRegistry $doctrine): Response
     {
         $entityManager = $doctrine->getManager();

@@ -12,12 +12,22 @@
 
         {{ tournois.nom }} <br>
         {{ tournois.date | date ('d-m-Y') }}
-
-
-         <img src="{{ asset('images/tournois/' ~ tournois.imageName) }}" alt="image goodie"height="400px"
-              width="300px">
+        <img src="{{ asset('images/tournois/' ~ tournois.imageName) }}" alt="image goodie"height="400px"
+             width="400px">
         <br>
+            {{ tournois.recompense1}} <br>
 
+            <img src="{{ asset('images/recompense/' ~ tournois.recompense1) }}" alt="image goodie" height="250px"
+                 width="150px">
+            <br>
+        {{ tournois.recompense2 }}<br>
+        <img src="{{ asset('images/recompense/' ~ tournois.recompense2) }}" alt="image goodie" height="250px"
+             width="150px">
+        <br>
+        {{ tournois.recompense3 }}<br>
+        <img src="{{ asset('images/recompense/' ~ tournois.recompense3) }}" alt="image goodie" height="250px"
+             width="150px">
+        <br>
 
         <button class="btn btn-link btn-secondary" type="submit">
             <a href="{{ path('app_detail', {'id': tournois.id}) }}" title = "details">Voir tournois</a>

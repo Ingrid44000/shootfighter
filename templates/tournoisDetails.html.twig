@@ -14,7 +14,11 @@
              width="300px">
         <br>
     <button class="btn btn-link btn-secondary" type="submit">
-        <a href="{{ path('app_inscription') }}" title = "inscription">S'inscrire</a>
+    {% if app.user %}
+        <a href="{{ path('app_inscription', {'id': tournois.id}) }}" title = "inscription">S'inscrire</a>
+        {% elseif not app.user %}
+        <a href="{{ path('app_register', {'id': tournois.id}) }}" title = "inscription">S'inscrire</a>
+        {% endif %}
     </button>
 
 </body>

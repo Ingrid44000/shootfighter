@@ -4,22 +4,30 @@
 
 {% block body %}
 
-    <h1>Page de connexion </h1>
+    <h1>Connexion </h1>
 
 <form method="post">
     {% if error %}
     <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
     {% endif %}
 
+
     {% if app.user %}
+
         <div class="mb-3">
             You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
         </div>
+        {% elseif not app.user %}
+            <div class="menu_création_compte ">
+                <a href="{{ path('app_register') }}" title = "creation compte">
+                    <span>Créer un compte</span>
+                </a>
+            </div>
     {% endif %}
 
 
 
-    <h4 class="h3 mb-3 font-weight-normal">Connexion</h4>
+    <h4 class="h3 mb-3 font-weight-normal"></h4>
     <label for="inputUsername">Identifiant</label>
     <input type="text" value="{{ last_username }}" name="username" id="inputUsername" class="form-control" autocomplete="username" required autofocus>
     <br>
@@ -46,7 +54,7 @@
     </button><br>
 
     <button class="btn btn-lg btn-secondary" type="submit">
-        <a href="{{ path('app_accueil') }}" title = "admin">Retour</a>
+        <a href="{{ path('app_accueil') }}" title = "retour">Retour</a>
     </button>
 
 </form>

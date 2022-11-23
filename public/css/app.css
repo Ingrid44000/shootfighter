@@ -1,10 +1,13 @@
 body {
     background: linear-gradient(#000000, #132135);
     background-attachment: fixed;
+    background-position: top;
     color: #EEE;
     font-family: 'Crimson Text', serif;
 }
-
+/*
+bloc conteneur
+*/
 .container {
     max-width: 1000px;
     margin: auto;
@@ -18,10 +21,6 @@ a {
 
 a:hover {
     color: #BC956B;
-}
-
-img {
-    max-width: 100%;
 }
 
 body > .container {
@@ -52,12 +51,14 @@ nav li {
 label {
     display: block;
 }
+.formEnregistrer{
 
-input,
-textarea,
-select {
-    margin-bottom: 1rem;
-    box-sizing: border-box;
-    width: 150px;
-    max-width: 50%;
+}
+.formEnregistrer #Username{
+    display: block;
+    margin-bottom: 10px;
+
+}
+.formEnregistrer button{
+
 }

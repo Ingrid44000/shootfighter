@@ -26,14 +26,17 @@ class TournoisController extends AbstractController
 
         }
     }
-    #[Route(path: '/details/{id}', name: 'app_detail')]
-    public function afficherDetails(int $id,TournoisRepository $tournoisRepository)
+    #[Route(path: '/details/{id}', name: 'app_detail', methods: ['GET', 'POST'])]
+    public function afficherDetails(int $id,TournoisRepository $tournoisRepository, ManagerRegistry $doctrine) : Response
     {
 
         $tournois = $tournoisRepository->find($id);
+        $entityManager = $doctrine->getManager();
+        $recompenses = $entityManager->getRepository(Recompenses::class)->afficherRecompenses();
 
         return $this->render('tournoisDetails.html.twig',[
-            "tournois"=>$tournois
+            'recompenses'=>$recompenses,
+            'tournois'=>$tournois
         ]);
     }
 

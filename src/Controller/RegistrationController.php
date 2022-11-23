@@ -8,6 +8,7 @@ use App\Repository\UserRepository;
 use App\Security\AppAuthenticator;
 use App\Service\SendMailService;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,6 +16,7 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
+
 
 class RegistrationController extends AbstractController
 {
@@ -37,16 +39,14 @@ class RegistrationController extends AbstractController
                 )
             );
 
-
             $entityManager->persist($user);
             $entityManager->flush();
-            // do anything else you need here, like send an email
 
             // On envoie un mail
             $mail->send(
                 'no-reply@monsite.net',
                 $user->getEmail(),
-                'Activation de votre compte sur le site de shootfighter',
+                'Bienvenue, vous avez créé un compte sur le site de Shootfighter',
                 'register',
                 compact('user'));
             return $userAuthenticator->authenticateUser(
