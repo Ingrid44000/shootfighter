@@ -1,0 +1,50 @@
+body {
+    background-image: url("images/imageRegister.png");
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Crimson Text', serif;
+}
+#header{
+    text-align:center;
+    font-size: 33px;
+    margin-bottom: auto;
+    margin-top: 50%;
+}
+
+span{
+    display: flex;
+    position: center;
+    flex-direction: column;
+    padding: 10px;
+    border:none;
+    border-radius: 5px;
+    background: linear-gradient(#000000, #132135);
+    outline:none;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+button {
+    display: inline-block;
+    position: relative;
+    background-color: transparent;
+    text-align: center;
+    font-size: 15px;
+    top: 15px;
+    padding: 10px;
+    width: 100%;
+    cursor: pointer;
+    margin: 5px;
+    color: #4ade80;
+}
+
+
+button:hover{
+    transform: translate(-2px, -2px);
+}
+button:hover:before{
+    transform: translate(5px, 5px);
+}

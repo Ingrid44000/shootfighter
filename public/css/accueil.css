@@ -1,9 +1,9 @@
 #banniere{
     background-image: url("images/imageAccueil.png");
-    margin-top: -47%;
-    height: 375px;
+    margin-top: -50%;
+    height: 300px;
     border-radius: 10px;
-    position: auto;
+    position: center;
     margin-left: auto;
     margin-right: auto;
     min-width: 1500px;

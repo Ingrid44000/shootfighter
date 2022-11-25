@@ -5,6 +5,7 @@ body {
     color: #EEE;
     font-family: 'Crimson Text', serif;
 }
+
 /*
 bloc conteneur
 */
@@ -50,15 +51,4 @@ nav li {
 
 label {
     display: block;
-}
-.formEnregistrer{
-
-}
-.formEnregistrer #Username{
-    display: block;
-    margin-bottom: 10px;
-
-}
-.formEnregistrer button{
-
 }

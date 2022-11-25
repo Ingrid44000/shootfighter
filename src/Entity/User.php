@@ -20,7 +20,7 @@ class  User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?int $id = null;
 
 
-    #[ORM\Column(length: 180)]
+    #[ORM\Column(length: 180, unique: true)]
     private ?string $username;
 
     #[ORM\Column]
@@ -34,9 +34,10 @@ class  User implements UserInterface, PasswordAuthenticatedUserInterface
 
 
     #[ORM\Column(length: 180, unique: true)]
-    #[Assert\Email]
     private ?string $email;
 
+    #[ORM\Column(type: 'string', length: 100)]
+    private $resetToken;
 
     public function getId(): ?int
     {
@@ -123,6 +124,16 @@ class  User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setIsVerified(bool $is_verified): self
     {
         $this->is_verified = $is_verified;
+
+        return $this;
+    }
+    public function getResetToken(): ?string
+    {
+        return $this->resetToken;
+    }
+    public function setResetToken(?string $resetToken): self
+    {
+        $this->resetToken = $resetToken;
 
         return $this;
     }

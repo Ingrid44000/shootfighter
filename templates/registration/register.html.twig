@@ -1,21 +1,35 @@
-{% extends 'base.html.twig' %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Créer un compte{% endblock %}</title>
 
-{% block title %}Register{% endblock %}
-
+    <link rel="stylesheet" href="{{ asset ('css/app.css') }}">
+    <link rel="stylesheet" href="{{ asset ('css/register_login.css') }}">
+</head>
 {% block body %}
-<body>
-    <h1>Création de compte</h1>
 
     {{ form_start(registrationForm) }}
-        {{ form_widget(registrationForm)}}
-
-<br>
+    <div id = "header">
+        <h1>Création de compte</h1>
+    </div>
+<span class ="username">
+        {{ form_row(registrationForm.username)}}
+</span>
+<span class ="email">
+        {{ form_row(registrationForm.email)}}
+</span>
+<span class ="plainPassword">
+        {{ form_row(registrationForm.plainPassword)}}
+</span>
+    <br>
     <br>
         <button type="submit" class="btn">S'enregistrer</button>
 
     <button class="btn btn-lg btn-secondary" type="submit">
-        <a href="{{ path('app_accueil') }}" title = "retour">Retour</a>
+        <a href="{{ path('app_login') }}" title = "retour">Retour</a>
     </button>
+    {{ form_end(registrationForm) }}
 
-</body>
 {% endblock %}
+</html>
