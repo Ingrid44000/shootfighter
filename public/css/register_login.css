@@ -7,7 +7,16 @@ body {
     align-items: center;
     font-family: 'Crimson Text', serif;
 }
-#header{
+form{
+    opacity:0.96;
+    margin-top: 100px;
+    background: linear-gradient(#000000, #132135);
+    color: white;
+    padding: 50px 60px;
+    border-radius: 10px;
+    min-width: 300px;
+}
+div .header{
     text-align:center;
     font-size: 33px;
     margin-bottom: auto;
@@ -25,6 +34,39 @@ span{
     outline:none;
     margin-top: auto;
     margin-bottom: auto;
+}
+
+#username{
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    border-radius: 5px;
+    background: linear-gradient(#000000, #132135);
+    outline:none;
+    margin-top: auto;
+    margin-bottom: auto;
+    width: auto;
+}
+ #email{
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    border-radius: 5px;
+    background: linear-gradient(#000000, #132135);
+    outline:none;
+    margin-top: auto;
+    margin-bottom: auto;
+    width: auto;
+}
+#plainPassword{
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    border-radius: 5px;
+    background: linear-gradient(#000000, #132135);
+    outline:none;
+    margin-bottom: auto;
+    margin-top: auto;
 }
 
 button {

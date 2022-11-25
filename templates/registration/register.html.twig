@@ -1,27 +1,22 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>{% block title %}Créer un compte{% endblock %}</title>
+{% extends 'base.html.twig' %}
+{% block title %}Créer un compte{% endblock %}
 
-    <link rel="stylesheet" href="{{ asset ('css/app.css') }}">
-    <link rel="stylesheet" href="{{ asset ('css/register_login.css') }}">
-</head>
+
 {% block body %}
-
+    <link rel="stylesheet" href="{{ asset ('css/register_login.css') }}">
     {{ form_start(registrationForm) }}
     <div id = "header">
         <h1>Création de compte</h1>
     </div>
-<span class ="username">
+<div id ="username">
         {{ form_row(registrationForm.username)}}
-</span>
-<span class ="email">
+</div>
+<div id ="email">
         {{ form_row(registrationForm.email)}}
-</span>
-<span class ="plainPassword">
+</div>
+<div id ="plainPassword">
         {{ form_row(registrationForm.plainPassword)}}
-</span>
+</div>
     <br>
     <br>
         <button type="submit" class="btn">S'enregistrer</button>
@@ -32,4 +27,3 @@
     {{ form_end(registrationForm) }}
 
 {% endblock %}
-</html>
