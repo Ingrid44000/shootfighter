@@ -10,14 +10,14 @@
         <link rel="stylesheet" href="{{ asset ('css/app.css') }}">
 
         {% block stylesheets %}
-            {{ encore_entry_link_tags('app') }}
+            {{ encore_entry_link_tags('app.css') }}
         {% endblock %}
         <script src="https://cdn.jsdelivr.net/npm/fullcalendar-scheduler@5.11.3/main.min.js"
                 integrity="sha256-h1wdpCwP+KTZR3Rbgwcb+CeUbEUBPoh+64lxN1DJTJI=" crossorigin="anonymous"></script>
 
         {% block javascripts %}
 
-            {{ encore_entry_script_tags('app') }}
+            {{ encore_entry_script_tags('app.css') }}
         {% endblock %}
     </head>
     <body>

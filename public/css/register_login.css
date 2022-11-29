@@ -90,3 +90,16 @@ button:hover{
 button:hover:before{
     transform: translate(5px, 5px);
 }
+
+contact{
+    background: linear-gradient(#000000, #132135);
+    display: flex;
+    position: center;
+    flex-direction: column;
+    padding: 10px;
+    border:none;
+    border-radius: 5px;
+    outline:none;
+    margin-top: auto;
+    margin-bottom: auto;
+}
