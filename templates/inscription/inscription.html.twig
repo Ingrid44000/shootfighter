@@ -3,11 +3,15 @@
 {% block title %}Register{% endblock %}
 
 {% block body %}
-    <h1>Inscription tournois</h1>
+    <link rel="stylesheet" href="{{ asset ('css/register_login.css') }}">
 
     {{ form_start(inscriptionForm) }}
 
-<div style="float:left;width:25%;">
+    <div id = "header">
+        <h1>Inscription à un tournois</h1>
+    </div>
+        <div style="float:left;width:25%;">
+
     <div class="input-field tournois">
         {{ form_row(inscriptionForm.tournois)}}
         <br>
@@ -30,13 +34,15 @@
         {{ form_row(inscriptionForm.prenom)}}
         <br>
     </div>
+
     <div class="input-field email">
         {{ form_row(inscriptionForm.email)}}
         <br>
     </div>
+
     </div>
 </div>
-    <div style="float:left;width:75%;">
+        <div style="float:left;width:75%;">
     <div class="input-field adresse postale">
         {{ form_row(inscriptionForm.adresse_postale)}}
         <br>
@@ -69,10 +75,10 @@
 
 
     <button type="submit" class="btn">Valider</button>
-    {{ form_end(inscriptionForm) }}
+
     <button class="btn btn-lg btn-secondary" type="submit">
         <a href="{{ path('app_accueil') }}" title = "retour">Retour</a>
     </button>
-
+    {{ form_end(inscriptionForm) }}
 {% endblock %}
 

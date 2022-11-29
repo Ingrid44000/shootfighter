@@ -45,4 +45,22 @@ class SendMailService
     // On envoie le mail
 $this->mailer->send($mailTournois);
 }
+
+    public function sendEmail(
+        string $from,
+        string $subject,
+        string $htmlTemplate,
+        array $context,
+        string $to = 'admin@symrecipe.com'
+    ): void {
+        $email = (new TemplatedEmail())
+            ->from($from)
+            ->to($to)
+            ->subject($subject)
+            ->htmlTemplate($htmlTemplate)
+            ->context($context);
+
+        $this->mailer->send($email);
+    }
+
 }

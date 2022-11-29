@@ -33,7 +33,7 @@ class ParticipantsCrudController extends AbstractCrudController
         yield IntegerField::new('codePostal');
         yield TextField::new('ville');
         yield TextField::new('pays');
-        yield TextField::new('tournois');
+        yield AssociationField::new('tournois');
         yield AssociationField::new('recompenses');
 
     }
