@@ -38,14 +38,14 @@
 
                     {% if not app.user %}
 
-                        <li id ="connexion">
+                        <li class ="connexion">
                         <a href="{{ path('app_login') }}" class = "menu-link" title = "connexion">
 
                             <span>Se connecter</span>
                         </a>
                         </li>
 
-                        <li id ="contact">
+                        <li class ="contact">
                             <a href="{{ path('app_contact') }}" class = "menu-link" title = "contact">
 
                                 <span>Contact</span>
@@ -58,25 +58,41 @@
                             <span>Se déconnecter</span>
                         </a>
                     </li>{% endif %}
-
             </ul>
-
                 </nav>
-
         </div>
-
+        <hr>
         </div>
     <div id="banniere"></div>
-<section>
- <p>{% for actualite in actualites %}
+<div class = "container">
+            <nav>
+                <ul>
+                    <li id ="actualites">
+                    <span>Actualités </span>
+                    </li>
+                    <li id ="calendrier">
+                    <span> Calendrier </span>
+                    </li>
+                </ul>
+            </nav>
+            {% for actualite in actualites %}
+                <div id="texte-actu">
+                {{ actualite.texte }}
+                {{ actualite.createdAt | date ('d-m-Y')}}</div>
+                    <div class="actualite">
+                        <div id ="nom>"><h2>{{ actualite.nom }}</h2></div>
+                        <div id ="image"><img src="{{ asset('images/actualites/' ~ actualite.imageName) }}" alt="image actualite"
+                                              height="140%"
+                             width= "100%"></div>
 
-    {{ actualite.nom }} <br>
-    {{ actualite.texte }}<br>
-    {{ actualite.createdAt | date ('d-m-Y')}}<br>
+                    </div>
+
 
     {% endfor %}
-{% endblock %}</p>
-</section>
+            </div>
+
+{% endblock %}
+
     </body>
 
 </html>

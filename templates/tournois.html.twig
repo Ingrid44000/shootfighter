@@ -1,41 +1,49 @@
-{% extends 'base.html.twig' %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Tournois{% endblock %}</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
 
-{% block title %}Shootfighter{% endblock %}
+    {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset ('css/app.css') }}">
+</head>
 
 {% block body %}
 
-<h1>Shootfighter </h1>
-<body>
-<h1>Tournois </h1>
+    <div id = "header">
+        <h1>Tournois</h1>
+    </div>
 
     {% for tournois in tournois %}
 
         {{ tournois.nom }} <br>
         {{ tournois.date | date ('d-m-Y') }}
-        <img src="{{ asset('images/tournois/' ~ tournois.imageName) }}" alt="image goodie"height="400px"
+        <img src="{{ asset('images/tournois/' ~ tournois.imageName) }}" alt="image tournois" height="400px"
              width="400px">
         <br>
             {{ tournois.recompense1}} <br>
 
-            <img src="{{ asset('images/recompense/' ~ tournois.recompense1) }}" alt="image goodie" height="250px"
+            <img src="{{ asset('images/recompense/' ~ tournois.recompense1) }}" alt="image tournois" height="250px"
                  width="150px">
             <br>
         {{ tournois.recompense2 }}<br>
-        <img src="{{ asset('images/recompense/' ~ tournois.recompense2) }}" alt="image goodie" height="250px"
+        <img src="{{ asset('images/recompense/' ~ tournois.recompense2) }}" alt="image tournois" height="250px"
              width="150px">
         <br>
         {{ tournois.recompense3 }}<br>
-        <img src="{{ asset('images/recompense/' ~ tournois.recompense3) }}" alt="image goodie" height="250px"
+        <img src="{{ asset('images/recompense/' ~ tournois.recompense3) }}" alt="image tournois" height="250px"
              width="150px">
         <br>
 
         <button class="btn btn-link btn-secondary" type="submit">
-            <a href="{{ path('app_detail', {'id': tournois.id}) }}" title = "details">Voir tournois</a>
+            <a href="{{ path('app_detail', {'id': tournois.id}) }}" title = "detail tournois">Voir tournois</a>
         </button>
 
     {% endfor %}
 </body>
 {% endblock %}
-
+</html>
 
 

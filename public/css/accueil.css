@@ -1,6 +1,24 @@
+
+body {
+    background: linear-gradient(#000000, #132135);
+    background-attachment: fixed;
+    background-position: top;
+    color: #EEE;
+    font-family: 'Crimson Text', serif;
+}
+
+/*
+bloc conteneur
+*/
+.container {
+    max-width: 1000px;
+    margin: auto;
+    padding: 5px;
+}
+
 #banniere{
     background-image: url("images/imageAccueil.png");
-    margin-top: -35%;
+    margin-top: -45%;
     height: 300px;
     border-radius: 10px;
     position: center;
@@ -9,12 +27,17 @@
     min-width: 1500px;
 }
 
-body {
-
-    color: #EEE;
-    background-position: top;
-    font-family: 'Crimson Text', serif;
+section {
+    width: 100%;
+    display: inline-block;
+    background: linear-gradient(#000000, #132135);
+    height: 50vh;
+    text-align: center;
+    font-size: 22px;
+    font-weight: 700;
 }
+
+
 #connexion{
 
     margin-top: -2%;
@@ -30,12 +53,7 @@ nav ul {
 }
 
 nav li {
-    margin-right: 1rem;
     margin-left: auto;
-}
-
-label {
-    display: block;
 }
 
 nav {
@@ -71,19 +89,55 @@ nav a:hover{
     color: orange;
     border-bottom: 2px solid orange;
 }
-
-section {
-    background: linear-gradient(#000000, #132135);
-    border-radius: 10px;
-    margin-top: 150px;
-    margin-right: 40px;
-    margin-bottom: 40px;
-    margin-left: 40px;
+hr{
+    display: block;
+    height: 0;
+    margin: auto;
+    padding: 0;
+    border: 0;
+    font-size: 60px;
+    line-height: 1;
 }
 
-p{
-    margin-top: 30px;
-    margin-right: 40px;
-    margin-bottom: 40px;
-    margin-left: 40px;
+
+div .actualite{
+    width: 50%;
+    height: 343px;
+    opacity: 0.95;
+    display: inline-block;
+    background: darkslategrey;
+    border-radius: 10px;
+    margin-top: -290px;
+    margin-right: 90px;
+    margin-bottom: 30px;
+    margin-left: -10px;
+
+}
+
+h2{
+    text-align:center;
+    font-size: 30px;
+    width: 88%;
+    height: 5px;
+    padding: 30px;
+    display: inline-block;
+    background: darkslategrey;
+    position: center;
+    border-radius: 10px;
+    margin-top: 0;
+}
+
+#texte-actu {
+    width: 65%;
+    height: 300px;
+    text-align:center;
+    opacity: 0.75;
+    display: inline-block;
+    background: #222d35;
+    border-radius: 10px;
+    margin-top: 120px;
+    margin-right: 90px;
+    margin-bottom: -40px;
+    margin-left: 495px;
+
 }

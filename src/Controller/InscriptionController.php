@@ -2,13 +2,10 @@
 
 namespace App\Controller;
 
-use App\Entity\Actualites;
+
 use App\Entity\Participants;
-use App\Entity\Tournois;
-use App\Entity\User;
 use App\Form\InscriptionFormType;
-use App\Form\RegistrationFormType;
-use App\Repository\ParticipantsRepository;
+use App\Repository\EtatRepository;
 use App\Repository\TournoisRepository;
 use App\Service\SendMailService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -27,34 +24,45 @@ class InscriptionController extends AbstractController
 
     #[Route(path: '/inscription{id}', name: 'app_inscription')]
     public function inscription (Request $request, EntityManagerInterface $entityManager
-    , SendMailService $mailTournois,int $id,TournoisRepository $tournoisRepository, ManagerRegistry $doctrine) : Response{
+    , SendMailService $mailTournois,int $id,EtatRepository $etatRepository, TournoisRepository $tournoisRepository) : Response{
 
         {
-            $tournois = $tournoisRepository->find($id);
-            $entityManager = $doctrine->getManager();
+            $tournois = $tournoisRepository->find($id); //tournois en question
 
-            $participant = new Participants ();
+            $nbParticipants = count($tournois->getParticipants());//nombre de participants au tournois
+            $placesRestantes = $tournois->getNbPlacesMax()-$nbParticipants;
+
+            if ($placesRestantes <= 0){
+                $this->addFlash("echec", "il n y a plus de place");
+                return $this->redirectToRoute('app_tournois');
+            }
+            $participant = new Participants();
+
 
             $form = $this->createForm(InscriptionFormType::class, $participant);
             $form->handleRequest($request);
 
-            if ($form->isSubmitted() && $form->isValid()) {
+
+                if($form->isSubmitted() && $form->isValid()) {
 
 
-                $entityManager->persist($participant);
-                $entityManager->flush();
-                $this->addFlash('success', 'Inscription réussie!');
 
-                // On envoie un mail de confirmation de participation au tournois
-                $mailTournois->send(
-                    'no-reply@monsite.net',
-                    $participant->getEmail(),
-                    'Inscription tournois',
-                    'inscriptionTournois',
-                    compact('participant'));
-            }
+                    $entityManager->persist($participant);
+                    $entityManager->flush();
+
+
+                    // On envoie un mail de confirmation de participation au tournois
+                    $mailTournois->send(
+                        'no-reply@shootfighter.fr',
+                        $participant->getEmail(),
+                        'Inscription tournois',
+                        'inscriptionTournois',
+                        compact('participant'));
+                }
 
             return $this->render('inscription/inscription.html.twig', [
                 'inscriptionForm' => $form->createView(),
        ]);
 }}}
+
+

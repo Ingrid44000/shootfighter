@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Register{% endblock %}
+{% block title %}Inscription tournois{% endblock %}
 
 {% block body %}
     <link rel="stylesheet" href="{{ asset ('css/register_login.css') }}">
@@ -12,10 +12,6 @@
     </div>
         <div style="float:left;width:25%;">
 
-    <div class="input-field tournois">
-        {{ form_row(inscriptionForm.tournois)}}
-        <br>
-    </div>
 
     <div class="input-field recompenses">
         {{ form_row(inscriptionForm.recompenses )}}

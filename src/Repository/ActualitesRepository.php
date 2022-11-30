@@ -30,7 +30,7 @@ class ActualitesRepository extends ServiceEntityRepository
         }
     }
 
-    public function dernieresActualites ()
+    public function dernieresActualites () : array
     {
 
         $qb = $this->createQueryBuilder('a')
@@ -49,7 +49,7 @@ class ActualitesRepository extends ServiceEntityRepository
     }
 
 //    /**
-//     * @return Actualites[] Returns an array of Actualites objects
+//     * @return actualites[] Returns an array of actualites objects
 //     */
 //    public function findByExampleField($value): array
 //    {
@@ -63,7 +63,7 @@ class ActualitesRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?Actualites
+//    public function findOneBySomeField($value): ?actualites
 //    {
 //        return $this->createQueryBuilder('a')
 //            ->andWhere('a.exampleField = :val')

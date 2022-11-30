@@ -11,6 +11,10 @@ use Symfony\Component\Form\FormTypeInterface;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
+/**
+ * @method contains(Tournois $tournoi)
+ * @method add(Tournois $tournoi)
+ */
 #[ORM\Entity(repositoryClass: TournoisRepository::class)]
 #[Vich\Uploadable]
 
@@ -66,6 +70,12 @@ class Tournois
 
     #[ORM\OneToMany(mappedBy: 'tournois', targetEntity: Participants::class)]
     private Collection $participants;
+
+    #[ORM\Column(nullable: true)]
+    private ?int $nbPlacesActuelles;
+
+    #[ORM\ManyToOne(inversedBy: 'tournois')]
+    private ?Etat $etat = null;
 
 
     public function __construct()
@@ -278,7 +288,7 @@ class Tournois
         return $this;
     }
 
-    public function getParticipants(): ?Participants
+    public function getParticipants(): Collection
     {
         return $this->participants;
     }
@@ -318,4 +328,30 @@ class Tournois
 
         return $this;
     }
+
+    public function getNbPlacesActuelles(): ?int
+    {
+        return $this->nbPlacesActuelles;
+    }
+
+    public function setNbPlacesActuelles(?int $nbPlacesActuelles): self
+    {
+        $this->nbPlacesActuelles = $nbPlacesActuelles;
+
+        return $this;
+    }
+
+    public function getEtat(): ?Etat
+    {
+        return $this->etat;
+    }
+
+    public function setEtat(?Etat $etat): self
+    {
+        $this->etat = $etat;
+
+        return $this;
+    }
+
+
 }

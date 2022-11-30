@@ -8,6 +8,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
 
@@ -20,12 +21,16 @@ class ActualitesCrudController extends AbstractCrudController
 
     public function configureFields(string $pageName): iterable
     {
-        return [
-            TextField::new('nom'),
-            TextField::new('texte'),
-            DateTimeField::new('createdAt')->setLabel('Créé le')->hideOnForm()->setRequired(false),
-            DateTimeField::new('updatedAt')->setLabel('Modifié le')->hideOnForm()->setRequired(false),
-        ];
+
+            yield TextField::new('nom');
+            yield TextField::new('texte');
+            yield DateTimeField::new('createdAt')->setLabel('Créé le')->hideOnForm()->setRequired(false);
+            yield DateTimeField::new('updatedAt')->setLabel('Modifié le')->hideOnForm()->setRequired(false);
+            yield ImageField::new('imageName')
+                ->setLabel('Image')
+                ->setBasePath('images/actualites')
+                ->setUploadDir('public/images/actualites')
+                ->setRequired(false);
 
     }
 

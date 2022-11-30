@@ -149,5 +149,9 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="fullcalendar" level="application" />
+    <orderEntry type="library" name="fullcalendar-scheduler" level="application" />
+    <orderEntry type="library" name="jquery" level="application" />
+    <orderEntry type="library" name="twitter-bootstrap" level="application" />
   </component>
 </module>

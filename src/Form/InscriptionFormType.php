@@ -14,6 +14,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Form\Filter\Type\TextFilterType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
@@ -40,7 +41,6 @@ class InscriptionFormType extends AbstractType
             ->add('code_postal')
             ->add('ville')
             ->add('pays')
-            ->add('tournois')
             ->add('recompenses');
     }
 

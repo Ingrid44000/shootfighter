@@ -17,7 +17,7 @@
     {% if app.user %}
         <a href="{{ path('app_inscription', {'id': tournois.id}) }}" title = "inscription">S'inscrire</a>
         {% elseif not app.user %}
-        <a href="{{ path('app_register', {'id': tournois.id}) }}" title = "inscription">S'inscrire</a>
+        <a href="{{ path('app_register')}}" title = "inscription">Créer un compte</a>
         {% endif %}
     </button>
 
