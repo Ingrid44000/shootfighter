@@ -7,10 +7,12 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: ParticipantsRepository::class)]
+
 class Participants
 {
     #[ORM\Id]
@@ -54,6 +56,9 @@ class Participants
 
     #[ORM\ManyToOne(inversedBy: 'participants')]
     private ?Tournois $tournois = null;
+
+    #[ORM\ManyToOne(inversedBy: 'participant')]
+    private ?User $user = null;
 
 
     public function __construct()
@@ -235,6 +240,18 @@ class Participants
     public function getTournois(): ?Tournois
     {
         return $this->tournois;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
+
+        return $this;
     }
 
 

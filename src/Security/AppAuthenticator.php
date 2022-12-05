@@ -35,6 +35,7 @@ class AppAuthenticator extends AbstractLoginFormAuthenticator
         $request->getSession()->set(Security::LAST_USERNAME, $mailOrPseudo);
 
         return new Passport(
+            //Permet de se connecter par mail ou par pseudo
             new UserBadge($mailOrPseudo, function($userIdentifier){
                 return $this->userRepository->loadUserByIdentifier($userIdentifier);
             }),

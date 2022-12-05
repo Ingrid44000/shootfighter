@@ -1,29 +1,54 @@
-{% extends 'base.html.twig' %}
-{% block title %}Créer un compte{% endblock %}
-
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Créer un compte{% endblock %}</title>
+    <link rel="stylesheet" href="{{ asset ('css/app.css') }}">
+    <link rel="stylesheet" href="{{ asset ('css/register_login.css') }}">
+</head>
 
 {% block body %}
-    <link rel="stylesheet" href="{{ asset ('css/register_login.css') }}">
+<body>
+<div id = "form-register">
     {{ form_start(registrationForm) }}
-    <div id = "header">
-        <h1>Création de compte</h1>
-    </div>
-<div id ="username">
+        <div id="header">
+            <h1>Création de compte</h1>
+        </div>
+    <span class ="username">
         {{ form_row(registrationForm.username)}}
-</div>
-<div id ="email">
+    </span>
+    <span class ="email">
         {{ form_row(registrationForm.email)}}
-</div>
-<div id ="plainPassword">
+    </span>
+    <span class ="plainPassword">
         {{ form_row(registrationForm.plainPassword)}}
-</div>
+    </span>
     <br>
     <br>
         <button type="submit" class="btn">S'enregistrer</button>
-
     <button class="btn btn-lg btn-secondary" type="submit">
         <a href="{{ path('app_login') }}" title = "retour">Retour</a>
     </button>
     {{ form_end(registrationForm) }}
+</div>
+    <footer class="footer">
+        <div class="footer-left">
+            <p class="footer-links">
+                <a href="{{ path('app_accueil') }}" class="link-1">Accueil</a>
+                <a href="{{ path('app_recompenses') }}" >Récompenses</a>
+                <a href="{{ path('app_tournois') }}" >Tournois</a>
+                <a href="{{ path('app_login') }}" >Se connecter</a>
+                <a href="{{ path('app_contact') }}">Contact</a>
+            </p>
+            <p class="footer-company-name">NHCI </p>
+        </div>
 
+        <div class="footer-right">
+            <p class="footer-company-about">
+                <span>About the company</span>
+                Lorem ipsum dolor sit amet, consectateur adispicing elit. Fusce euismod convallis velit, eu auctor lacus vehicula sit amet.
+            </p>
+        </div>
+    </footer>
+</body>
 {% endblock %}

@@ -4,10 +4,19 @@ namespace App\Controller;
 
 
 use App\Entity\Participants;
+use App\Entity\Recompenses;
+use App\Entity\Tournois;
+use App\Entity\User;
 use App\Form\InscriptionFormType;
 use App\Repository\EtatRepository;
+use App\Repository\RecompensesRepository;
 use App\Repository\TournoisRepository;
+use App\Repository\UserRepository;
 use App\Service\SendMailService;
+use ContainerAdxux2X\getRecompenseControllerService;
+use ContainerAdxux2X\getRecompensesRepositoryService;
+use DateTime;
+use DateTimeZone;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
@@ -18,25 +27,34 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
+
 class InscriptionController extends AbstractController
 {
     //créé le formulaire d'inscription à un tournois
 
-    #[Route(path: '/inscription{id}', name: 'app_inscription')]
+    #[Route(path: '/detail/inscription/{id}', name: 'app_inscription', methods: ['GET','POST'])]
     public function inscription (Request $request, EntityManagerInterface $entityManager
-    , SendMailService $mailTournois,int $id,EtatRepository $etatRepository, TournoisRepository $tournoisRepository) : Response{
+    , SendMailService $mailTournois,int $id,  User $user, TournoisRepository $tournoisRepository, RecompensesRepository $recompensesRepository) : Response{
 
         {
+            $user = $this->getUser();
             $tournois = $tournoisRepository->find($id); //tournois en question
+
+            $recompenses = $recompensesRepository->findByTournois($id);
+
 
             $nbParticipants = count($tournois->getParticipants());//nombre de participants au tournois
             $placesRestantes = $tournois->getNbPlacesMax()-$nbParticipants;
 
-            if ($placesRestantes <= 0){
-                $this->addFlash("echec", "il n y a plus de place");
+            $now = new \DateTime('now');
+            if ($placesRestantes <= 0 || $now > $tournois->getDateLimiteInscription()){
+                $this->addFlash("echec", "les inscriptions sont cloturees");
                 return $this->redirectToRoute('app_tournois');
             }
+
             $participant = new Participants();
+            $participant->setUser($user);
+            $participant->setTournois($tournois);
 
 
             $form = $this->createForm(InscriptionFormType::class, $participant);
@@ -44,9 +62,6 @@ class InscriptionController extends AbstractController
 
 
                 if($form->isSubmitted() && $form->isValid()) {
-
-
-
                     $entityManager->persist($participant);
                     $entityManager->flush();
 
@@ -61,8 +76,15 @@ class InscriptionController extends AbstractController
                 }
 
             return $this->render('inscription/inscription.html.twig', [
+                'placesRestantes' => $placesRestantes,
+                'participant' => $participant,
+                'user'=> $user,
+                'tournois' => $tournois,
+                'recompenses' => $recompenses,
                 'inscriptionForm' => $form->createView(),
        ]);
-}}}
+}}
+
+}
 
 

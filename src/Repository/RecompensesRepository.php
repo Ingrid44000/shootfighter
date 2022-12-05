@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Recompenses;
+use App\Entity\Tournois;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
@@ -48,12 +49,15 @@ class RecompensesRepository extends ServiceEntityRepository
         return $query->execute();
     }
 
-    public function findRecompenseByTournois() : QueryBuilder
+    //Retourne un array des récompenses selon l'id du tournois
+    public function findByTournois(int $tournois) : array
     {
-        $qb = $this->createQueryBuilder('r')
-            ->leftJoin('r.tournois', 'tournois');
-        $query = $qb->getQuery();
-        return $query->execute();
+        return $this->createQueryBuilder('r')
+            ->where('r.tournois = :tournois')
+            ->setParameter('tournois', $tournois)
+            ->getQuery()
+            ->getResult();
+
     }
 
 //    /**

@@ -1,15 +1,14 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>{% block title %}Shootfighter{% endblock %}</title>
+{% extends 'base.html.twig' %}
+
+{% block title %}Shootfighter{% endblock %}
+  {% block stylesheets %}
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
 
     {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
     <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset ('css/app.css') }}">
+      <link rel="stylesheet" href="{{ asset ('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset ('css/accueil.css') }}">
-</head>
+{% endblock %}
 {% block body %}
     <body>
     <div class="container">
@@ -17,7 +16,6 @@
             <nav>
                 <ul>
                     {% if is_granted('ROLE_ADMIN') %}
-
                         <li class="admin">
                             <a href="{{ path('admin') }}" title = "admin">Page administrateur</a>
                         </li>
@@ -28,9 +26,7 @@
                             <span>Récompenses</span>
                         </a>
                     </li>
-
-
-                    <li class="tournois">
+                    <li class="link-tournois">
                         <a href="{{ path('app_tournois') }}" title = "tournois">
                         <span>Tournois</span>
                         </a>
@@ -86,13 +82,29 @@
                              width= "100%"></div>
 
                     </div>
-
-
     {% endfor %}
             </div>
+    <footer class="footer">
+        <div class="footer-left">
+            <p class="footer-links">
+                <a href="{{ path('app_accueil') }}" class="link-1">Accueil</a>
+                <a href="{{ path('app_recompenses') }}" >Récompenses</a>
+                <a href="{{ path('app_tournois') }}" >Tournois</a>
+                <a href="{{ path('app_contact') }}">Contact</a>
+                <a href="{{ path('app_login') }}" >Se connecter</a>
 
+            </p>
+            <p class="footer-company-name">NHCI </p>
+        </div>
+
+        <div class="footer-right">
+            <p class="footer-company-about">
+                <span>About the company</span>
+                Lorem ipsum dolor sit amet, consectateur adispicing elit. Fusce euismod convallis velit, eu auctor lacus vehicula sit amet.
+            </p>
+        </div>
+    </footer>
+    </body>
 {% endblock %}
 
-    </body>
 
-</html>

@@ -1,4 +1,3 @@
-
 body {
     background: linear-gradient(#000000, #132135);
     background-attachment: fixed;
@@ -27,22 +26,11 @@ bloc conteneur
     min-width: 1500px;
 }
 
-section {
-    width: 100%;
-    display: inline-block;
-    background: linear-gradient(#000000, #132135);
-    height: 50vh;
-    text-align: center;
-    font-size: 22px;
-    font-weight: 700;
-}
-
 
 #connexion{
 
     margin-top: -2%;
     margin-left: 85%;
-
     text-align: center;
 
 }
