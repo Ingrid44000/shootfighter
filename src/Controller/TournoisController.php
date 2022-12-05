@@ -26,7 +26,7 @@ class TournoisController extends AbstractController
 
         }
     }
-    #[Route(path: '/details/{id}', name: 'app_detail', methods: ['GET', 'POST'])]
+    #[Route(path: '/detail/{id}', name: 'app_detail', methods: ['GET', 'POST'])]
     public function afficherDetails(int $id,TournoisRepository $tournoisRepository, ManagerRegistry $doctrine) : Response
     {
 

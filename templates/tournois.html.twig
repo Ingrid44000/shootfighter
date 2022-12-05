@@ -1,49 +1,73 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>{% block title %}Tournois{% endblock %}</title>
+{% extends 'base.html.twig' %}
+
+    {% block title %}Tournois{% endblock %}
+{% block stylesheets %}
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
 
     {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
     <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset ('css/app.css') }}">
-</head>
 
+{% endblock %}
 {% block body %}
-
+<body>
     <div id = "header">
         <h1>Tournois</h1>
     </div>
 
     {% for tournois in tournois %}
 
-        {{ tournois.nom }} <br>
-        {{ tournois.date | date ('d-m-Y') }}
+        <div class ="image-tournois">
         <img src="{{ asset('images/tournois/' ~ tournois.imageName) }}" alt="image tournois" height="400px"
-             width="400px">
-        <br>
-            {{ tournois.recompense1}} <br>
+             width="400px"></div>
 
-            <img src="{{ asset('images/recompense/' ~ tournois.recompense1) }}" alt="image tournois" height="250px"
-                 width="150px">
-            <br>
-        {{ tournois.recompense2 }}<br>
-        <img src="{{ asset('images/recompense/' ~ tournois.recompense2) }}" alt="image tournois" height="250px"
-             width="150px">
-        <br>
-        {{ tournois.recompense3 }}<br>
-        <img src="{{ asset('images/recompense/' ~ tournois.recompense3) }}" alt="image tournois" height="250px"
-             width="150px">
-        <br>
+        <div class ="tournois">
+            <div id="tournois-nom"><h2>{{ tournois.nom }}</h2></div>
+
+        <div id="tournois-date">{{ tournois.date | date ('d-m-Y') }}</div>
+
+
+           <div class="image-recompenses">
+               <div id="recompense1"><img src="{{ asset('images/recompense/' ~ tournois.recompense1) }}" alt="image recompense" height="150px"
+                 width="150px"> </div>
+
+
+        <div id ="recompense2"><img src="{{ asset('images/recompense/' ~ tournois.recompense2) }}" alt="image recompense" height="150px"
+             width="150px"></div>
+
+
+        <div id="recompense3"></div><img src="{{ asset('images/recompense/' ~ tournois.recompense3) }}" alt="image recompense" height="150px"
+             width="150px"></div>
+
+        </div>
 
         <button class="btn btn-link btn-secondary" type="submit">
             <a href="{{ path('app_detail', {'id': tournois.id}) }}" title = "detail tournois">Voir tournois</a>
         </button>
 
     {% endfor %}
+    <footer class="footer">
+        <div class="footer-left">
+            <p class="footer-links">
+                <a href="{{ path('app_accueil') }}" class="link-1">Accueil</a>
+                <a href="{{ path('app_recompenses') }}" >Récompenses</a>
+                <a href="{{ path('app_tournois') }}" >Tournois</a>
+                <a href="{{ path('app_contact') }}">Contact</a>
+                <a href="{{ path('app_login') }}" >Se connecter</a>
+
+            </p>
+            <p class="footer-company-name">NHCI </p>
+        </div>
+
+        <div class="footer-right">
+            <p class="footer-company-about">
+                <span>About the company</span>
+                Lorem ipsum dolor sit amet, consectateur adispicing elit. Fusce euismod convallis velit, eu auctor lacus vehicula sit amet.
+            </p>
+        </div>
+    </footer>
 </body>
 {% endblock %}
-</html>
+
 
 

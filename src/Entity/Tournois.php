@@ -23,7 +23,7 @@ class Tournois
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    private ?int $id = null;
+    private ?int $id;
 
     #[ORM\Column(length: 180)]
     private ?string $nom = null;
@@ -73,10 +73,6 @@ class Tournois
 
     #[ORM\Column(nullable: true)]
     private ?int $nbPlacesActuelles;
-
-    #[ORM\ManyToOne(inversedBy: 'tournois')]
-    private ?Etat $etat = null;
-
 
     public function __construct()
     {
@@ -337,18 +333,6 @@ class Tournois
     public function setNbPlacesActuelles(?int $nbPlacesActuelles): self
     {
         $this->nbPlacesActuelles = $nbPlacesActuelles;
-
-        return $this;
-    }
-
-    public function getEtat(): ?Etat
-    {
-        return $this->etat;
-    }
-
-    public function setEtat(?Etat $etat): self
-    {
-        $this->etat = $etat;
 
         return $this;
     }
