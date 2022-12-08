@@ -7,14 +7,17 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
-use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Serializer\SerializerInterface;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[UniqueEntity('email', message: 'Cet email existe déjà' )]
 #[UniqueEntity('username', message: 'Ce pseudo existe déjà')]
-class  User implements UserInterface, PasswordAuthenticatedUserInterface
+#[Vich\Uploadable]
+class  User implements UserInterface, PasswordAuthenticatedUserInterface, \Serializable
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -37,12 +40,25 @@ class  User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(length: 180, unique: true)]
     private ?string $email;
+    #[Vich\UploadableField(mapping: 'user_images', fileNameProperty:
+        'imageName')]
+    private ?File $imageFile = null;
+
+    //imageName sert à stocker le nom en base de données
+    #[ORM\Column(type: 'string', nullable: true)]
+    private ?string $imageName = null;
 
     #[ORM\Column(type: 'string', length: 100)]
     private $resetToken;
 
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Participants::class)]
     private Collection $participant;
+
+    #[ORM\Column(length: 180, nullable: true)]
+    private ?string $nom = null;
+
+    #[ORM\Column(length: 180, nullable: true)]
+    private ?string $prenom = null;
 
     public function __construct()
     {
@@ -181,6 +197,81 @@ class  User implements UserInterface, PasswordAuthenticatedUserInterface
         }
 
         return $this;
+    }
+
+    public function getNom(): ?string
+    {
+        return $this->nom;
+    }
+
+    public function setNom(?string $nom): self
+    {
+        $this->nom = $nom;
+
+        return $this;
+    }
+
+    public function getPrenom(): ?string
+    {
+        return $this->prenom;
+    }
+
+    public function setPrenom(?string $prenom): self
+    {
+        $this->prenom = $prenom;
+
+        return $this;
+    }
+    /**
+     * If manually uploading a file (i.e. not using Symfony Form) ensure an instance
+     * of 'UploadedFile' is injected into this setter to trigger the update. If this
+     * bundle's configuration parameter 'inject_on_load' is set to 'true' this setter
+     * must be able to accept an instance of 'File' as the bundle will inject one here
+     * during Doctrine hydration.
+     *
+     * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile|null $imageFile
+     */
+    public function setImageFile(?File $imageFile = null): void
+    {
+        $this->imageFile = $imageFile;
+
+    }
+
+
+    public function getImageFile(): ?File
+    {
+        return $this->imageFile;
+    }
+    public function setImageName(?string $imageName): void
+    {
+        $this->imageName = $imageName;
+    }
+
+    public function getImageName(): ?string
+    {
+        return $this->imageName;
+    }
+
+    public function serialize():  ?string
+    {
+        return serialize(array(
+            $this->id,
+            $this->username,
+            $this->password,
+            // see section on salt below
+            // $this->salt,
+        ));
+    }
+
+    public function unserialize($serialized)
+    {
+        list (
+            $this->id,
+            $this->username,
+            $this->password,
+            // see section on salt below
+            // $this->salt
+            ) = unserialize($serialized);
     }
 
 }

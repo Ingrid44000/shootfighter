@@ -47,10 +47,12 @@ body > .container {
     background: linear-gradient(#000000, #132135);
     color: white;
     border-radius: 10px;
-    background-size: 50%;
+    background-size: 45%;
     right: 70%;
+    margin-top: auto;
+    height: auto;
     margin-left: -10%;
-    top: 5%;
+    top: 0%;
 }
 #header{
     text-align:center;

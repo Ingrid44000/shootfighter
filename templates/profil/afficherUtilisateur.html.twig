@@ -1,18 +1,11 @@
 {% extends 'base.html.twig' %}
 
-    {% block title %}Tournois{% endblock %}
-{% block stylesheets %}
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
-
-    {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
-    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset ('css/app.css') }}">
-
-
+{% block title %}
+    Profil de {{ user.getUsername }}
 {% endblock %}
+
 {% block body %}
-<body>
-<div class="container">
+    <body>
     <div class="header-content">
         <nav>
             <ul>
@@ -64,40 +57,24 @@
         </nav>
     </div>
 
+        <h2 class="col-10 text-center pt-2 pb-5">{{ user.getUsername}}</h2>
 
-    {% for tournois in tournois %}
-
-        <div class ="image-tournois" style="float:right;width:70%;">
-
-                <div id="tournois-nom"><h2>{{ tournois.nom }}</h2></div>
-
-                <img src="{{ asset('images/tournois/' ~ tournois.imageName) }}" alt="image tournois" height="400px"
-             width="600px"></div>
-
-
-        <div id="tournois-date">{{ tournois.date | date ('d-m-Y') }}</div>
-
-
-           <div class="image-recompenses">
-               <div id="recompense1"><img src="{{ asset('images/recompense/' ~ tournois.recompense1) }}" alt="image recompense" height="150px"
-                 width="150px"> </div>
+        <form method="post" class="d-flex col-4 flex-wrap">
+            <img src="{{ asset('images/user/' ~ user.imageName) }}" alt="avatar" height="400px"
+                 width="300px">
+            <p class="col-6">Prénom :</p><span class="col-6">{{ user.getPrenom }}</span>
+            <p class="col-6">Nom :</p><span class="col-6">{{ user.getNom }}</span>
+            <p class="col-6">Email :</p><span class="col-6">{{ user.getEmail }}</span>
+            <div class="col-12 d-flex justify-content-around mt-4">
+                <button class="btn btn-primary btn-lg"><a href="{{ path('app_accueil')}}">Retour</a></button> <br>
+                <button class="btn btn-secondary btn-lg "><a href="{{ path('app_monProfil',{'id': user.id}) }}" class="btn btn-primary btn-lg">Modifier mon profil</a></button>
+            </div>
+        </form>
 
 
-        <div id ="recompense2"><img src="{{ asset('images/recompense/' ~ tournois.recompense2) }}" alt="image recompense" height="150px"
-             width="150px"></div>
-
-
-        <div id="recompense3"><img src="{{ asset('images/recompense/' ~ tournois.recompense3) }}" alt="image recompense" height="150px"
-             width="150px"></div>
-
-        </div>
-
-        <button class="btn btn-link btn-secondary" type="submit">
-            <a href="{{ path('app_detail', {'id': tournois.id}) }}" title = "detail tournois">Voir tournois</a>
-        </button>
-        <br>
+    {% for participations in participations %}
+        <li>{{ participations.tournois}}</li>
     {% endfor %}
-</div>
     <footer class="footer">
         <div class="footer-left">
             <p class="footer-links">
@@ -105,7 +82,11 @@
                 <a href="{{ path('app_recompenses') }}" >Récompenses</a>
                 <a href="{{ path('app_tournois') }}" >Tournois</a>
                 <a href="{{ path('app_contact') }}">Contact</a>
-                <a href="{{ path('app_login') }}" >Se connecter</a>
+                {% if not app.user %}
+                    <a href="{{ path('app_login') }}" >Se connecter</a>
+                {%  elseif app.user%}
+                    <a href="{{ path('app_logout') }}" >Se déconnecter</a>
+                {% endif %}
 
             </p>
             <p class="footer-company-name">NHCI </p>
@@ -118,8 +99,5 @@
             </p>
         </div>
     </footer>
-</body>
+    </body>
 {% endblock %}
-
-
-

@@ -41,19 +41,24 @@
                         </a>
                         </li>
 
-                        <li class ="contact">
-                            <a href="{{ path('app_contact') }}" class = "menu-link" title = "contact">
-
-                                <span>Contact</span>
-                            </a>
-                        </li>
-
                 {% elseif app.user %}
+                    <li class="profil">
+                        <a href="{{ path('app_afficherUtilisateur', {'id': user.id})}}" title = "monProfil">
+                            <span>Mon profil</span>
+                        </a>
+                    </li>
                     <li class="menu_deconnexion">
                         <a href="{{ path('app_logout') }}" title = "deconnexion">
                             <span>Se déconnecter</span>
                         </a>
                     </li>{% endif %}
+
+                    <li class ="contact">
+                        <a href="{{ path('app_contact') }}" class = "menu-link" title = "contact">
+
+                            <span>Contact</span>
+                        </a>
+                    </li>
             </ul>
                 </nav>
         </div>
@@ -66,9 +71,7 @@
                     <li id ="actualites">
                     <span>Actualités </span>
                     </li>
-                    <li id ="calendrier">
-                    <span> Calendrier </span>
-                    </li>
+
                 </ul>
             </nav>
             {% for actualite in actualites %}
@@ -91,7 +94,11 @@
                 <a href="{{ path('app_recompenses') }}" >Récompenses</a>
                 <a href="{{ path('app_tournois') }}" >Tournois</a>
                 <a href="{{ path('app_contact') }}">Contact</a>
+                {% if not app.user %}
                 <a href="{{ path('app_login') }}" >Se connecter</a>
+                {%  elseif app.user%}
+                    <a href="{{ path('app_logout') }}" >Se déconnecter</a>
+                {% endif %}
 
             </p>
             <p class="footer-company-name">NHCI </p>

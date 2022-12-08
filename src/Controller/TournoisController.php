@@ -22,6 +22,8 @@ class TournoisController extends AbstractController
             $entityManager = $doctrine->getManager();
             $tournois = $entityManager->getRepository(Tournois::class)->afficherTournois();
 
+
+
             return $this->render('tournois.html.twig', ['tournois' => $tournois]);
 
         }
@@ -31,10 +33,14 @@ class TournoisController extends AbstractController
     {
 
         $tournois = $tournoisRepository->find($id);
+        $nbParticipants = count($tournois->getParticipants());//nombre de participants au tournois
+        $placesRestantes = $tournois->getNbPlacesMax()-$nbParticipants;
+
         $entityManager = $doctrine->getManager();
         $recompenses = $entityManager->getRepository(Recompenses::class)->afficherRecompenses();
 
         return $this->render('tournoisDetails.html.twig',[
+            'placesRestantes' =>$placesRestantes,
             'recompenses'=>$recompenses,
             'tournois'=>$tournois
         ]);

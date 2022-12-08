@@ -71,8 +71,7 @@ class Tournois
     #[ORM\OneToMany(mappedBy: 'tournois', targetEntity: Participants::class)]
     private Collection $participants;
 
-    #[ORM\Column(nullable: true)]
-    private ?int $nbPlacesActuelles;
+
 
     public function __construct()
     {
@@ -325,17 +324,7 @@ class Tournois
         return $this;
     }
 
-    public function getNbPlacesActuelles(): ?int
-    {
-        return $this->nbPlacesActuelles;
-    }
 
-    public function setNbPlacesActuelles(?int $nbPlacesActuelles): self
-    {
-        $this->nbPlacesActuelles = $nbPlacesActuelles;
-
-        return $this;
-    }
 
 
 }

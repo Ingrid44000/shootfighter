@@ -4,11 +4,61 @@
 
 {% block body %}
 <body>
-<h1>Tournois </h1>
+<div class="container">
+    <div class="header-content">
+        <nav>
+            <ul>
+                <li class="accueil">
+                    <a href="{{ path('app_accueil') }}" title = "recompenses">
+                        <span>Accueil</span>
+                    </a>
+                </li>
+                {% if is_granted('ROLE_ADMIN') %}
+                    <li class="admin">
+                        <a href="{{ path('admin') }}" title = "admin">Page administrateur</a>
+                    </li>
+                {% endif %}
 
-        {{ tournois.nom }} <br>
-        {{ tournois.date | date ('d-m-Y') }}
+                <li class="recompenses">
+                    <a href="{{ path('app_recompenses') }}" title = "recompenses">
+                        <span>Récompenses</span>
+                    </a>
+                </li>
+                <li class="tournois">
+                    <a href="{{ path('app_tournois') }}" title = "tournois">
+                        <span>Tournois</span>
+                    </a>
+                </li>
 
+                {% if not app.user %}
+
+                    <li class ="connexion">
+                        <a href="{{ path('app_login') }}" class = "menu-link" title = "connexion">
+
+                            <span>Se connecter</span>
+                        </a>
+                    </li>
+
+                    <li class ="contact">
+                        <a href="{{ path('app_contact') }}" class = "menu-link" title = "contact">
+
+                            <span>Contact</span>
+                        </a>
+                    </li>
+
+                {% elseif app.user %}
+                    <li class="menu_deconnexion">
+                        <a href="{{ path('app_logout') }}" title = "deconnexion">
+                            <span>Se déconnecter</span>
+                        </a>
+                    </li>{% endif %}
+            </ul>
+        </nav>
+    </div>
+
+<div id="tournois-detail-nom"><h2>{{ tournois.nom }}</h2></div>
+<div id="tournois-detail-date"><h3>{{ tournois.date | date ('d-m-Y') }}</h3></div>
+<div id="tournois-placesRestantes">{{ placesRestantes }}</div>
 
         <img src="{{ asset('images/tournois/' ~ tournois.imageName) }}" alt="image goodie"height="400px"
              width="300px">

@@ -18,13 +18,13 @@
       <span class="select tournois">
             {{ form_row(inscriptionForm.tournois, {value: tournois.id})}}
     </span>
-            <br><br>
+            <br>
             <span class="select recompense">
 
         {{ form_row(inscriptionForm.recompenses)}}
 
     </span>
-            <br><br>
+            <br>
 
 
     <span class="input-field nom pseudo">
@@ -70,11 +70,32 @@
     <button type="submit" class="btn">Valider</button>
 
     <button class="btn btn-lg btn-secondary" type="submit">
-        <a href="{{ path('app_accueil') }}" title = "retour">Retour</a>
+        <a href="{{ path('app_tournois') }}" title = "retour">Retour</a>
     </button>
 
         </div>
     {{ form_end(inscriptionForm) }}
         </div>
+    <footer class="footer">
+        <div class="footer-left">
+            <p class="footer-links">
+                <a href="{{ path('app_accueil') }}" class="link-1">Accueil</a>
+                <a href="{{ path('app_recompenses') }}" >Récompenses</a>
+                <a href="{{ path('app_tournois') }}" >Tournois</a>
+                <a href="{{ path('app_contact') }}">Contact</a>
+                <a href="{{ path('app_login') }}" >Se connecter</a>
+
+            </p>
+            <p class="footer-company-name">NHCI </p>
+        </div>
+
+        <div class="footer-right">
+            <p class="footer-company-about">
+                <span>About the company</span>
+                Lorem ipsum dolor sit amet, consectateur adispicing elit. Fusce euismod convallis velit, eu auctor lacus vehicula sit amet.
+            </p>
+        </div>
+    </footer>
+
     </body>
 {% endblock %}

@@ -52,10 +52,11 @@ class MainController extends AbstractController
     #[Route(path: '/', name: 'app_accueil')]
     public function actualites(ManagerRegistry $doctrine): Response
     {
+        $user = $this->getUser();
         $entityManager = $doctrine->getManager();
         $actualites = $entityManager->getRepository(Actualites::class)->dernieresActualites();
 
-        return $this->render('main/accueil.html.twig', ['actualites' => $actualites]);
+        return $this->render('main/accueil.html.twig', ['user'=>$user,'actualites' => $actualites]);
     }
 
     //fonction pour envoyer vers une page où saisir une adresse mail pour reçevoir par mail le lien de réinitialisation
@@ -102,7 +103,7 @@ class MainController extends AbstractController
                 $this->addFlash('success', 'Email envoyé avec succès');
                 return $this->redirectToRoute('app_login');
             }
-            // $user est null
+
             $this->addFlash('danger', 'Un problème est survenu');
             return $this->redirectToRoute('app_login');
         }

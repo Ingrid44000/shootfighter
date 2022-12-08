@@ -45,10 +45,42 @@ nav ul {
 }
 
 nav li {
-    margin-right: 1rem;
+    margin-left: auto;
 }
 
+nav {
+    width:120%;
+    margin: -2%;
+    font-size: 120%;
+}
 
+nav ul {
+    list-style-type: none;
+}
+nav ul li{
+    float: right;
+    width: 25%;
+    text-align: center;
+    color: yellow;
+}
+nav ul::after{
+    content:"";
+    display: table;
+    clear: both;
+}
+
+nav a{
+    display: block;
+    text-decoration: none;
+    border-bottom: 2px solid transparent;
+    padding: 10px 0px;
+    color: yellow;
+}
+
+nav a:hover{
+    color: orange;
+    border-bottom: 2px solid orange;
+}
 label {
     display: block;
 }
@@ -68,19 +100,27 @@ form {
 Pages Tournois et Récompenses
 
  */
-#header{
+h2{
     text-align:center;
-    margin-bottom: auto;
-    margin-top: 2%;
+    font-size: 30px;
+    width: 88%;
+    height: 5px;
+    padding: 30px;
+    display: inline-block;
+    background: darkslategrey;
+    position: center;
+    margin-top: 10%;
 }
 
 div .image-tournois{
-    width: 52%;
+    top:500px;
     margin-top: 10%;
     margin-bottom: 15%;
-
+    position: center;
 }
-h2{
+
+
+#tournois-nom{
     text-align:center;
     font-size: 30px;
     width: 19.5%;
@@ -89,25 +129,28 @@ h2{
     display: inline-block;
     background: darkslategrey;
     position: center;
-    margin-top: -5px;
+    top:500%;
 
 }
-div .tournois{
+#tournois-date{
+    width: 52%;
+    top: 20%;
+    left: 20%;
+    margin-bottom: 15%;
+    position: center;
+    right: 30%;
+    display: inline-block;
+}
+div .image-recompenses{
     right: 30%;
     display: inline-block;
     width: 25%;
 }
 
-div .image-recompense{
-    right: 30%;
-    display: inline-block;
-
-}
-
 #recompense1{
     right: 50%;
     display: inline-block;
-
+    top: 350%;
 }
 #recompense2{
 
@@ -115,6 +158,31 @@ div .image-recompense{
 
 #recompense3{
 
+}
+button {
+    display: inline-block;
+    position: relative;
+    background-color: transparent;
+    text-align: center;
+    font-size: 15px;
+    top: 15px;
+    padding: 10px;
+    width: 10%;
+    cursor: pointer;
+    margin: 5px;
+    color: #4ade80;
+}
+
+/*
+Profil utilisateur
+ */
+
+#profilPage{
+    width: auto;
+}
+
+.afficherUtilisateur{
+    background-color: pink;
 }
 /*
 Bas de page

@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Participants;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -39,7 +40,28 @@ class ParticipantsRepository extends ServiceEntityRepository
         }
     }
 
+    //Retourne un array des participations d'un user
+    public function findByUser(int $tournois) : array
+    {
+        return $this->createQueryBuilder('p')
+            ->join('p.user', 'user')
+            ->andWhere('p.tournois = :tournois')
+            ->setParameter('tournois', $tournois)
+            ->getQuery()
+            ->getResult();
 
+    }
+    //Retourne la participation à un tournois du user
+    public function findOneByTournois(int $tournois )
+    {
+        return $this->createQueryBuilder('p')
+            ->innerJoin('p.user', 'user')
+            ->where('p.tournois = :tournois')
+            ->setParameter('tournois', $tournois)
+            ->getQuery()
+            ->getOneOrNullResult();
+
+    }
 
 
 //    /**

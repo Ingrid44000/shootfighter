@@ -24,8 +24,9 @@ class ContactController extends AbstractController
     {
         $contact = new Contact();
 
+        //remplir champ formulaire par l email de l'utilisateur connecté
         if ($this->getUser()) {
-            $contact->setFullName($this->getUser()->getFullName())
+            $contact
                 ->setEmail($this->getUser()->getEmail());
         }
 

@@ -9,6 +9,7 @@ use App\Entity\Tournois;
 use App\Entity\User;
 use App\Form\InscriptionFormType;
 use App\Repository\EtatRepository;
+use App\Repository\ParticipantsRepository;
 use App\Repository\RecompensesRepository;
 use App\Repository\TournoisRepository;
 use App\Repository\UserRepository;
@@ -34,10 +35,11 @@ class InscriptionController extends AbstractController
 
     #[Route(path: '/detail/inscription/{id}', name: 'app_inscription', methods: ['GET','POST'])]
     public function inscription (Request $request, EntityManagerInterface $entityManager
-    , SendMailService $mailTournois,int $id,  User $user, TournoisRepository $tournoisRepository, RecompensesRepository $recompensesRepository) : Response{
+    , SendMailService $mailTournois,int $id, User $use, ParticipantsRepository $participantsRepository, TournoisRepository $tournoisRepository, RecompensesRepository $recompensesRepository) : Response{
 
         {
             $user = $this->getUser();
+            $idUser = $use->getId();
             $tournois = $tournoisRepository->find($id); //tournois en question
 
             $recompenses = $recompensesRepository->findByTournois($id);
@@ -54,6 +56,7 @@ class InscriptionController extends AbstractController
 
             $participant = new Participants();
             $participant->setUser($user);
+
             $participant->setTournois($tournois);
 
 
@@ -61,7 +64,9 @@ class InscriptionController extends AbstractController
             $form->handleRequest($request);
 
 
-                if($form->isSubmitted() && $form->isValid()) {
+                if($form->isSubmitted() && $form->isValid() && !$participantsRepository->findByUser($id)) {
+
+
                     $entityManager->persist($participant);
                     $entityManager->flush();
 
@@ -83,8 +88,8 @@ class InscriptionController extends AbstractController
                 'recompenses' => $recompenses,
                 'inscriptionForm' => $form->createView(),
        ]);
-}}
+    }}
+                }
 
-}
 
 

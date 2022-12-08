@@ -39,7 +39,7 @@ class RegistrationController extends AbstractController
 
             $entityManager->persist($user);
             $entityManager->flush();
-            dump($user);
+
             // On envoie un mail
             $mail->send(
                 'no-reply@monsite.net',
