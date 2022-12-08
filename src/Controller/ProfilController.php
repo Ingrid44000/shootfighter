@@ -58,12 +58,29 @@ class ProfilController extends AbstractController
     public function afficherUtilisateur(int $id, UserRepository $userRepository, ParticipantsRepository $participantsRepository): Response
     {
         $user = $userRepository->find($id);
+
         $participations = $participantsRepository->findByUser($id);
 
         return $this->render('profil/afficherUtilisateur.html.twig', [
+
             'participations'=>$participations,
             'user' => $user
         ]);
     }
+    #[Route('/utilisateur/{id}/{idTournois}', name: 'app_desinscrire')]
+    public function desinscription(EntityManagerInterface $entityManager, int $id, int $idTournois, TournoisRepository $tournoisRepository,UserRepository $userRepository, ParticipantsRepository $participantsRepository): Response
+    {
+        $user = $userRepository->find($id);
+        $tournois = $tournoisRepository->find($idTournois);
+        $participation = $participantsRepository->findOneByTournois($idTournois);
+        $entityManager->remove($participation);
+        $entityManager->flush();
 
+        return $this->render('profil/desinscription.html.twig', [
+            'tournois'=>$tournois,
+            'user'=>$user,
+            'participation'=>$participation
+
+        ]);
+    }
 }

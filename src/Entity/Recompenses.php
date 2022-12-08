@@ -11,6 +11,9 @@ use DateTimeInterface;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
+/**
+ * @method removeElement(Tournois $tournois)
+ */
 #[ORM\Entity(repositoryClass: RecompensesRepository::class)]
 #[Vich\Uploadable]
 
@@ -24,11 +27,10 @@ class Recompenses
     #[ORM\Column(length: 180)]
     private ?string $nom = null;
 
-   #[Vich\UploadableField(mapping: 'recompense_images', fileNameProperty:
-        'imageName')]
+    #[Vich\UploadableField(mapping: 'recompense_images', fileNameProperty: 'imageName')]
     private ?File $imageFile = null;
 
-   //imageName sert à stocker le nom en base de données
+    //imageName sert à stocker le nom en base de données
     #[ORM\Column(type: 'string', nullable: true)]
     private ?string $imageName = null;
 
@@ -40,17 +42,18 @@ class Recompenses
     private ?\DateTimeInterface $createdAt = null;
 
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable:true)]
+    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $updatedAt = null;
 
 
-    #[ORM\ManyToOne(inversedBy: 'recompenses')]
+    #[ORM\ManyToOne(inversedBy: 'recompenses', targetEntity: Tournois::class)]
     private ?Tournois $tournois = null;
 
     #[ORM\OneToMany(mappedBy: 'recompenses', targetEntity: Participants::class)]
     private Collection $participants;
 
-    public function __toString(): string{
+    public function __toString(): string
+    {
 
         return $this->getNom();
     }
@@ -103,7 +106,7 @@ class Recompenses
     {
         $this->imageFile = $imageFile;
 
-        if (null !== $imageFile){
+        if (null !== $imageFile) {
             $this->updatedAt = new \DateTime();
         }
 
@@ -124,11 +127,6 @@ class Recompenses
         return $this->imageName;
     }
 
-
-    public function getParticipants(): ?Participants
-    {
-        return $this->participants;
-    }
 
     public function addParticipant(Participants $participant): self
     {
@@ -156,6 +154,7 @@ class Recompenses
     {
         return $this->tournois;
     }
+
     public function setTournois(?Tournois $tournois): self
     {
         $this->tournois = $tournois;
@@ -174,10 +173,11 @@ class Recompenses
 
     public function removeTournois(Tournois $tournois): self
     {
-        $this->tournois->removeElement($tournois);
-
-        return $this;
+        if ($this->tournois->contains($tournois)) {
+            $this->tournois->removeElement($tournois);
     }
+    return $this;
+}
 
     public function getCreatedAt(): \DateTimeInterface
     {
@@ -222,6 +222,11 @@ class Recompenses
 
         return $this;
     }
+    public function getParticipants()
+    {
+        return $this->participants;
+    }
+
 
 
 

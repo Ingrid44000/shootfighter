@@ -14,6 +14,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 /**
  * @method contains(Tournois $tournoi)
  * @method add(Tournois $tournoi)
+ * @method removeElement(Tournois $tournois)
  */
 #[ORM\Entity(repositoryClass: TournoisRepository::class)]
 #[Vich\Uploadable]
@@ -161,7 +162,7 @@ class Tournois
     public function addRecompense(Recompenses $recompense): self
     {
         if (!$this->recompenses->contains($recompense)) {
-            $this->recompenses->add($recompense);
+            $this->recompenses[] =$recompense;
             $recompense->addTournois($this);
         }
 

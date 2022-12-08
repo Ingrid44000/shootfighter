@@ -42,8 +42,6 @@ class InscriptionController extends AbstractController
             $idUser = $use->getId();
             $tournois = $tournoisRepository->find($id); //tournois en question
 
-            $recompenses = $recompensesRepository->findByTournois($id);
-
 
             $nbParticipants = count($tournois->getParticipants());//nombre de participants au tournois
             $placesRestantes = $tournois->getNbPlacesMax()-$nbParticipants;
@@ -64,7 +62,7 @@ class InscriptionController extends AbstractController
             $form->handleRequest($request);
 
 
-                if($form->isSubmitted() && $form->isValid() && !$participantsRepository->findByUser($id)) {
+                if($form->isSubmitted() && $form->isValid() && !$participantsRepository->findByTournois($id)) {
 
 
                     $entityManager->persist($participant);
@@ -85,7 +83,6 @@ class InscriptionController extends AbstractController
                 'participant' => $participant,
                 'user'=> $user,
                 'tournois' => $tournois,
-                'recompenses' => $recompenses,
                 'inscriptionForm' => $form->createView(),
        ]);
     }}

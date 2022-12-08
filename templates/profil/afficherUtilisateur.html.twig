@@ -71,10 +71,12 @@
             </div>
         </form>
 
-
+<div class = participations>
     {% for participations in participations %}
-        <li>{{ participations.tournois}}</li>
+    <li>{{ participations.tournois}}</li>
+        <button class="btn btn-secondary btn-lg "><a href="{{ path('app_desinscrire', {'id': user.id, 'idTournois': participations.tournois.id})}}" class="btn btn-primary btn-lg">Se désincrire</a></button>
     {% endfor %}
+
     <footer class="footer">
         <div class="footer-left">
             <p class="footer-links">
