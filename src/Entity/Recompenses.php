@@ -11,9 +11,7 @@ use DateTimeInterface;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
-/**
- * @method removeElement(Tournois $tournois)
- */
+
 #[ORM\Entity(repositoryClass: RecompensesRepository::class)]
 #[Vich\Uploadable]
 
@@ -27,6 +25,7 @@ class Recompenses
     #[ORM\Column(length: 180)]
     private ?string $nom = null;
 
+    //imageFile enregistre le contenu du fichier mais ne stocke pas en base de données
     #[Vich\UploadableField(mapping: 'recompense_images', fileNameProperty: 'imageName')]
     private ?File $imageFile = null;
 
@@ -46,7 +45,7 @@ class Recompenses
     private ?\DateTimeInterface $updatedAt = null;
 
 
-    #[ORM\ManyToOne(inversedBy: 'recompenses', targetEntity: Tournois::class)]
+    #[ORM\ManyToOne(inversedBy: 'recompenses')]
     private ?Tournois $tournois = null;
 
     #[ORM\OneToMany(mappedBy: 'recompenses', targetEntity: Participants::class)]

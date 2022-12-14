@@ -11,35 +11,33 @@
     {{ form_start(inscriptionForm) }}
 
     <div id = "header">
-        <h1>Inscription à un tournois</h1>
+        <h1>Inscription au {{ tournois.nom }}</h1>
     </div>
         <div style="float:left;width:45%;">
 
       <span class="select tournois">
             {{ form_row(inscriptionForm.tournois, {value: tournois.id})}}
     </span>
-            <br>
-            <span class="select recompense">
 
-        {{ form_row(inscriptionForm.recompenses)}}
+            <span class = choisir-recompense>
 
-    </span>
-            <br>
+                {{ form_row(inscriptionForm.recompenses) }}
+        </span>
 
 
-    <span class="input-field nom pseudo">
-        {{ form_row(inscriptionForm.pseudo, {value: user.userIdentifier})}}
+    <span class="input-field  pseudo">
+        {{ form_row(inscriptionForm.pseudo, {value: user})}}
 
     </span>
             <br>
 
-    <span class="input-field nom participant">
-        {{ form_row(inscriptionForm.nom)}}
+    <span class="input-field nom">
+        {{ form_row(inscriptionForm.nom, {value: user.nom})}}
 
     </span><br>
 
     <span class="input-field prénom participant">
-        {{ form_row(inscriptionForm.prenom)}}
+        {{ form_row(inscriptionForm.prenom, {value: user.prenom})}}
 
     </span> <br>
 

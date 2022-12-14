@@ -68,11 +68,17 @@ class ProfilController extends AbstractController
         ]);
     }
     #[Route('/utilisateur/{id}/{idTournois}', name: 'app_desinscrire')]
-    public function desinscription(EntityManagerInterface $entityManager, int $id, int $idTournois, TournoisRepository $tournoisRepository,UserRepository $userRepository, ParticipantsRepository $participantsRepository): Response
+    public function desinscription(EntityManagerInterface $entityManager, int $id, int $idTournois,
+                                   TournoisRepository $tournoisRepository,UserRepository $userRepository,
+                                   ParticipantsRepository $participantsRepository): Response
     {
+
         $user = $userRepository->find($id);
         $tournois = $tournoisRepository->find($idTournois);
-        $participation = $participantsRepository->findOneByTournois($idTournois);
+
+
+        $participation = $participantsRepository->findByOneUser($id, $idTournois);
+
         $entityManager->remove($participation);
         $entityManager->flush();
 

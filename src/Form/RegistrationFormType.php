@@ -21,25 +21,40 @@ class RegistrationFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('username', TextType::class,['label'=>'Pseudo'])
-            ->add('plainPassword', PasswordType::class, [
-                // instead of being set onto the object directly,
-                // this is read and encoded in the controller
-                'mapped' => false,
-                'label'=>'Mot de passe',
-                'attr' => ['autocomplete' => 'new-password'],
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'Entrez un mot de passe',
-                    ]),
-                    new Length([
-                        'min' => 4,
-                        'minMessage' => 'Minimum de {{ limit }} caractères requis',
-                        // max length allowed by Symfony for security reasons
-                        'max' => 4096,
-                    ]),
-                ],
-            ])
+            ->add('username', TextType::class, ['label' => 'Pseudo'])
+            ->add('plainPassword',
+                RepeatedType::class, [
+                    'type' => PasswordType::class,
+                    'mapped'=>false,
+                    'label_attr' => [
+                        'class' => 'd-none'
+                    ],
+                    'attr' => [
+                        'class' => 'col-12'
+                    ],
+                    'first_options' => ['label' => 'Mot de Passe :',
+                        // Ici on définit la taille du label
+                        'label_attr' => [
+                            'class' => 'col-5 py-2'
+                        ],
+                        // En dessous on définit la taille du champ
+                        'attr' => [
+                            'class' => 'col-7',
+                            'type' => 'password'
+                        ]
+                    ],
+                    'second_options' => ['label' => 'Confirmation :',
+                        // Ici on définit la taille du label
+                        'label_attr' => [
+                            'class' => 'col-5 py-2'
+                        ],
+                        // En dessous on définit la taille du champ
+                        'attr' => [
+                            'class' => 'col-7',
+                            'type' => 'password'
+                        ]
+                    ],
+                ])
             ->add('email', EmailType::class);
     }
 

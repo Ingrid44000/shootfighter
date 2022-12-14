@@ -4,44 +4,36 @@ namespace App\Controller;
 
 
 use App\Entity\Participants;
-use App\Entity\Recompenses;
-use App\Entity\Tournois;
-use App\Entity\User;
+
 use App\Form\InscriptionFormType;
-use App\Repository\EtatRepository;
 use App\Repository\ParticipantsRepository;
 use App\Repository\RecompensesRepository;
 use App\Repository\TournoisRepository;
 use App\Repository\UserRepository;
 use App\Service\SendMailService;
-use ContainerAdxux2X\getRecompenseControllerService;
-use ContainerAdxux2X\getRecompensesRepositoryService;
-use DateTime;
-use DateTimeZone;
+
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Doctrine\ORM\EntityManagerInterface;
-use Doctrine\Persistence\ManagerRegistry;
+
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
-use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+
 
 
 class InscriptionController extends AbstractController
 {
     //créé le formulaire d'inscription à un tournois
 
-    #[Route(path: '/detail/inscription/{id}', name: 'app_inscription', methods: ['GET','POST'])]
+    #[Route(path: '/detail/{idTournois}/{id}/inscription', name: 'app_inscription', methods: ['GET','POST'])]
     public function inscription (Request $request, EntityManagerInterface $entityManager
-    , SendMailService $mailTournois,int $id, User $use, ParticipantsRepository $participantsRepository, TournoisRepository $tournoisRepository, RecompensesRepository $recompensesRepository) : Response{
+    , SendMailService $mailTournois,int $idTournois,int $id, UserRepository $userRepository, ParticipantsRepository $participantsRepository, TournoisRepository $tournoisRepository, RecompensesRepository $recompensesRepository) : Response{
 
         {
-            $user = $this->getUser();
-            $idUser = $use->getId();
-            $tournois = $tournoisRepository->find($id); //tournois en question
-
+            $user = $userRepository->find($id);
+            $tournois = $tournoisRepository->find($idTournois); //tournois en question
+            $recompenses = $recompensesRepository->findByTournois($idTournois);
 
             $nbParticipants = count($tournois->getParticipants());//nombre de participants au tournois
             $placesRestantes = $tournois->getNbPlacesMax()-$nbParticipants;
@@ -62,8 +54,8 @@ class InscriptionController extends AbstractController
             $form->handleRequest($request);
 
 
-                if($form->isSubmitted() && $form->isValid() && !$participantsRepository->findByTournois($id)) {
 
+                if($form->isSubmitted() && $form->isValid() && !$participantsRepository->findByTournois($id, $idTournois)) {
 
                     $entityManager->persist($participant);
                     $entityManager->flush();
@@ -82,6 +74,7 @@ class InscriptionController extends AbstractController
                 'placesRestantes' => $placesRestantes,
                 'participant' => $participant,
                 'user'=> $user,
+                'recompenses'=>$recompenses,
                 'tournois' => $tournois,
                 'inscriptionForm' => $form->createView(),
        ]);

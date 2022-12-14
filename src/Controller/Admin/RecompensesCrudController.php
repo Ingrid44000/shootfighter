@@ -4,8 +4,6 @@ namespace App\Controller\Admin;
 
 
 use App\Entity\Recompenses;
-use App\Entity\Tournois;
-use Doctrine\ORM\QueryBuilder;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;

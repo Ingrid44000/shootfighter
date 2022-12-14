@@ -20,6 +20,9 @@ body > .container {
     flex-direction: column;
     min-height: 100vh;
 }
+#choisir-recompense{
+    display : block;
+}
 #form-login{
     opacity:0.96;
     background: linear-gradient(#000000, #132135);

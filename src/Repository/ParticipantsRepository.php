@@ -41,11 +41,12 @@ class ParticipantsRepository extends ServiceEntityRepository
     }
 
     //Cherche si un utilisateur est déjà inscrit au tournoi
-    public function findByTournois(int $tournois) : array
+    public function findByTournois(int $user, int $tournois)
     {
         return $this->createQueryBuilder('p')
-            ->join('p.user', 'user')
-            ->where('p.tournois = :tournois')
+            ->where('p.user = :user')
+            ->andWhere('p.tournois = :tournois')
+            ->setParameter('user', $user)
             ->setParameter('tournois', $tournois)
             ->getQuery()
             ->getResult();
@@ -63,11 +64,12 @@ class ParticipantsRepository extends ServiceEntityRepository
 
 
     //Retourne la participation à un tournois du user
-    public function findOneByTournois(int $tournois)
+    public function findByOneUser(int $user, int $tournois)
     {
         return $this->createQueryBuilder('p')
-            ->innerJoin('p.user', 'user')
-            ->where('p.tournois = :tournois')
+            ->where('p.user = :user')
+            ->setParameter('user', $user)
+            ->andWhere('p.tournois = :tournois')
             ->setParameter('tournois', $tournois)
             ->getQuery()
             ->getOneOrNullResult();

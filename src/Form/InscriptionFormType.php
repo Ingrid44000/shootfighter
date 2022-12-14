@@ -13,11 +13,13 @@ use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Mapping\Entity;
 use EasyCorp\Bundle\EasyAdminBundle\Form\Filter\Type\ChoiceFilterType;
 use EasyCorp\Bundle\EasyAdminBundle\Form\Filter\Type\TextFilterType;
+use phpDocumentor\Reflection\PseudoType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -41,6 +43,7 @@ class InscriptionFormType extends AbstractType
 
         $builder
             ->add('tournois', EntityType::class, ['class'=>Tournois::class, 'disabled'=>true])
+            ->add ('recompenses', EntityType::class, ['class'=>Recompenses::class])
             ->add('pseudo')
             ->add('nom')
             ->add('prenom')
@@ -48,9 +51,10 @@ class InscriptionFormType extends AbstractType
             ->add('adresse_postale')
             ->add('code_postal')
             ->add('ville')
-            ->add('pays')
-            ->add('recompenses', EntityType::class, ['class'=>Recompenses::class]);
-        ;
+            ->add('pays');
+
+
+
     }
     public function configureOptions(OptionsResolver $resolver): void
     {
