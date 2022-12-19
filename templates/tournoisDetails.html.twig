@@ -1,75 +1,30 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Shootfighter{% endblock %}
-
+ {% block stylesheets %}
+     <link rel="stylesheet" href="{{ asset ('css/app.css') }}">
+ {%  endblock %}
 {% block body %}
 <body>
-<div class="container">
-    <div class="header-content">
-        <nav>
-            <ul>
-                <li class="accueil">
-                    <a href="{{ path('app_accueil') }}" title = "recompenses">
-                        <span>Accueil</span>
-                    </a>
-                </li>
-                {% if is_granted('ROLE_ADMIN') %}
-                    <li class="admin">
-                        <a href="{{ path('admin') }}" title = "admin">Page administrateur</a>
-                    </li>
-                {% endif %}
+<div class="container-tournois">
 
-                <li class="recompenses">
-                    <a href="{{ path('app_recompenses') }}" title = "recompenses">
-                        <span>Récompenses</span>
-                    </a>
-                </li>
-                <li class="tournois">
-                    <a href="{{ path('app_tournois') }}" title = "tournois">
-                        <span>Tournois</span>
-                    </a>
-                </li>
+<h1>{{ tournois.nom }}<br> {{ tournois.date | date ('d-m-Y') }}</h1>
+<h2>{{ placesRestantes }}</h2>
 
-                {% if not app.user %}
 
-                    <li class ="connexion">
-                        <a href="{{ path('app_login') }}" class = "menu-link" title = "connexion">
+    <div class ="bouton-detail">
+        {% if app.user %}
+            <a href="{{ path('app_inscription', {'idTournois': tournois.id, 'id': app.user.id}) }}" title = "detail">
+                <img src="{{ asset('images/tournois/' ~ tournois.imageName) }}" alt="image tournoi" height="400px"
+                     width="600px"></a>
 
-                            <span>Se connecter</span>
-                        </a>
-                    </li>
-
-                    <li class ="contact">
-                        <a href="{{ path('app_contact') }}" class = "menu-link" title = "contact">
-
-                            <span>Contact</span>
-                        </a>
-                    </li>
-
-                {% elseif app.user %}
-                    <li class="menu_deconnexion">
-                        <a href="{{ path('app_logout') }}" title = "deconnexion">
-                            <span>Se déconnecter</span>
-                        </a>
-                    </li>{% endif %}
-            </ul>
-        </nav>
-    </div>
-
-<div id="tournois-detail-nom"><h2>{{ tournois.nom }}</h2></div>
-<div id="tournois-detail-date"><h3>{{ tournois.date | date ('d-m-Y') }}</h3></div>
-<div id="tournois-placesRestantes">{{ placesRestantes }}</div>
-
-        <img src="{{ asset('images/tournois/' ~ tournois.imageName) }}" alt="image goodie"height="400px"
-             width="300px">
-        <br>
-    <button class="btn btn-link btn-secondary" type="submit">
-    {% if app.user %}
-        <a href="{{ path('app_inscription', {'idTournois': tournois.id, 'id': app.user.id }) }}" title = "inscription">S'inscrire</a>
         {% elseif not app.user %}
-        <a href="{{ path('app_register')}}" title = "inscription">Créer un compte</a>
+            <a href="{{ path('app_login')}}" title = "se connecter"><img src="{{ asset('images/tournois/' ~ tournois.imageName) }}" alt="image tournoi" height=400px"
+                                                                         width="600px"></a>
         {% endif %}
-    </button>
+
+
+    </div>
 </div>
 </body>
 {% endblock %}

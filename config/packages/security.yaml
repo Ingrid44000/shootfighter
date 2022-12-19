@@ -39,6 +39,7 @@ security:
         - { path: ^/public, roles: [ROLE_USER, ROLE_ADMIN] }
         - { path: ^public/register, roles: [ROLE_USER, ROLE_ADMIN] }
         - { path: ^public/inscription, roles: [ROLE_USER, ROLE_ADMIN] }
+        - { path: ^public/monprofil, roles: [ROLE_USER] }
 when@test:
     security:
         password_hashers:

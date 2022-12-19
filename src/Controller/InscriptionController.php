@@ -28,7 +28,9 @@ class InscriptionController extends AbstractController
 
     #[Route(path: '/detail/{idTournois}/{id}/inscription', name: 'app_inscription', methods: ['GET','POST'])]
     public function inscription (Request $request, EntityManagerInterface $entityManager
-    , SendMailService $mailTournois,int $idTournois,int $id, UserRepository $userRepository, ParticipantsRepository $participantsRepository, TournoisRepository $tournoisRepository, RecompensesRepository $recompensesRepository) : Response{
+    , SendMailService $mailTournois,int $idTournois,int $id, UserRepository $userRepository,
+                                 ParticipantsRepository $participantsRepository, TournoisRepository $tournoisRepository,
+                                 RecompensesRepository $recompensesRepository) : Response{
 
         {
             $user = $userRepository->find($id);
@@ -38,16 +40,16 @@ class InscriptionController extends AbstractController
             $nbParticipants = count($tournois->getParticipants());//nombre de participants au tournois
             $placesRestantes = $tournois->getNbPlacesMax()-$nbParticipants;
 
-            $now = new \DateTime('now');
+            $now = new \DateTime('now'); //récupère la date du jour
             if ($placesRestantes <= 0 || $now > $tournois->getDateLimiteInscription()){
                 $this->addFlash("echec", "les inscriptions sont cloturees");
                 return $this->redirectToRoute('app_tournois');
             }
 
             $participant = new Participants();
-            $participant->setUser($user);
+            $participant->setUser($user); //on remplit le formulaire avec les données de l'utilisateur
 
-            $participant->setTournois($tournois);
+            $participant->setTournois($tournois);//on indique le tournoi concerné par l'inscription
 
 
             $form = $this->createForm(InscriptionFormType::class, $participant);

@@ -57,9 +57,8 @@ class RecompensesRepository extends ServiceEntityRepository
             ->setParameter('tournois', $tournois)
             ->getQuery()
             ->getResult();
-
-
     }
+
 
 //    /**
 //     * @return Recompenses[] Returns an array of Recompenses objects

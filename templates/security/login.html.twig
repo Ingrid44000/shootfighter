@@ -1,15 +1,16 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>{% block title %}Se connecter{% endblock %}</title>
-    <link rel="stylesheet" href="{{ asset ('css/app.css') }}">
+{% extends 'base.html.twig'%}
+
+    {% block title %}Se connecter{% endblock %}
+    {% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset ('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset ('css/register_login.css') }}">
-</head>
+{%  endblock %}
 {% block body %}
 <body>
-<form method="post" id="login">
-    <h1>Se connecter</h1>
+<form method="post" id="form-login">
+    <div id="header">
+        <h1>Se connecter</h1>
+    </div>
 <br>
     {% if error %}
     <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
@@ -44,21 +45,10 @@
     <input type="hidden" name="_csrf_token"
            value="{{ csrf_token('authenticate') }}">
 
-    {#
-        Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
-        See https://symfony.com/doc/current/security/remember_me.html
-
-        <div class="checkbox mb-3">
-            <label>
-                <input type="checkbox" name="_remember_me"> Remember me
-            </label>
-        </div>
-    #}
-<br><br>
     <button class="btn btn-lg btn-primary" type="submit">
         Valider
     </button>
-<br>
+
     <button class="btn btn-lg btn-secondary" type="submit">
         <a href="{{ path('app_accueil') }}" title = "retour">Retour</a>
     </button>
@@ -68,27 +58,5 @@
 
 </form>
 
-    <br>
-    <footer class="footer">
-        <div class="footer-left">
-            <p class="footer-links">
-                <a href="{{ path('app_accueil') }}" class="link-1">Accueil</a>
-                <a href="{{ path('app_recompenses') }}" >Récompenses</a>
-                <a href="{{ path('app_tournois') }}" >Tournois</a>
-                <a href="{{ path('app_login') }}" >Se connecter</a>
-                <a href="{{ path('app_contact') }}">Contact</a>
-
-            </p>
-            <p class="footer-company-name">NHCI </p>
-        </div>
-
-        <div class="footer-right">
-            <p class="footer-company-about">
-                <span>About the company</span>
-                Lorem ipsum dolor sit amet, consectateur adispicing elit. Fusce euismod convallis velit, eu auctor lacus vehicula sit amet.
-            </p>
-        </div>
-    </footer>
 </body>
 {% endblock %}
-</html>

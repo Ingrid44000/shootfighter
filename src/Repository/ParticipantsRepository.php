@@ -63,7 +63,7 @@ class ParticipantsRepository extends ServiceEntityRepository
     }
 
 
-    //Retourne la participation à un tournois du user
+    //Retourne la participation du user à un tournois
     public function findByOneUser(int $user, int $tournois)
     {
         return $this->createQueryBuilder('p')

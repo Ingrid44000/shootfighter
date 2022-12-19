@@ -2,123 +2,27 @@
 
     {% block title %}Tournois{% endblock %}
 {% block stylesheets %}
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
 
-    {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
-    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset ('css/app.css') }}">
-
 
 {% endblock %}
 {% block body %}
 <body>
-<div class="container">
-    <div class="header-content">
-        <nav>
-            <ul>
-                <li class="accueil">
-                    <a href="{{ path('app_accueil') }}" title = "recompenses">
-                        <span>Accueil</span>
-                    </a>
-                </li>
-                {% if is_granted('ROLE_ADMIN') %}
-                    <li class="admin">
-                        <a href="{{ path('admin') }}" title = "admin">Page administrateur</a>
-                    </li>
-                {% endif %}
-
-                <li class="recompenses">
-                    <a href="{{ path('app_recompenses') }}" title = "recompenses">
-                        <span>Récompenses</span>
-                    </a>
-                </li>
-                <li class="tournois">
-                    <a href="{{ path('app_tournois') }}" title = "tournois">
-                        <span>Tournois</span>
-                    </a>
-                </li>
-
-                {% if not app.user %}
-
-                    <li class ="connexion">
-                        <a href="{{ path('app_login') }}" class = "menu-link" title = "connexion">
-
-                            <span>Se connecter</span>
-                        </a>
-                    </li>
-
-                    <li class ="contact">
-                        <a href="{{ path('app_contact') }}" class = "menu-link" title = "contact">
-
-                            <span>Contact</span>
-                        </a>
-                    </li>
-
-                {% elseif app.user %}
-                    <li class="menu_deconnexion">
-                        <a href="{{ path('app_logout') }}" title = "deconnexion">
-                            <span>Se déconnecter</span>
-                        </a>
-                    </li>{% endif %}
-            </ul>
-        </nav>
-    </div>
 
 
     {% for tournois in tournois %}
-
-        <div class ="image-tournois" style="float:right;width:70%;">
-
-                <div id="tournois-nom"><h2>{{ tournois.nom }}</h2></div>
-
-                <img src="{{ asset('images/tournois/' ~ tournois.imageName) }}" alt="image tournois" height="400px"
-             width="600px"></div>
-
-
-        <div id="tournois-date">{{ tournois.date | date ('d-m-Y') }}</div>
-
-
-           <div class="image-recompenses">
-               <div id="recompense1"><img src="{{ asset('images/recompense/' ~ tournois.recompense1) }}" alt="image recompense" height="150px"
-                 width="150px"> </div>
-
-
-        <div id ="recompense2"><img src="{{ asset('images/recompense/' ~ tournois.recompense2) }}" alt="image recompense" height="150px"
-             width="150px"></div>
-
-
-        <div id="recompense3"><img src="{{ asset('images/recompense/' ~ tournois.recompense3) }}" alt="image recompense" height="150px"
-             width="150px"></div>
+            <h1>{{ tournois.nom }}<br> {{ tournois.date | date ('d-m-Y') }}</h1>
+    <div class ="container">
+        <div class ="bouton-detail-tournoi">
+            <a href="{{ path('app_detail', {'idTournois': tournois.id}) }}" title = "detail">
+                <img src="{{ asset('images/tournois/' ~ tournois.imageName) }}" alt="image tournois" height="400px" width="600px"></a>
 
         </div>
-
-        <button class="btn btn-link btn-secondary" type="submit">
-            <a href="{{ path('app_detail', {'idTournois': tournois.id}) }}" title = "detail tournois">Voir tournois</a>
-        </button>
         <br>
     {% endfor %}
 </div>
-    <footer class="footer">
-        <div class="footer-left">
-            <p class="footer-links">
-                <a href="{{ path('app_accueil') }}" class="link-1">Accueil</a>
-                <a href="{{ path('app_recompenses') }}" >Récompenses</a>
-                <a href="{{ path('app_tournois') }}" >Tournois</a>
-                <a href="{{ path('app_contact') }}">Contact</a>
-                <a href="{{ path('app_login') }}" >Se connecter</a>
 
-            </p>
-            <p class="footer-company-name">NHCI </p>
-        </div>
-
-        <div class="footer-right">
-            <p class="footer-company-about">
-                <span>About the company</span>
-                Lorem ipsum dolor sit amet, consectateur adispicing elit. Fusce euismod convallis velit, eu auctor lacus vehicula sit amet.
-            </p>
-        </div>
-    </footer>
-</body>
+    </body>
 {% endblock %}
 
 

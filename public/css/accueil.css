@@ -13,11 +13,12 @@ bloc conteneur
     max-width: 1000px;
     margin: auto;
     padding: 5px;
+
 }
 
 #banniere{
     background-image: url("images/imageAccueil.png");
-    margin-top: -45%;
+    margin-top: -47%;
     height: 300px;
     border-radius: 10px;
     position: center;
@@ -25,68 +26,6 @@ bloc conteneur
     margin-right: auto;
     min-width: 1500px;
 }
-
-
-#connexion{
-
-    margin-top: -2%;
-    margin-left: 85%;
-    text-align: center;
-
-}
-nav ul {
-    display: flex;
-    list-style: none;
-    padding-left: 0;
-}
-
-nav li {
-    margin-left: auto;
-}
-
-nav {
-    width:120%;
-    margin: -2%;
-    font-size: 120%;
-}
-
-nav ul {
-    list-style-type: none;
-}
-nav ul li{
-    float: right;
-    width: 25%;
-    text-align: center;
-    color: yellow;
-}
-nav ul::after{
-    content:"";
-    display: table;
-    clear: both;
-}
-
-nav a{
-    display: block;
-    text-decoration: none;
-    border-bottom: 2px solid transparent;
-    padding: 10px 0px;
-    color: yellow;
-}
-
-nav a:hover{
-    color: orange;
-    border-bottom: 2px solid orange;
-}
-hr{
-    display: block;
-    height: 0;
-    margin: auto;
-    padding: 0;
-    border: 0;
-    font-size: 60px;
-    line-height: 1;
-}
-
 
 div .actualite{
     width: 50%;
@@ -99,20 +38,9 @@ div .actualite{
     margin-right: 90px;
     margin-bottom: 30px;
     margin-left: -10px;
-
-}
-
-h2{
-    text-align:center;
-    font-size: 30px;
-    width: 88%;
-    height: 5px;
-    padding: 30px;
-    display: inline-block;
-    background: darkslategrey;
     position: center;
-    border-radius: 10px;
-    margin-top: 0;
+    text-align:center;
+
 }
 
 #texte-actu {

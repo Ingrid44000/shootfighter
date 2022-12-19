@@ -23,7 +23,86 @@
         {% endfor %}
     {% endfor %}
 
-        {% block body %}{% endblock %}
 
+        <div class="container">
+            <div class="header-content">
+                <nav>
+                    <ul>
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <li class="admin">
+                                <a href="{{ path('admin') }}" title = "admin">Page administrateur</a>
+                            </li>
+                        {% endif %}
+
+                        <li class="recompenses">
+                            <a href="{{ path('app_recompenses') }}" title = "recompenses">
+                                <label>Récompenses</label>
+                            </a>
+                        </li>
+                        <li class="link-tournois">
+                            <a href="{{ path('app_tournois') }}" title = "tournois">
+                                <label>Tournois</label>
+                            </a>
+                        </li>
+                        <li class ="contact">
+                            <a href="{{ path('app_contact') }}" class = "menu-link" title = "contact">
+
+                                <label>Contact</label>
+                            </a>
+                        </li>
+                        {% if not app.user %}
+
+                            <li class ="connexion">
+                                <a href="{{ path('app_login') }}" class = "menu-link" title = "connexion">
+
+                                    <label>Se connecter</label>
+                                </a>
+                            </li>
+
+                            {% elseif app.user %}
+                                <li class="menu_deconnexion">
+                            <a href="{{ path('app_logout') }}" title = "deconnexion">
+                                <label>Se déconnecter</label>
+                            </a>
+                            </li>
+                        {% endif %}
+
+                        <li class="profil">
+
+                                <label>Mon profil</label>
+                            </a>
+                        </li>
+
+
+
+                    </ul>
+                </nav>
+            </div>
+            <hr>
+        </div>
+        {% block body %}{% endblock %}
+        <footer class="footer">
+            <div class="footer-left">
+                <p class="footer-links">
+                    <a href="{{ path('app_accueil') }}" class="link-1">Accueil</a>
+                    <a href="{{ path('app_recompenses') }}" >Récompenses</a>
+                    <a href="{{ path('app_tournois') }}" >Tournois</a>
+                    <a href="{{ path('app_contact') }}">Contact</a>
+                    {% if not app.user %}
+                        <a href="{{ path('app_login') }}" >Se connecter</a>
+                    {%  elseif app.user%}
+                        <a href="{{ path('app_logout') }}" >Se déconnecter</a>
+                    {% endif %}
+                </p>
+                <p class="footer-company-name">NHCI </p>
+            </div>
+
+            <div class="footer-right">
+                <p class="footer-company-about">
+                    <span>About the company</span>
+                    Lorem ipsum dolor sit amet, consectateur adispicing elit. Fusce euismod convallis velit, eu auctor lacus vehicula sit amet.
+                </p>
+            </div>
+        </footer>
     </body>
 </html>

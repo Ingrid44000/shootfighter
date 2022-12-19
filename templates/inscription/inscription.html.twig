@@ -2,11 +2,13 @@
 
 {% block title %}Inscription tournois{% endblock %}
 
+{%  block stylesheets %}<link rel="stylesheet" href="{{ asset ('css/register_login.css') }}">
+
+{% endblock %}
 {% block body %}
     <body>
-    <link rel="stylesheet" href="{{ asset ('css/register_login.css') }}">
 
-<div id = "form-inscription">
+    <form method="post" id="form-inscription">
 
     {{ form_start(inscriptionForm) }}
 
@@ -23,7 +25,6 @@
 
                 {{ form_row(inscriptionForm.recompenses) }}
         </span>
-
 
     <span class="input-field  pseudo">
         {{ form_row(inscriptionForm.pseudo, {value: user})}}
@@ -46,7 +47,7 @@
         <br>
     </span>
         </div>
-        <div style="float:right;width:45%;">
+        <div style="float:right;width:40%;">
 
     <span class="input-field adresse postale">
         {{ form_row(inscriptionForm.adresse_postale)}}
@@ -74,26 +75,7 @@
         </div>
     {{ form_end(inscriptionForm) }}
         </div>
-    <footer class="footer">
-        <div class="footer-left">
-            <p class="footer-links">
-                <a href="{{ path('app_accueil') }}" class="link-1">Accueil</a>
-                <a href="{{ path('app_recompenses') }}" >Récompenses</a>
-                <a href="{{ path('app_tournois') }}" >Tournois</a>
-                <a href="{{ path('app_contact') }}">Contact</a>
-                <a href="{{ path('app_login') }}" >Se connecter</a>
 
-            </p>
-            <p class="footer-company-name">NHCI </p>
-        </div>
-
-        <div class="footer-right">
-            <p class="footer-company-about">
-                <span>About the company</span>
-                Lorem ipsum dolor sit amet, consectateur adispicing elit. Fusce euismod convallis velit, eu auctor lacus vehicula sit amet.
-            </p>
-        </div>
-    </footer>
-
+    </form>
     </body>
 {% endblock %}

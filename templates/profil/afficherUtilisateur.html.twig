@@ -77,29 +77,6 @@
         <button class="btn btn-secondary btn-lg "><a href="{{ path('app_desinscrire', {'id': user.id, 'idTournois': participations.tournois.id})}}" class="btn btn-primary btn-lg">Se désincrire</a></button>
     {% endfor %}
 
-    <footer class="footer">
-        <div class="footer-left">
-            <p class="footer-links">
-                <a href="{{ path('app_accueil') }}" class="link-1">Accueil</a>
-                <a href="{{ path('app_recompenses') }}" >Récompenses</a>
-                <a href="{{ path('app_tournois') }}" >Tournois</a>
-                <a href="{{ path('app_contact') }}">Contact</a>
-                {% if not app.user %}
-                    <a href="{{ path('app_login') }}" >Se connecter</a>
-                {%  elseif app.user%}
-                    <a href="{{ path('app_logout') }}" >Se déconnecter</a>
-                {% endif %}
 
-            </p>
-            <p class="footer-company-name">NHCI </p>
-        </div>
-
-        <div class="footer-right">
-            <p class="footer-company-about">
-                <span>About the company</span>
-                Lorem ipsum dolor sit amet, consectateur adispicing elit. Fusce euismod convallis velit, eu auctor lacus vehicula sit amet.
-            </p>
-        </div>
-    </footer>
-    </body>
+</div></body>
 {% endblock %}
