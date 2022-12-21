@@ -12,30 +12,31 @@
 
     {{ form_start(inscriptionForm) }}
 
-    <div id = "header">
+    <div id = "titre-inscription">
         <h1>Inscription au {{ tournois.nom }}</h1>
     </div>
-        <div style="float:left;width:45%;">
+        <div class = "texte-gauche">
 
-      <span class="select tournois">
-            {{ form_row(inscriptionForm.tournois, {value: tournois.id})}}
-    </span>
+            <span class="select-tournois">
+                {{ form_row(inscriptionForm.tournois, {value: tournois.id})}}
+            </span>
+
 
             <span class = choisir-recompense>
 
-                {{ form_row(inscriptionForm.recompenses) }}
-        </span>
+                {{ form_row(inscriptionForm.recompenses)}}
+            </span>
 
-    <span class="input-field  pseudo">
-        {{ form_row(inscriptionForm.pseudo, {value: user})}}
+            <span class="input-field  pseudo">
+                {{ form_row(inscriptionForm.pseudo, {value: user})}}
 
-    </span>
-            <br>
+            </span><br>
 
-    <span class="input-field nom">
-        {{ form_row(inscriptionForm.nom, {value: user.nom})}}
 
-    </span><br>
+            <span class="input-field nom">
+                {{ form_row(inscriptionForm.nom, {value: user.nom})}}
+
+            </span><br>
 
     <span class="input-field prénom participant">
         {{ form_row(inscriptionForm.prenom, {value: user.prenom})}}
@@ -47,7 +48,7 @@
         <br>
     </span>
         </div>
-        <div style="float:right;width:40%;">
+        <div class = "texte-droite">
 
     <span class="input-field adresse postale">
         {{ form_row(inscriptionForm.adresse_postale)}}
@@ -65,16 +66,16 @@
         {{ form_row(inscriptionForm.pays)}}
     </span> <br>
     </div>
+<br>
+        <button type="submit" class="btn-inscription-valider">Valider</button>
 
-    <button type="submit" class="btn">Valider</button>
+        <button class="btn-inscription-retour" type="submit">
+            <a href="{{ path('app_tournois') }}" title = "retour">Retour</a>
+        </button>
 
-    <button class="btn btn-lg btn-secondary" type="submit">
-        <a href="{{ path('app_tournois') }}" title = "retour">Retour</a>
-    </button>
 
-        </div>
     {{ form_end(inscriptionForm) }}
-        </div>
+
 
     </form>
     </body>

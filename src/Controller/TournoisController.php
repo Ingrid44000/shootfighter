@@ -21,28 +21,29 @@ class TournoisController extends AbstractController
     {
 
         {
-
+            $user = $this->getUser();
             $entityManager = $doctrine->getManager();
             $tournois = $entityManager->getRepository(Tournois::class)->afficherTournois();
 
-            return $this->render('tournois.html.twig', [ 'tournois' => $tournois]);
+            return $this->render('tournois.html.twig', ['user'=>$user, 'tournois' => $tournois]);
 
         }
     }
     #[Route(path: '/detail/{idTournois}', name: 'app_detail', methods: ['GET', 'POST'])]
-    public function afficherDetails( int $idTournois, TournoisRepository $tournoisRepository, ManagerRegistry $doctrine) : Response
+    public function afficherDetails(int $idTournois, TournoisRepository $tournoisRepository, ManagerRegistry $doctrine) : Response
     {
 
+        $user = $this->getUser();
         $tournois = $tournoisRepository->find($idTournois);
 
         $nbParticipants = count($tournois->getParticipants());//nombre de participants au tournois
         $placesRestantes = $tournois->getNbPlacesMax()-$nbParticipants;
 
         $entityManager = $doctrine->getManager();
-        $recompenses = $entityManager->getRepository(Recompenses::class)->afficherRecompenses();
+        $recompenses = $entityManager->getRepository(Recompenses::class)->findRecompenseByTournois($idTournois);
 
         return $this->render('tournoisDetails.html.twig',[
-
+            'user'=>$user,
             'placesRestantes' =>$placesRestantes,
             'recompenses'=>$recompenses,
             'tournois'=>$tournois

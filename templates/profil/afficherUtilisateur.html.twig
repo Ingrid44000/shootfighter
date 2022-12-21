@@ -3,73 +3,24 @@
 {% block title %}
     Profil de {{ user.getUsername }}
 {% endblock %}
-
+    {% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset ('css/profil.css') }}">
+    {%  endblock %}
 {% block body %}
     <body>
-    <div class="header-content">
-        <nav>
-            <ul>
-                <li class="accueil">
-                    <a href="{{ path('app_accueil') }}" title = "recompenses">
-                        <span>Accueil</span>
-                    </a>
-                </li>
-                {% if is_granted('ROLE_ADMIN') %}
-                    <li class="admin">
-                        <a href="{{ path('admin') }}" title = "admin">Page administrateur</a>
-                    </li>
-                {% endif %}
+    <div id="afficherprofil">
+        <div id = "titre-afficherprofil"><h1>{{ user.getUsername}}</h1></div>
 
-                <li class="recompenses">
-                    <a href="{{ path('app_recompenses') }}" title = "recompenses">
-                        <span>Récompenses</span>
-                    </a>
-                </li>
-                <li class="tournois">
-                    <a href="{{ path('app_tournois') }}" title = "tournois">
-                        <span>Tournois</span>
-                    </a>
-                </li>
+            <div class = "avatar-profil"><img src="{{ asset('images/user/' ~ user.imageName) }}" alt="avatar" height="400px"
+                 width="300px"></div>
+            <span class="prenom-profil">{{ user.getPrenom }}</span>
+            <p class="nom-profil">Nom :</p><span class="col-6">{{ user.getNom }}</span>
+            <p class="email-profil">Email :</p><span class="col-6">{{ user.getEmail }}</span>
 
-                {% if not app.user %}
+                <button class="btn-monprofil-accueil"><a href="{{ path('app_accueil')}}">Retour</a></button> <br>
+                <button class="btn-monprofil-modifier "><a href="{{ path('app_monProfil',{'id': user.id}) }}" class="btn btn-primary btn-lg">Modifier mon profil</a></button>
 
-                    <li class ="connexion">
-                        <a href="{{ path('app_login') }}" class = "menu-link" title = "connexion">
-
-                            <span>Se connecter</span>
-                        </a>
-                    </li>
-
-                    <li class ="contact">
-                        <a href="{{ path('app_contact') }}" class = "menu-link" title = "contact">
-
-                            <span>Contact</span>
-                        </a>
-                    </li>
-
-                {% elseif app.user %}
-                    <li class="menu_deconnexion">
-                        <a href="{{ path('app_logout') }}" title = "deconnexion">
-                            <span>Se déconnecter</span>
-                        </a>
-                    </li>{% endif %}
-            </ul>
-        </nav>
-    </div>
-
-        <h2 class="col-10 text-center pt-2 pb-5">{{ user.getUsername}}</h2>
-
-        <form method="post" class="d-flex col-4 flex-wrap">
-            <img src="{{ asset('images/user/' ~ user.imageName) }}" alt="avatar" height="400px"
-                 width="300px">
-            <p class="col-6">Prénom :</p><span class="col-6">{{ user.getPrenom }}</span>
-            <p class="col-6">Nom :</p><span class="col-6">{{ user.getNom }}</span>
-            <p class="col-6">Email :</p><span class="col-6">{{ user.getEmail }}</span>
-            <div class="col-12 d-flex justify-content-around mt-4">
-                <button class="btn btn-primary btn-lg"><a href="{{ path('app_accueil')}}">Retour</a></button> <br>
-                <button class="btn btn-secondary btn-lg "><a href="{{ path('app_monProfil',{'id': user.id}) }}" class="btn btn-primary btn-lg">Modifier mon profil</a></button>
-            </div>
-        </form>
+        </div>
 
 <div class = participations>
     {% for participations in participations %}
@@ -78,5 +29,6 @@
     {% endfor %}
 
 
-</div></body>
+</div>
+    </body>
 {% endblock %}

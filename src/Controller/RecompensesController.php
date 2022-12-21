@@ -18,10 +18,11 @@ class RecompensesController extends AbstractController
     public function Recompenses (ManagerRegistry $doctrine): Response
 
     {
+        $user = $this->getUser();
         $entityManager = $doctrine->getManager();
         $recompenses = $entityManager->getRepository(Recompenses::class)->afficherRecompenses();
 
-        return $this->render('recompenses/recompenses.html.twig', ['recompenses'=>$recompenses]);
+        return $this->render('recompenses/recompenses.html.twig', ['user'=>$user,'recompenses'=>$recompenses]);
 
     }
 }

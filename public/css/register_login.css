@@ -3,40 +3,70 @@ body {
     background-position: center;
 }
 /*
-en-tête formulaire
+en-tête formulaire de connexion : login.html.twig
 */
-#header{
+#titre-connexion{
     text-align:center;
     margin-bottom: auto;
     margin-top: auto;
 }
 /*
-champs formulaires
+formulaire de login
+*/
+
+#form-login{
+    width: 400px;
+    height: 60%;
+    opacity:0.96;
+    background: linear-gradient(#000000, #132135);
+    background-size: 100px;
+    color: white;
+    border-radius: 10px;
+    left: 50%;
+    top: 40%;
+    margin-left: -10%;
+    position: absolute;
+    margin-top: -10%;
+}
+/*
+champs formulaire de connexion : login.html.twig
  */
-span{
+
+span {
+    text-align: center;
+    width: 60%;
     display: flex;
     position: center;
     flex-direction: column;
     padding: 10px;
     border-radius: 5px;
     background: linear-gradient(#000000, #132135);
-    margin-top: auto;
-    margin-bottom: auto;
+    margin: auto;
 }
+
+#remember_me{
+    margin-left: 35px;
+}
+label {
+    text-align: center;
+}
+
 /*
-boutons formulaires
+bouton formulaire connexion : login.html.twig
  */
 button {
-    display: inline-block;
-    position: relative;
-    background-color: transparent;
+
     text-align: center;
+    position: relative;
+    display: inline-block;
+    background-color: transparent;
     font-size: 15px;
-    top: 15px;
-    padding: 10px;
-    width: 100%;
-    cursor: pointer;
+    top: 20px;
+    left: 70px;
+    width: 60%;
+    padding: 9px;
     margin: 5px;
+    cursor: pointer;
     color: #4ade80;
 }
 
@@ -46,60 +76,103 @@ button:hover{
 button:hover:before{
     transform: translate(5px, 5px);
 }
-
-#choisir-recompense{
-    display : block;
-}
 /*
-formulaire de login
+Formulaire de création de compte : register.html.twig
 */
-#form-login{
-    opacity:0.96;
-    background: linear-gradient(#000000, #132135);
-    color: white;
-    border-radius: 10px;
-    left: 50%;
-    top: 40%;
-    margin-left: -10%;
-    position: absolute;
-    margin-top: -10%;
+#titre-register{
+    text-align:center;
+    margin-bottom: auto;
+    margin-top: auto;
 }
-#form-contact{
-    opacity:0.96;
-    background: linear-gradient(#000000, #132135);
-    color: white;
-    border-radius: 10px;
-    left: 50%;
-    top: 40%;
-    margin-left: -10%;
-    position: absolute;
-    margin-top: -10%;
-}
-
 
 #form-register{
+    width: 400px;
+    height: 60%;
     opacity:0.96;
     background: linear-gradient(#000000, #132135);
+    background-size: 100px;
     color: white;
     border-radius: 10px;
     left: 50%;
-    top: 42%;
+    top: 40%;
     margin-left: -10%;
     position: absolute;
     margin-top: -10%;
 }
+
+
+/*
+Formulaire d'inscription à un tournoi
+ */
+
+#titre-inscription{
+    text-align:center;
+    margin-bottom: auto;
+    margin-top: 20px;
+}
+.select-tournois{
+
+}
+.texte-gauche{
+    float:left;
+    top: 100px;
+    width : 45%;
+
+}
+.texte-droite{
+
+    float:right;
+    width: 50%;
+}
 #form-inscription{
+    width: 30%;
+    height: 75%;
     opacity:0.96;
     background: linear-gradient(#000000, #132135);
+    background-size: 100px;
     color: white;
     border-radius: 10px;
     left: 50%;
-    top: 42%;
-    margin-left: -10%;
+    top: 40%;
+    margin-left: -20%;
     position: absolute;
     margin-top: -10%;
 
 }
+.btn-inscription-valider{
+
+    left: 100px;
+}
+.btn-inscription-retour{
+
+    left: 100px;
+}
+
+/*
+Formulaire de contact : contact.html.twig
+ */
+
+#titre-contact{
+    text-align:center;
+    margin-bottom: auto;
+    margin-top: 20px;
+}
+
+#form-contact{
+    width: 30%;
+    height: 55%;
+    opacity:0.96;
+    background: linear-gradient(#000000, #132135);
+    background-size: 100px;
+    color: white;
+    border-radius: 10px;
+    left: 50%;
+    top: 40%;
+    margin-left: -20%;
+    position: absolute;
+    margin-top: -10%;
+}
+
 
 #contact{
     background: linear-gradient(#000000, #132135);
@@ -113,5 +186,3 @@ formulaire de login
     margin-top: auto;
     margin-bottom: auto;
 }
-
-

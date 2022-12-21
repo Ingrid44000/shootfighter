@@ -2,7 +2,7 @@
 
 {% block title %}Contact{% endblock %}
 {% block stylesheets %}
-    <link rel="stylesheet" href="{{ asset ('css/app.css') }}">
+
 <link rel="stylesheet" href="{{ asset ('css/register_login.css') }}">
 
 {% endblock %}
@@ -11,25 +11,48 @@
 <body>
    <div id = "form-contact" >
     {{ form_start(contactForm) }}
-       <div id="header">
+       <div id="titre-contact">
            <h1>Contact</h1>
        </div>
 
-        {% for message in app.flashes('success') %}
-            <div class="alert alert-success mt-4">
-                {{ message }}
-            </div>
+       <span class ="nom"><label>Nom/Prénom</label>
+        {{ form_widget(contactForm.fullName)}}
+    </span><br>
 
-        {% endfor %}
+       <span class ="email"><label>Email</label>
+        {{ form_widget(contactForm.email)}}
+    </span><br>
 
-        {% for message in app.flashes('danger') %}
-            <div class="alert alert-success mt-4">
-                {{ message }}
-            </div>
-        {% endfor %}
+       <span class ="sujet"><label>Sujet</label>
+        {{ form_widget(contactForm.sujet)}}
+    </span><br>
+
+       <span class ="message"><label>Message</label>
+        {{ form_widget(contactForm.message)}}
+    </span><br>
+
+       <button type="submit" class="btn-inscription-valider">Valider</button>
+
+        <button class="btn-inscription-retour" type="submit">
+            <a href="{{ path('app_accueil') }}" title = "retour">Retour</a>
+        </button>
+       {% for message in app.flashes('success') %}
+           <div class="alert alert-success mt-4">
+               {{ message }}
+           </div>
+
+       {% endfor %}
+
+       {% for message in app.flashes('danger') %}
+           <div class="alert alert-success mt-4">
+               {{ message }}
+           </div>
+       {% endfor %}
+
 
    </div>
 
     {{ form_end(contactForm) }}
+
 </body>
 {% endblock %}

@@ -3,43 +3,56 @@
 {% block title %}
     Mon Profil
 {% endblock %}
-
+    {% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset ('css/profil.css') }}">
+    {%  endblock %}
 {% block body %}
     <body>
     <div>
-        <h1 class="text-center">Mon profil</h1>
-        <div id="formprofil" class="d-flex justify-content-center align-self-center my-4 ">
 
-            {{ form_start(monProfilForm,{'attr':{'class':'col-4'}}) }}
-            <div class="d-flex flex-wrap py-2">
-                {{ form_label(monProfilForm.username) }}
-                {{ form_widget(monProfilForm.username) }}
+        <div id="form-monProfil">
 
-            </div>
-            <div class="d-flex flex-wrap py-2">
-                {{ form_label(monProfilForm.prenom) }}
-                {{ form_widget(monProfilForm.prenom) }}
+            <div id = "titre-monprofil"><h1>Mon profil</h1></div>
 
-            </div>
-            <div class="d-flex flex-wrap py-2">
-                {{ form_label(monProfilForm.nom) }}
-                {{ form_widget(monProfilForm.nom) }}
+            {{ form_start(monProfilForm) }}
 
-            </div>
-            <div class="d-flex flex-wrap py-2">
-                {{ form_label(monProfilForm.email) }}
-                {{ form_widget(monProfilForm.email) }}
+                <span class="modification-pseudo"><label>Pseudo</label><br>
+                    {{ form_widget(monProfilForm.username)}}
+                </span><br>
 
-            </div>
-            <div class="d-flex flex-wrap">
-                {{ form_label(monProfilForm.password) }}
-                {{ form_widget(monProfilForm.password) }}
+            <span class="modification-prenom"><label>Prénom</label><br>
+                    {{ form_widget(monProfilForm.prenom)}}
+                </span><br>
 
-            </div>
 
-            <div class="d-flex justify-content-evenly py-5 ">
-                <button class="btn btn-primary btn-lg " type="submit">Enregistrer</button>
-                <button class="btn btn-secondary btn-lg "><a href="{{ path('app_afficherUtilisateur', {'id': user.id}) }}" class="btn btn-primary btn-lg">Annuler</a></button>
+                <span class="modification-nom"><label>Nom</label><br>
+                    {{ form_widget(monProfilForm.nom)}}
+                </span><br>
+
+
+                <span class="modification-email"><label>Email</label><br>
+                    {{ form_widget(monProfilForm.email)}}
+                </span><br>
+
+            <span class="modification-password"><label>Mot de passe</label><br>
+                    {{ form_widget(monProfilForm.password.first, {'attr': {'placeholder': 'Veuillez entrer votre mot de passe'}})}}
+                </span>
+            <span>
+                    {{ form_widget(monProfilForm.password.second, {'attr': {'placeholder': 'Veuillez confirmer votre mot de passe'}})}}
+        </span><br>
+
+                 <span class="modification-image"><label>Image</label><br>
+                    {{ form_widget(monProfilForm.imageFile)}}
+                </span><br>
+
+
+            <div class="monprofil-validation">
+                <button class="btn-monprofil-valider " type="submit">Enregistrer</button><br><br>
+                {% if app.user %}
+                <button class="btn-monprofil-annuler "><a href="{{ path('app_afficherUtilisateur', {'id': user.id}) }}" >Annuler</a></button>
+                {%  elseif not app.user%}
+                <button class="btn-monprofil-annuler "><a href="{{ path('app_accueil') }}" >Annuler</a></button>
+                {% endif %}
             </div>
             {{ form_end(monProfilForm) }}
 

@@ -6,26 +6,23 @@
  {%  endblock %}
 {% block body %}
 <body>
-<div class="container-tournois">
+<div class="container">
+    <div class = "detail">
+        <div id ="titre-detail">{{ tournois.nom }}<br>{{ tournois.date | date ('d-m-Y') }}</div>
+        <div id ="places">{{ placesRestantes }}</div>
 
-<h1>{{ tournois.nom }}<br> {{ tournois.date | date ('d-m-Y') }}</h1>
-<h2>{{ placesRestantes }}</h2>
-
-
-    <div class ="bouton-detail">
-        {% if app.user %}
+        <div class ="btn-detail">
+            {% if app.user %}
             <a href="{{ path('app_inscription', {'idTournois': tournois.id, 'id': app.user.id}) }}" title = "detail">
-                <img src="{{ asset('images/tournois/' ~ tournois.imageName) }}" alt="image tournoi" height="400px"
-                     width="600px"></a>
+                <div id ="tournois-detail"><img src="{{ asset('images/tournois/' ~ tournois.imageName) }}" alt="image tournoi" height="400px"
+                                                width="800px"></div></a>
 
-        {% elseif not app.user %}
-            <a href="{{ path('app_login')}}" title = "se connecter"><img src="{{ asset('images/tournois/' ~ tournois.imageName) }}" alt="image tournoi" height=400px"
-                                                                         width="600px"></a>
-        {% endif %}
-
-
+            {% elseif not app.user %}
+            <a href="{{ path('app_login')}}" title = "se connecter"><div id = "tournois-image"><img src="{{ asset('images/tournois/' ~ tournois.imageName) }}" alt="image tournoi" height="400px"
+                                                                         width="600px"></div></a></div>
+            {% endif %}
+        </div>
     </div>
-</div>
 </body>
 {% endblock %}
 

@@ -11,6 +11,7 @@ use App\Repository\RecompensesRepository;
 use App\Repository\TournoisRepository;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Mapping\Entity;
+use EasyCorp\Bundle\EasyAdminBundle\Filter\ChoiceFilter;
 use EasyCorp\Bundle\EasyAdminBundle\Form\Filter\Type\ChoiceFilterType;
 use EasyCorp\Bundle\EasyAdminBundle\Form\Filter\Type\TextFilterType;
 use phpDocumentor\Reflection\PseudoType;

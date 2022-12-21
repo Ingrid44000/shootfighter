@@ -57,15 +57,6 @@ class Tournois
     private ?File $imageFichier = null;
 
 
-    #[ORM\Column(type: 'string', nullable: true)]
-    private ?string $recompense1= null;
-
-    #[ORM\Column(type: 'string', nullable: true)]
-    private ?string $recompense2= null;
-
-    #[ORM\Column(type: 'string', nullable: true)]
-    private ?string $recompense3= null;
-
     #[ORM\OneToMany(mappedBy: 'tournois', targetEntity: Recompenses::class)]
     private Collection $recompenses;
 
@@ -289,41 +280,6 @@ class Tournois
         return $this->participants;
     }
 
-    public function getRecompense1(): ?string
-    {
-        return $this->recompense1;
-    }
-
-    public function setRecompense1(?string $recompense1): self
-    {
-        $this->recompense1 = $recompense1;
-
-        return $this;
-    }
-
-    public function getRecompense2(): ?string
-    {
-        return $this->recompense2;
-    }
-
-    public function setRecompense2(?string $recompense2): self
-    {
-        $this->recompense2 = $recompense2;
-
-        return $this;
-    }
-
-    public function getRecompense3(): ?string
-    {
-        return $this->recompense3;
-    }
-
-    public function setRecompense3(?string $recompense3): self
-    {
-        $this->recompense3 = $recompense3;
-
-        return $this;
-    }
 
 
 

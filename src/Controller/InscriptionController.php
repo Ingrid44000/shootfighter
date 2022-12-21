@@ -6,6 +6,7 @@ namespace App\Controller;
 use App\Entity\Participants;
 
 use App\Form\InscriptionFormType;
+use App\Models\Filtres;
 use App\Repository\ParticipantsRepository;
 use App\Repository\RecompensesRepository;
 use App\Repository\TournoisRepository;
@@ -33,9 +34,10 @@ class InscriptionController extends AbstractController
                                  RecompensesRepository $recompensesRepository) : Response{
 
         {
+
+
             $user = $userRepository->find($id);
             $tournois = $tournoisRepository->find($idTournois); //tournois en question
-            $recompenses = $recompensesRepository->findByTournois($idTournois);
 
             $nbParticipants = count($tournois->getParticipants());//nombre de participants au tournois
             $placesRestantes = $tournois->getNbPlacesMax()-$nbParticipants;
@@ -47,6 +49,8 @@ class InscriptionController extends AbstractController
             }
 
             $participant = new Participants();
+            $goodie = $recompensesRepository->findRecompenseByTournois($idTournois);
+
             $participant->setUser($user); //on remplit le formulaire avec les données de l'utilisateur
 
             $participant->setTournois($tournois);//on indique le tournoi concerné par l'inscription
@@ -73,11 +77,12 @@ class InscriptionController extends AbstractController
                 }
 
             return $this->render('inscription/inscription.html.twig', [
+
                 'placesRestantes' => $placesRestantes,
                 'participant' => $participant,
                 'user'=> $user,
-                'recompenses'=>$recompenses,
                 'tournois' => $tournois,
+                'goodie'=>$goodie,
                 'inscriptionForm' => $form->createView(),
        ]);
     }}

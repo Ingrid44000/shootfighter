@@ -7,21 +7,21 @@
 
 {% endblock %}
 {% block body %}
-<body>
-
-
-    {% for tournois in tournois %}
-            <h1>{{ tournois.nom }}<br> {{ tournois.date | date ('d-m-Y') }}</h1>
+    <body>
     <div class ="container">
-        <div class ="bouton-detail-tournoi">
-            <a href="{{ path('app_detail', {'idTournois': tournois.id}) }}" title = "detail">
-                <img src="{{ asset('images/tournois/' ~ tournois.imageName) }}" alt="image tournois" height="400px" width="600px"></a>
 
-        </div>
-        <br>
-    {% endfor %}
-</div>
+        {% for tournois in tournois %}
+            <div class ="tournois">
+                <div id = titre-tournois>{{ tournois.nom }}<br>{{ tournois.date | date ('d-m-Y') }}</div>
 
+                <div class ="btn-tournois">
+                    <a href="{{ path('app_detail', {'idTournois': tournois.id}) }}" title = "detail">
+                    <div id ="image-tournois"><img src="{{ asset('images/tournois/' ~ tournois.imageName) }}" alt="image tournois" height="400px" width="600px"> </div></a>
+                </div>
+                <br>
+            </div>
+        {% endfor %}
+    </div>
     </body>
 {% endblock %}
 

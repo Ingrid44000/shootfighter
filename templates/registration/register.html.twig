@@ -9,19 +9,23 @@
 <body>
 <div id = "form-register">
     {{ form_start(registrationForm) }}
-        <div id="header">
-            <h1>Création de compte</h1>
-        </div>
-    <span class ="username">
-        {{ form_row(registrationForm.username)}}
+        <div id="titre-register"><h1>Création de compte</h1></div>
+
+    <span class ="username"><label>Pseudo</label>
+        {{ form_widget(registrationForm.username)}}
+    </span><br>
+
+    <span class ="email"><label>Email</label>
+        {{ form_widget(registrationForm.email)}}
     </span>
-    <span class ="email">
-        {{ form_row(registrationForm.email)}}
+
+    <span class ="plainPassword"><label>Mot de passe</label>
+       {{ form_widget (registrationForm.plainPassword.first, {'attr': {'placeholder': 'Veuillez entrer votre mot de passe'}}) }}
+</span>
+    <span>
+        {{ form_widget (registrationForm.plainPassword.second, {'attr': {'placeholder': 'Veuillez confirmer votre mot de passe'}}) }}
     </span>
-    <span class ="plainPassword">
-        {{ form_row(registrationForm.plainPassword)}}
-    </span>
-    <br>
+
     <br>
         <button type="submit" class="btn">S'enregistrer</button>
     <button class="btn btn-lg btn-secondary" type="submit">

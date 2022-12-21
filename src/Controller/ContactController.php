@@ -22,6 +22,7 @@ class ContactController extends AbstractController
         SendMailService $mailService
     ): \Symfony\Component\HttpFoundation\Response
     {
+        $user = $this->getUser();
         $contact = new Contact();
 
         //remplir champ formulaire par l email de l'utilisateur connecté
@@ -61,6 +62,7 @@ class ContactController extends AbstractController
         }
 
         return $this->render('contact/contact.html.twig', [
+            'user'=>$user,
             'contactForm' => $form->createView(),
         ]);
     }

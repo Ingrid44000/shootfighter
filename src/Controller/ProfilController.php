@@ -15,7 +15,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
-#[IsGranted('ROLE_USER')]
+
 class ProfilController extends AbstractController
 {
     #[Route('/monprofil/{id}', name: 'app_monProfil')]
@@ -55,7 +55,7 @@ class ProfilController extends AbstractController
     }
 
 
-    #[Route('/utilisateur/{id}', name: 'app_afficherUtilisateur')]
+    #[Route('/utilisateur/{id}', name: 'app_afficherUtilisateur', methods: ['GET','POST'])]
     public function afficherUtilisateur(int $id, UserRepository $userRepository, ParticipantsRepository $participantsRepository): Response
     {
         $user = $userRepository->find($id);

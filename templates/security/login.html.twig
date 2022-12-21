@@ -2,13 +2,12 @@
 
     {% block title %}Se connecter{% endblock %}
     {% block stylesheets %}
-        <link rel="stylesheet" href="{{ asset ('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset ('css/register_login.css') }}">
 {%  endblock %}
 {% block body %}
 <body>
 <form method="post" id="form-login">
-    <div id="header">
+    <div id="titre-connexion">
         <h1>Se connecter</h1>
     </div>
 <br>
@@ -38,22 +37,24 @@
     <label for="inputPassword">Mot de passe</label>
     <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
  </span>
-    <label>
-        <input type="checkbox" name="_remember_me" checked/>
+    <label id ="remember_me">
+        <input id = "remember_me" type="checkbox" name="_remember_me" checked/>
         Se souvenir de moi
     </label>
     <input type="hidden" name="_csrf_token"
            value="{{ csrf_token('authenticate') }}">
 
-    <button class="btn btn-lg btn-primary" type="submit">
-        Valider
+    <button class="btn-connexion-valider" type="submit">
+        <label>Valider</label>
+
     </button>
 
-    <button class="btn btn-lg btn-secondary" type="submit">
-        <a href="{{ path('app_accueil') }}" title = "retour">Retour</a>
+    <button class="btn-connexion-retour" type="submit">
+        <a href="{{ path('app_accueil') }}" title = "retour">
+            <label>Retour</label></a>
     </button>
-    <button class="btn btn-link" type="submit">
-    <a href="{{ path('app_forgottenPassword') }}" class="btn btn-secondary mt-3">Mot de passe oublié</a>
+    <button class="btn-forgottenPassword" type="submit">
+        <a href="{{ path('app_forgottenPassword') }}" class="forgottenPassword"><label>Mot de passe oublié</label></a>
     </button>
 
 </form>

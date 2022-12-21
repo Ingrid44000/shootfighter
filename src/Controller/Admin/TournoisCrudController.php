@@ -16,6 +16,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\HttpFoundation\Response;
 
 
@@ -41,23 +42,9 @@ class TournoisCrudController extends AbstractCrudController
             ->setUploadDir('public/images/tournois')
         ->setRequired(false);
 
-        yield ImageField::new('recompense1')
-            ->setLabel('Récompense1')
-            ->setBasePath('images/recompense')
-            ->setUploadDir('public/images/recompense')
-            ->setRequired(false);
+        //AssociationField impossible car il s'agit d'une collection de récompenses
+        yield CollectionField::new('recompenses');
 
-        yield ImageField::new('recompense2')
-            ->setLabel('Récompense2')
-            ->setBasePath('images/recompense')
-            ->setUploadDir('public/images/recompense')
-            ->setRequired(false);
-
-        yield ImageField::new('recompense3')
-            ->setLabel('Récompense3')
-            ->setBasePath('images/recompense')
-            ->setUploadDir('public/images/recompense')
-            ->setRequired(false);
     }
     public function configureActions(Actions $actions): Actions
     {

@@ -18,7 +18,6 @@ class MonProfilType extends AbstractType
     {
         $builder
             ->add('username',TextType::class,[
-                'label' => 'Pseudo :',
                 // Ici on définit la taille du label
                 'label_attr' => [
                     'class' => 'col-5'
@@ -44,14 +43,14 @@ class MonProfilType extends AbstractType
                 'attr' => [
                     'class' => 'col-12'
                 ],
-                'first_options'  => ['label' => 'Mot de Passe :',
+                'first_options'  => ['label' => false,
                     // Ici on définit la taille du label
                     'label_attr' => [
                         'class'=> 'col-5 py-2'
                     ],
 
                 ],
-                'second_options' => ['label' => 'Confirmation :',
+                'second_options' => ['label' => false,
                     // Ici on définit la taille du label
                     'label_attr' => [
                         'class' => 'col-5 py-2'
@@ -65,7 +64,6 @@ class MonProfilType extends AbstractType
                 ]
             ])
             ->add('email',TextType::class,[
-                'label' => 'Mail :',
                 // Ici on définit la taille du label
                 'label_attr' => [
                     'class' => 'col-5'
@@ -81,7 +79,6 @@ class MonProfilType extends AbstractType
                 ],
             ])
             ->add('nom',TextType::class,[
-                'label'=>'Nom :',
                 // Ici on définit la taille du label
                 'label_attr' => [
                     'class' => 'col-5'
@@ -97,7 +94,6 @@ class MonProfilType extends AbstractType
                 ],
             ])
             ->add('prenom',TextType::class,[
-                'label' => 'Prénom :',
                 // Ici on définit la taille du label
                 'label_attr' => [
                     'class' => 'col-5'

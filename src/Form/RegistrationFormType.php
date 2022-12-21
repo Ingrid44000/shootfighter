@@ -27,16 +27,16 @@ class RegistrationFormType extends AbstractType
                 RepeatedType::class, [
                     'type' => PasswordType::class,
                     'mapped'=>false,
-                    'first_options' => ['label' => 'Mot de Passe :',
+                    'first_options' => ['label' => false,
 
                     ],
-                    'second_options' => ['label' => 'Confirmation :',
+                    'second_options' => ['label' => false,
                         'constraints' => [
                             new Assert\NotBlank(),
                             new Assert\Length(['min' => 4, 'max' => 180]),
                     ],
                 ]])
-            ->add('email', EmailType::class, ['label' => 'Pseudo' , 'constraints' => [
+            ->add('email', EmailType::class, ['label' => 'Email' , 'constraints' => [
                 new Assert\NotBlank(),
                 new Assert\Length(['min' => 6, 'max' => 180])],
             ]);
