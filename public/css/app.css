@@ -22,9 +22,9 @@ bloc conteneur
 Barre de navigation
  */
 nav {
-    text-align: right;
+    height: 80px;
     width:110%;
-    margin-top: -3%;
+    margin-top: -3.4%;
     font-size: 120%;
     background-color: black;
     background-size: 190%;
@@ -32,7 +32,6 @@ nav {
 nav ul {
     text-align:right;
     width: 100%;
-    height: 83px;
     background-color: black;
     list-style: none;
 }
@@ -104,6 +103,7 @@ Pages tournois.html.twig
     top: -500px;
     text-align:center;
     font-size: 30px;
+    border-radius: 10px;
     width: auto;
     height: 40px;
     padding: 30px;
@@ -118,6 +118,7 @@ Pages tournois.html.twig
     text-align:center;
     position: relative;
     top: -500px;
+    border-radius: 10px;
     margin-left: auto;
     margin-right: auto;
     margin-bottom: auto;
@@ -126,6 +127,7 @@ Pages tournois.html.twig
 
 .btn-tournois{
     top: auto;
+    border-radius: 10px;
     position: relative;
     margin-left: auto;
     margin-right: auto;
@@ -177,6 +179,7 @@ Page tournoisDetail.html.twig
     top: -600px;
     width: 800px;
     position: relative;
+    border-radius: 10px;
     margin-left: auto;
     margin-right: auto;
     margin-top: auto;
@@ -226,12 +229,12 @@ Bas de page
     box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
     box-sizing: border-box;
     position: relative;
-    bottom: -10%;
+    bottom: -10px;
     left: -10px;
     width: 101%;
     text-align: left;
     font: bold 16px sans-serif;
-    padding: 70px 70px 65px 60px ;
+    padding: 70px 70px 70px 70px ;
 }
 
 .footer .footer-left,

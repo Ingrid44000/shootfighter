@@ -51,7 +51,6 @@ class TournoisRepository extends ServiceEntityRepository
     }
 
 
-
 //    /**
 //     * @return Tournois[] Returns an array of Tournois objects
 //     */

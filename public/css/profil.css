@@ -1,8 +1,18 @@
 body {
     background-image: url("images/photoTournois5.png");
     background-position: center;
+    background-attachment: fixed;
 }
 
+
+/*
+bloc conteneur
+*/
+.container {
+    display: flex;
+    min-height: 55vh;
+    bottom: auto;
+}
 /*
 Page d'affichage du profil utilisateur : afficherUtilisateur.html.twig
  */
@@ -10,9 +20,17 @@ Page d'affichage du profil utilisateur : afficherUtilisateur.html.twig
 
 #titre-afficherprofil{
     text-align:center;
-    margin-top: auto;
+    margin-top: -47px;
+    font-size: 35px;
+    background-color: darkslategrey;
+    border-radius: 10px;
+
 }
+/*
+Fond de l'affichage des données de l'utilisateur
+ */
 #afficherprofil{
+
     width: 90%;
     height: 95%;
     opacity:0.96;
@@ -26,15 +44,92 @@ Page d'affichage du profil utilisateur : afficherUtilisateur.html.twig
     position: absolute;
     margin-top: -10%;
 }
-
-.btn-monprofil-accueil{
-
+.avatar-profil{
+    margin-top: -10px;
+    margin-left: 80px;
+}
+#donnee-utilisateur{
+    text-align: center;
+    margin-top: -350px;
+    width: 55%;
+    margin-left: 250px;
 }
 
 
 .btn-monprofil-modifier{
+    text-align: center;
+    margin-top: -400px;
+    margin-left: 460px;
+    width: 20%;
+}
+/*
+Liste participations à des tournois sur afficherUtilisateur.html.twig
+ */
+
+.participations{
+    margin-bottom: 100px;
+}
+.btn-desinscrire{
+    width: 20%;
+    margin-top: 250px;
+}
+table {
+    margin-top: 140px;
+    margin-left: 190px;
+    text-align: center;
+    table-layout: fixed;
+    width: 75%;
+    border-collapse: collapse;
+    border: 2px solid purple;
 
 }
+
+thead{
+    text-align: center;
+    font-size: 25px;
+    width: 20px;
+    border-collapse: collapse;
+    border: 1px solid purple;
+    background-color:black;
+}
+thead th:nth-child(1) {
+    border: 1px solid purple;
+    width: 30%;
+    margin-bottom: 20px;
+}
+thead th:nth-child(2) {
+    border: 1px solid purple;
+    width: 30%;
+}
+
+thead th:nth-child(3) {
+    right: 50%;
+    width: 30%;
+}
+
+thead th:nth-child(4) {
+    width: 15%;
+}
+
+td{
+
+    padding: 13px;
+}
+tbody tr{
+    text-align: center;
+}
+/*
+choix de couleur
+ */
+tbody tr:nth-child(2n+1) {
+    background-color: #4d4d4d;
+}
+
+tbody tr:nth-child(2n) {
+    background-color: grey;
+}
+
+
 /*
 Page de modification du profil utilisateur : monProfil.html.twig
  */
@@ -44,19 +139,35 @@ Page de modification du profil utilisateur : monProfil.html.twig
     margin-top: auto;
 }
 #form-monProfil{
-    width: 25%;
-    height: 85%;
+    position: absolute;
+    width: 30%;
+    height: 83%;
     opacity:0.96;
     background: linear-gradient(#000000, #132135);
     background-size: 100px;
     color: white;
     border-radius: 10px;
-    left: 50%;
+    left: 45%;
     top: 35%;
     margin-left: -10%;
-    position: absolute;
     margin-top: -10%;
+    bottom: 200px;
 }
+.btn-monprofil-annuler{
+    width: 50%;
+    margin-top : -20px;
+    margin-left: 50px;
+    text-align: center;
+
+
+}
+.btn-monprofil-valider{
+    width: 50%;
+    margin-top : -20px;
+    margin-left: 50px;
+    text-align: center;
+}
+
 span{
     text-align: center;
     width: 50%;

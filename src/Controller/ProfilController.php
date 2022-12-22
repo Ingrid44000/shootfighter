@@ -56,10 +56,9 @@ class ProfilController extends AbstractController
 
 
     #[Route('/utilisateur/{id}', name: 'app_afficherUtilisateur', methods: ['GET','POST'])]
-    public function afficherUtilisateur(int $id, UserRepository $userRepository, ParticipantsRepository $participantsRepository): Response
+    public function afficherUtilisateur(int $id, TournoisRepository $tournoisRepository, UserRepository $userRepository, ParticipantsRepository $participantsRepository): Response
     {
         $user = $userRepository->find($id);
-
         $participations = $participantsRepository->findByUser($id);
 
         return $this->render('profil/afficherUtilisateur.html.twig', [
