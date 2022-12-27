@@ -19,7 +19,7 @@ class RegistrationController extends AbstractController
 {
     #[Route('/register', name: 'app_register', methods: ['GET', 'POST'])]
     public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher,
-                             EntityManagerInterface $entityManager, SendMailService $mail,
+                             EntityManagerInterface $entityManager, SendMailService $email,
     UserAuthenticatorInterface $userAuthenticator, AppAuthenticator $authenticator): Response
     {
         $user = new User();
@@ -39,11 +39,11 @@ class RegistrationController extends AbstractController
             $entityManager->flush();
 
             // On envoie un mail
-            $mail->send(
+            $email->send(
                 'no-reply@monsite.net',
                 $user->getEmail(),
                 'Bienvenue, vous avez créé un compte sur le site de Shootfighter',
-                'register',
+                'emailregister',
                 compact('user'));
 
             return $userAuthenticator->authenticateUser(
@@ -51,6 +51,7 @@ class RegistrationController extends AbstractController
                 $authenticator,
                 $request,
             );
+
         }
             return $this->render('registration/register.html.twig', [
                 'registrationForm' => $form->createView(),

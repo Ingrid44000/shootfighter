@@ -2,14 +2,12 @@
 
 namespace App\Controller;
 
-use App\Entity\Participants;
-use App\Entity\Tournois;
+
 use App\Form\MonProfilType;
 use App\Repository\ParticipantsRepository;
 use App\Repository\TournoisRepository;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,7 +16,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ProfilController extends AbstractController
 {
-    #[Route('/monprofil/{id}', name: 'app_monProfil')]
+    #[Route('/monprofil/{id}', name: 'app_modifierProfil', methods: ['GET','POST'])]
     public function monProfil(Request $request, int $id,
                               UserRepository $userRepository, EntityManagerInterface $entityManager, UserPasswordHasherInterface $userPasswordHasher): Response
     {
@@ -28,8 +26,10 @@ class ProfilController extends AbstractController
         $user = $userRepository->find($id);
         $user = $this->getUser();
 
+
         $monProfilForm = $this->createForm(MonProfilType::class, $user);
         $monProfilForm->handleRequest($request);
+
 
         if ($monProfilForm->isSubmitted() && $monProfilForm->isValid()) {
             $user->setPassword(
@@ -56,7 +56,7 @@ class ProfilController extends AbstractController
 
 
     #[Route('/utilisateur/{id}', name: 'app_afficherUtilisateur', methods: ['GET','POST'])]
-    public function afficherUtilisateur(int $id, TournoisRepository $tournoisRepository, UserRepository $userRepository, ParticipantsRepository $participantsRepository): Response
+    public function afficherUtilisateur(int $id,UserRepository $userRepository, ParticipantsRepository $participantsRepository): Response
     {
         $user = $userRepository->find($id);
         $participations = $participantsRepository->findByUser($id);

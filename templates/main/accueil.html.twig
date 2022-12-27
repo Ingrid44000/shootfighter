@@ -7,12 +7,12 @@
 {% block body %}
     <body>
     <div id="banniere"></div>
-<div class = "container">
+        <div class = "container">
 
             {% for actualite in actualites %}
                 <div id="texte-actu">
-                {{ actualite.texte }}
-                {{ actualite.createdAt | date ('d-m-Y')}}</div>
+                    <p id ="p-actu">{{ actualite.texte }}</p>
+                <p id ="actu-createdAt">{{ actualite.createdAt | date ('d-m-Y')}}</p></div>
                     <div class="actualite">
                         <h2>{{ actualite.nom }}</h2>
                         <div id ="image"><img src="{{ asset('images/actualites/' ~ actualite.imageName) }}" alt="image actualite"

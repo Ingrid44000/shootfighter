@@ -51,7 +51,7 @@ class RecompensesRepository extends ServiceEntityRepository
     }
 
     //Retourne un array des récompenses selon l'id du tournois
-    public function findRecompenseByTournois(int $tournois) :array
+    public function findRecompenseByTournois(int $tournois)
     {
         return $this->createQueryBuilder('r')
             ->andWhere('r.tournois = :tournois')

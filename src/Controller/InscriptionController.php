@@ -6,7 +6,6 @@ namespace App\Controller;
 use App\Entity\Participants;
 
 use App\Form\InscriptionFormType;
-use App\Models\Filtres;
 use App\Repository\ParticipantsRepository;
 use App\Repository\RecompensesRepository;
 use App\Repository\TournoisRepository;
@@ -25,7 +24,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class InscriptionController extends AbstractController
 {
-    //créé le formulaire d'inscription à un tournois
+    //créé le formulaire d'inscription à un tournoi
 
     #[Route(path: '/detail/{idTournois}/{id}/inscription', name: 'app_inscription', methods: ['GET','POST'])]
     public function inscription (Request $request, EntityManagerInterface $entityManager
@@ -35,9 +34,10 @@ class InscriptionController extends AbstractController
 
         {
 
-
-            $user = $userRepository->find($id);
+            $user = $userRepository->find($id); //utilisateur connecté
             $tournois = $tournoisRepository->find($idTournois); //tournois en question
+
+            $goodie = $recompensesRepository->findRecompenseByTournois($idTournois);
 
             $nbParticipants = count($tournois->getParticipants());//nombre de participants au tournois
             $placesRestantes = $tournois->getNbPlacesMax()-$nbParticipants;
@@ -49,7 +49,7 @@ class InscriptionController extends AbstractController
             }
 
             $participant = new Participants();
-            $goodie = $recompensesRepository->findRecompenseByTournois($idTournois);
+
 
             $participant->setUser($user); //on remplit le formulaire avec les données de l'utilisateur
 
@@ -68,7 +68,7 @@ class InscriptionController extends AbstractController
 
 
                     // On envoie un mail de confirmation de participation au tournois
-                    $mailTournois->send(
+                    $mailTournois->sendInscription(
                         'no-reply@shootfighter.fr',
                         $participant->getEmail(),
                         'Inscription tournois',

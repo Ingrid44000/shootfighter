@@ -12,6 +12,8 @@ use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Vich\UploaderBundle\Form\Type\VichFileType;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 
 
 class RegistrationFormType extends AbstractType
@@ -23,6 +25,7 @@ class RegistrationFormType extends AbstractType
         new Assert\NotBlank(),
         new Assert\Length(['min' => 2, 'max' => 180])],
                     ])
+
             ->add('plainPassword',
                 RepeatedType::class, [
                     'type' => PasswordType::class,
@@ -36,10 +39,17 @@ class RegistrationFormType extends AbstractType
                             new Assert\Length(['min' => 4, 'max' => 180]),
                     ],
                 ]])
+
             ->add('email', EmailType::class, ['label' => 'Email' , 'constraints' => [
                 new Assert\NotBlank(),
                 new Assert\Length(['min' => 6, 'max' => 180])],
-            ]);
+            ])
+            ->add('adressePostale')
+            ->add('codePostal')
+            ->add('ville')
+            ->add('pays')
+        ;
+
     }
 
     public function configureOptions(OptionsResolver $resolver): void

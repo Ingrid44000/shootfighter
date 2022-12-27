@@ -1,3 +1,6 @@
+
+{% block body %}
 <p>Bonjour </p>
 <p>Vous êtes bien inscrit au {{ participant.tournois }} qui aura lieu le {{ participant.tournois.date | date ('d-m-Y') }}</p>
 <p>Merci et à bientôt. </p>
+{% endblock %}

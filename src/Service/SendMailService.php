@@ -24,17 +24,26 @@ class SendMailService
     ): void
     {
         //On crée le mail
-        $email = (new TemplatedEmail())
+        $mail = (new TemplatedEmail())
             ->from($from)
             ->to($to)
             ->subject($subject)
-            ->htmlTemplate("emails/$template.html.twig")
+            ->htmlTemplate("emails/emailregister.html.twig")
             ->context($context);
 
         // On envoie le mail
-        $this->mailer->send($email);
-
+        $this->mailer->send($mail);
+    }
     //On crée le mail d'inscription aux tournois
+        public function sendInscription(
+            string $from,
+            string $to,
+            string $subject,
+            string $template,
+            array $context
+        ): void
+        {
+
             $mailTournois = (new TemplatedEmail())
             ->from($from)
             ->to($to)

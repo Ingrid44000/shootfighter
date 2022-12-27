@@ -77,7 +77,7 @@ button:hover:before{
     transform: translate(5px, 5px);
 }
 /*
-Formulaire de création de compte : register.html.twig
+Formulaire de création de compte : emailregister.html.twig
 */
 #titre-register{
     text-align:center;
@@ -124,8 +124,8 @@ Formulaire d'inscription à un tournoi
     float:right;
     width: 50%;
 }
-#form-inscription{
-    width: 30%;
+#inscription-tournoi{
+    width: 35%;
     height: 75%;
     opacity:0.96;
     background: linear-gradient(#000000, #132135);
@@ -133,7 +133,8 @@ Formulaire d'inscription à un tournoi
     color: white;
     border-radius: 10px;
     left: 50%;
-    top: 40%;
+    top:38%;
+    margin-bottom: auto;
     margin-left: -20%;
     position: absolute;
     margin-top: -10%;

@@ -10,12 +10,15 @@
     <body>
     <div class="container">
     <div id="afficherprofil">
-        <div id = "titre-afficherprofil"><h1>{{ user.getUsername}}</h1></div>
+        <div id = "titre-afficherprofil"><h1>Mon profil</h1></div>
 
-            <div class = "avatar-profil"><img src="{{ asset('images/user/' ~ user.imageName) }}" alt="avatar" height="400px"
+            <div id = "avatar-profil"><img src="{{ asset('images/user/' ~ user.imageName) }}" alt="avatar" height="400px"
                  width="300px"></div>
 
-        <div id = "donnee-utilisateur"><label>Prénom</label>
+        <div id = "donnees-utilisateur">
+            <label>Pseudo</label>
+            <span>{{ user.username}}</span><br>
+            <label>Prénom</label>
             <span>{{ user.getPrenom }}</span><br>
             <label>Nom</label>
             <span>{{ user.getNom }}</span><br>
@@ -23,13 +26,15 @@
         <span>{{ user.getEmail }}</span><br></div>
 
 
-            <button class="btn-monprofil-modifier"><a href="{{ path('app_monProfil',{'id': user.id}) }}" class="btn btn-primary btn-lg">Modifier mon profil</a></button>
+            <button class="btn-monprofil-modifier"><a href="{{ path('app_modifierProfil',{'id': user.id}) }}" class="btn btn-primary btn-lg">Modifier mon profil</a></button>
 
         {# Faire un tableau des participations #}
-        <div class = participations>
+
         <table>
+            <caption>Mes inscriptions</caption>
             {# en- tête du tableau  #}
             <thead>
+
             <tr>
                 <th scope = "col">Tournois</th>
                 <th scope = "col">Date</th>
@@ -46,7 +51,7 @@
 
             <td class="btn-desinscrire ">
                     <a href="{{ path('app_desinscrire', {'id': user.id, 'idTournois': participations.tournois.id})}}">Se désincrire</a></td>
-            </tr>{% endfor %}</tbody></table></div>
+            </tr>{% endfor %}</tbody></table>
         </div>
         </div>
     </body>

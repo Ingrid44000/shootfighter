@@ -7,15 +7,15 @@ body {
 }
 
 /*
-bloc conteneur
+bloc conteneur pour les pages tournois.html.twig ...
 */
 .container {
     margin-top:1.7%;
     margin-left:-13px;
-    padding: 5px;
+    padding: -50px;
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
+    min-height: 90vh;
 }
 
 /*
@@ -66,13 +66,164 @@ nav a:hover{
     border-bottom: 2px solid orange;
 }
 
+/*
+Page tournois.html.twig
+ */
+.tournois {
+    text-align:center;
+    position: relative;
+    top: -200px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 200px;
+    margin-top: auto;
+}
 
+/*
+Bloc de titre de chaque tournoi sur tournois.html.twig
+ */
+#titre-tournois {
+    position: relative;
+    top: -495px;
+    text-align:center;
+    font-size: 30px;
+    border-radius: 10px;
+    width: auto;
+    height: 40px;
+    padding: 30px;
+    background: darkslategrey;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+
+}
+/*
+Texte du bloc de titre dans tournois.html.twig
+ */
+#p-tournois{
+    top:-50px;
+    position: relative;
+
+}
+/*
+bouton de la page tournois.html.twig pour envoyer vers le détail du tournoi
+ */
+.btn-tournois{
+    top: auto;
+    border-radius: 10px;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+/*
+l'image qui sert de bouton sur la page tournois.html.twig
+ */
+#image-tournois{
+    text-align:center;
+    position: relative;
+    top: -500px;
+    border-radius: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: auto;
+    margin-top: auto;
+  }
+
+
+/*
+Page tournoisDetail.html.twig
+ */
+
+.detail {
+    text-align:center;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    top: -200px;
+    right: 150px;
+
+
+}
+#bloc-titre-detail {
+    position: relative;
+    top: -400px;
+    text-align:center;
+    border-radius: 10px;
+    font-size: 30px;
+    right: 150px;
+    width: 590px;
+    height: 40px;
+    padding: 30px;
+    background: darkslategrey;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+
+}
+
+#titre-detail{
+    position: relative;
+    top: -50px;
+
+}
+
+.btn-detail-user{
+    top: -660px;
+    width: auto;
+    right: 150px;
+    position: relative;
+    border-radius: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+.btn-detail-not-user{
+    top: -660px;
+    width: auto;
+    right: 150px;
+    position: relative;
+    border-radius: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+#p-places{
+    display: block;
+    width : 700px;
+    right: -300px;
+    top: -800px;
+    border-radius: 10px;
+    font-size: 18px;
+    height: 40px;
+    background: #222d35;
+}
+.presentation-tournoi{
+    text-align: justify;
+    display: flex;
+    height: 200px;
+    right: -555px;
+    position: relative;
+    width : 760px;
+    top: -405px;
+    font-size: 21px;
+    background: #222d35;
+    background-size: 610px;
+
+}
 
 
 
 /*
-Pages tournois.html.twig
+Page recompenses.html.twig
  */
+
 
 #titre-recompenses{
     position: relative;
@@ -89,118 +240,6 @@ Pages tournois.html.twig
     margin-bottom: auto;
 
 }
-.tournois {
-    text-align:center;
-    position: relative;
-    top: -200px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 200px;
-    margin-top: auto;
-}
-#titre-tournois {
-    position: relative;
-    top: -500px;
-    text-align:center;
-    font-size: 30px;
-    border-radius: 10px;
-    width: auto;
-    height: 40px;
-    padding: 30px;
-    background: darkslategrey;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: auto;
-    margin-bottom: auto;
-
-}
-#image-tournois{
-    text-align:center;
-    position: relative;
-    top: -500px;
-    border-radius: 10px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: auto;
-    margin-top: auto;
-  }
-
-.btn-tournois{
-    top: auto;
-    border-radius: 10px;
-    position: relative;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: auto;
-    margin-bottom: auto;
-}
-
-/*
-Page tournoisDetail.html.twig
- */
-
-.detail {
-    text-align:center;
-    position: relative;
-    margin-left: auto;
-    margin-right: auto;
-    top: -200px;
-    right: 150px;
-
-
-}
-#titre-detail {
-    position: relative;
-    top: -500px;
-    text-align:center;
-    font-size: 30px;
-    width: 700px;
-    height: 40px;
-    padding: 30px;
-    background: darkslategrey;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: auto;
-    margin-bottom: auto;
-
-}
-#places{
-    position: relative;
-    top: -500px;
-    text-align:right;
-    left: 300px;
-    font-size: 30px;
-    height: 40px;
-    padding: 30px;
-
-}
-
-.btn-detail{
-    top: -600px;
-    width: 800px;
-    position: relative;
-    border-radius: 10px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: auto;
-    margin-bottom: auto;
-}
-
-#tournois-detail{
-    width: 800px;
-    top: auto;
-    position: relative;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: auto;
-    margin-bottom: auto;
-
-}
-
-
-/*
-Page recompenses.html.twig
- */
 .recompenses {
     text-align:center;
     position: relative;
@@ -211,16 +250,6 @@ Page recompenses.html.twig
     margin-top: auto;
 }
 
-
-/*
-Profil utilisateur
- */
-
-
-
-.afficherUtilisateur{
-    background-color: pink;
-}
 /*
 Bas de page
  */

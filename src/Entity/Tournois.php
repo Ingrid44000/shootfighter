@@ -63,6 +63,9 @@ class Tournois
     #[ORM\OneToMany(mappedBy: 'tournois', targetEntity: Participants::class)]
     private Collection $participants;
 
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $description = null;
+
 
 
     public function __construct()
@@ -278,6 +281,18 @@ class Tournois
     public function getParticipants(): Collection
     {
         return $this->participants;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(?string $description): self
+    {
+        $this->description = $description;
+
+        return $this;
     }
 
 

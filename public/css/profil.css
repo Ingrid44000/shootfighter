@@ -1,10 +1,11 @@
+/*
+Fond d'écran de la page
+ */
 body {
     background-image: url("images/photoTournois5.png");
     background-position: center;
     background-attachment: fixed;
 }
-
-
 /*
 bloc conteneur
 */
@@ -16,13 +17,11 @@ bloc conteneur
 /*
 Page d'affichage du profil utilisateur : afficherUtilisateur.html.twig
  */
-
-
 #titre-afficherprofil{
     text-align:center;
     margin-top: -47px;
     font-size: 35px;
-    background-color: darkslategrey;
+    background-color: transparent;
     border-radius: 10px;
 
 }
@@ -35,49 +34,45 @@ Fond de l'affichage des données de l'utilisateur
     height: 95%;
     opacity:0.96;
     background: linear-gradient(#000000, #132135);
-    background-size: 100px;
     color: white;
     border-radius: 10px;
-    left: 15%;
-    top: 35%;
-    margin-left: -10%;
+    right: 100px;
+    top: 150px;
     position: absolute;
-    margin-top: -10%;
 }
-.avatar-profil{
+#avatar-profil{
     margin-top: -10px;
     margin-left: 80px;
 }
-#donnee-utilisateur{
+#donnees-utilisateur{
     text-align: center;
-    margin-top: -350px;
+    font-size: 20px;
+    margin-top: -400px;
     width: 55%;
-    margin-left: 250px;
+    margin-left: 360px;
 }
-
 
 .btn-monprofil-modifier{
     text-align: center;
     margin-top: -400px;
-    margin-left: 460px;
+    margin-left: 570px;
     width: 20%;
 }
 /*
 Liste participations à des tournois sur afficherUtilisateur.html.twig
  */
 
-.participations{
-    margin-bottom: 100px;
+/*
+Titre tableau de participations dans afficherUtilisateur.html.twig
+ */
+caption {
+    font-size: 35px;
 }
-.btn-desinscrire{
-    width: 20%;
-    margin-top: 250px;
-}
+
 table {
-    margin-top: 140px;
+    margin-top: 100px;
     margin-left: 190px;
     text-align: center;
-    table-layout: fixed;
     width: 75%;
     border-collapse: collapse;
     border: 2px solid purple;
@@ -92,6 +87,10 @@ thead{
     border: 1px solid purple;
     background-color:black;
 }
+
+/*
+Permet de styliser séparément chaque thead du tableau
+ */
 thead th:nth-child(1) {
     border: 1px solid purple;
     width: 30%;
@@ -111,15 +110,21 @@ thead th:nth-child(4) {
     width: 15%;
 }
 
+/*
+taille cellules du tableau de participations
+ */
 td{
 
     padding: 13px;
 }
+/*
+tout le contenu du tableau de participations
+ */
 tbody tr{
     text-align: center;
 }
 /*
-choix de couleur
+couleur de fond qui alterne à chaque ligne (2n) pour les lignes paires et (2n+1) pour les lignes impaires
  */
 tbody tr:nth-child(2n+1) {
     background-color: #4d4d4d;
@@ -128,7 +133,11 @@ tbody tr:nth-child(2n+1) {
 tbody tr:nth-child(2n) {
     background-color: grey;
 }
-
+.btn-desinscrire{
+    width: 20%;
+    color: black;
+    margin-top: 250px;
+}
 
 /*
 Page de modification du profil utilisateur : monProfil.html.twig
@@ -153,6 +162,9 @@ Page de modification du profil utilisateur : monProfil.html.twig
     margin-top: -10%;
     bottom: 200px;
 }
+/*
+boutons de la page monProfil.html.twig
+ */
 .btn-monprofil-annuler{
     width: 50%;
     margin-top : -20px;

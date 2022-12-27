@@ -2,13 +2,13 @@
 
 {% block title %}Inscription tournois{% endblock %}
 
-{%  block stylesheets %}<link rel="stylesheet" href="{{ asset ('css/register_login.css') }}">
+{%  block stylesheets %}<link rel="stylesheet" href="{{ asset ('css/Formulaires.css') }}">
 
 {% endblock %}
 {% block body %}
     <body>
-
-    <form method="post" id="form-inscription">
+    <div class="container">
+    <form method="post" id="inscription-tournoi">
 
     {{ form_start(inscriptionForm) }}
 
@@ -17,66 +17,66 @@
     </div>
         <div class = "texte-gauche">
 
-            <span class="select-tournois">
-                {{ form_row(inscriptionForm.tournois, {value: tournois.id})}}
-            </span>
+            <span>
+                {{ form_widget(inscriptionForm.tournois, {value: tournois.id})}}
+            </span><br>
+
+              <span><label>Recompenses</label>
+                    {{ form_widget(inscriptionForm.recompenses) }}
+              </span>
+
+            <span><label>Pseudo</label>
+                {{ form_widget(inscriptionForm.pseudo, {value: user})}}
+            </span><br>
 
 
-            <span class = choisir-recompense>
+            <span><label>Nom</label>
+                {{ form_widget(inscriptionForm.nom, {value: user.nom})}}
+            </span><br>
+            <span><label>Prénom</label>
+                {{ form_widget(inscriptionForm.prenom, {value: user.prenom})}}
+            </span> <br>
 
-                {{ form_row(inscriptionForm.recompenses)}}
-            </span>
-
-            <span class="input-field  pseudo">
-                {{ form_row(inscriptionForm.pseudo, {value: user})}}
+            <span><label>Email</label>
+                {{ form_widget(inscriptionForm.email, {value: user.email})}}
 
             </span><br>
 
 
-            <span class="input-field nom">
-                {{ form_row(inscriptionForm.nom, {value: user.nom})}}
+            </div>
 
-            </span><br>
-
-    <span class="input-field prénom participant">
-        {{ form_row(inscriptionForm.prenom, {value: user.prenom})}}
-
-    </span> <br>
-
-    <span class="input-field email">
-        {{ form_row(inscriptionForm.email, {value: user.email})}}
-        <br>
-    </span>
-        </div>
         <div class = "texte-droite">
 
-    <span class="input-field adresse postale">
-        {{ form_row(inscriptionForm.adresse_postale)}}
-    </span> <br>
-        <span class="input-field code postal">
-    {{ form_row(inscriptionForm.code_postal)}}
+            <span><label>Adresse Postale</label>
+                {{ form_widget(inscriptionForm.adresse_postale)}}
+            </span> <br>
 
-    </span><br>
+            <span><label>Code Postal</label>
+                {{ form_widget(inscriptionForm.code_postal)}}
+            </span><br>
 
-    <span class="input-field ville">
-        {{ form_row(inscriptionForm.ville)}}
-    </span>   <br>
+            <span><label>Ville</label>
+                {{ form_widget(inscriptionForm.ville)}}
+            </span>  <br>
 
-    <span class="input-field pays">
-        {{ form_row(inscriptionForm.pays)}}
-    </span> <br>
-    </div>
-<br>
-        <button type="submit" class="btn-inscription-valider">Valider</button>
+            <span><label>Pays</label>
+                {{ form_widget(inscriptionForm.pays)}}
+            </span> <br>
+            </div>
+
+
+        <button type="submit" class="btn-inscription-valider">Valider
+            <a href="{{ path('app_afficherUtilisateur', {'id': user.id}) }}" ></a></button>
 
         <button class="btn-inscription-retour" type="submit">
             <a href="{{ path('app_tournois') }}" title = "retour">Retour</a>
         </button>
 
 
-    {{ form_end(inscriptionForm) }}
+            {{ form_end(inscriptionForm) }}
 
 
-    </form>
+            </form>
+        </div>
     </body>
 {% endblock %}

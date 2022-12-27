@@ -12,7 +12,7 @@
 
         {% for tournois in tournois %}
             <div class ="tournois">
-                <div id = titre-tournois>{{ tournois.nom }}<br>{{ tournois.date | date ('d-m-Y') }}</div>
+                <div id = titre-tournois><p id ="p-tournois">{{ tournois.nom }}<br>{{ tournois.date | date ('d-m-Y') }}</p></div>
 
                 <div class ="btn-tournois">
                     <a href="{{ path('app_detail', {'idTournois': tournois.id}) }}" title = "detail">

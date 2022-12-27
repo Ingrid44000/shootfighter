@@ -18,6 +18,7 @@ class MonProfilType extends AbstractType
     {
         $builder
             ->add('username',TextType::class,[
+                'required'=>false,
                 // Ici on définit la taille du label
                 'label_attr' => [
                     'class' => 'col-5'
@@ -26,16 +27,12 @@ class MonProfilType extends AbstractType
                 'attr' => [
                     'class' => 'col-7',
                 ],
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'Merci de renseigner un pseudo!'
-                    ]),
-                ],
 
             ])
 
             ->add('password',RepeatedType::class,[
                 'type' => PasswordType::class,
+                'required'=>true,
                 'mapped' => false,
                 'label_attr' => [
                     'class' => 'd-none'
@@ -57,13 +54,9 @@ class MonProfilType extends AbstractType
                     ],
 
                 ],
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'Ce champ doit être rempli',
-                    ])
-                ]
             ])
             ->add('email',TextType::class,[
+                'required'=>false,
                 // Ici on définit la taille du label
                 'label_attr' => [
                     'class' => 'col-5'
@@ -72,13 +65,9 @@ class MonProfilType extends AbstractType
                 'attr' => [
                     'class' => 'col-7'
                 ],
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'Merci de renseigner un email!'
-                    ]),
-                ],
             ])
             ->add('nom',TextType::class,[
+                'required'=>false,
                 // Ici on définit la taille du label
                 'label_attr' => [
                     'class' => 'col-5'
@@ -86,14 +75,10 @@ class MonProfilType extends AbstractType
                 // En dessous on définit la taille du champ
                 'attr' => [
                     'class'=>'col-7',
-                ],
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'Merci de renseigner un nom!'
-                    ]),
                 ],
             ])
             ->add('prenom',TextType::class,[
+                'required'=>false,
                 // Ici on définit la taille du label
                 'label_attr' => [
                     'class' => 'col-5'
@@ -101,11 +86,6 @@ class MonProfilType extends AbstractType
                 // En dessous on définit la taille du champ
                 'attr' => [
                     'class'=>'col-7',
-                ],
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'Merci de renseigner un prénom!'
-                    ]),
                 ],
             ])
             ->add('imageFile', VichImageType::class, [

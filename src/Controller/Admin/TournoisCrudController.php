@@ -14,6 +14,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
@@ -32,6 +33,7 @@ class TournoisCrudController extends AbstractCrudController
     {
 
         yield TextField::new('nom');
+        yield TextareaField::new('description');
         yield DateTimeField::new('date');
         yield IntegerField::new('nbPlacesMax');
         yield DateTimeField::new('dateLimiteInscription');
@@ -42,8 +44,6 @@ class TournoisCrudController extends AbstractCrudController
             ->setUploadDir('public/images/tournois')
         ->setRequired(false);
 
-        //AssociationField impossible car il s'agit d'une collection de récompenses
-        yield CollectionField::new('recompenses');
 
     }
     public function configureActions(Actions $actions): Actions

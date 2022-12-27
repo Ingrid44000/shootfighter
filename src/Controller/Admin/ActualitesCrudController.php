@@ -9,6 +9,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
 
@@ -23,7 +24,7 @@ class ActualitesCrudController extends AbstractCrudController
     {
 
             yield TextField::new('nom');
-            yield TextField::new('texte');
+            yield TextAreaField::new('texte');
             yield DateTimeField::new('createdAt')->setLabel('Créé le')->hideOnForm()->setRequired(false);
             yield DateTimeField::new('updatedAt')->setLabel('Modifié le')->hideOnForm()->setRequired(false);
             yield ImageField::new('imageName')

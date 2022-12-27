@@ -58,6 +58,8 @@ class  User implements UserInterface, PasswordAuthenticatedUserInterface, \Seria
     #[ORM\Column(length: 180, nullable: true)]
     private ?string $prenom = null;
 
+
+
     public function __construct()
     {
         $this->participant = new ArrayCollection();
@@ -262,5 +264,6 @@ class  User implements UserInterface, PasswordAuthenticatedUserInterface, \Seria
             // $this->salt
             ) = unserialize($serialized);
     }
+
 
 }
