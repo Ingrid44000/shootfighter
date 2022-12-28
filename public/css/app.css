@@ -250,6 +250,14 @@ Page recompenses.html.twig
     margin-top: auto;
 }
 
+#description-recompense{
+    margin-top:0;
+    background-color: grey;
+}
+
+#image-recompense{
+
+}
 /*
 Bas de page
  */

@@ -3,6 +3,7 @@
 {% block title %}Récompenses{% endblock %}
 {% block stylesheets %}
     <link rel="stylesheet" href="{{ asset ('css/app.css') }}">
+
 {% endblock %}
 
 {% block body %}
@@ -11,18 +12,46 @@
 <div id = "titre-recompenses">Récompenses </div>
 
 {% for recompense in recompenses %}
-    <div class ="recompenses" style="float:right;width:70%;">
+    <div class ="recompenses">
     {{ recompense.nom }} <br>
-    {{ recompense.description }}<br>
-    <img src="{{ asset('images/recompense/' ~ recompense.imageName) }}" alt="image goodie" height="400px"
-         width="300px">
+
+    <div id ="image-recompense"><img src="{{ asset('images/recompense/' ~ recompense.imageName) }}" alt="image goodie" height="400px"
+                                    width="300px"></div>
+        <div id = "description-recompense">{{ recompense.description }}</div><br>
     <br>
     </div>
 {% endfor %}
 
     </div>
 </body>
-{% endblock %}
 
+{% endblock %}
+    {%  block javascripts %}
+        <script src="{{ asset('jquery-3.6.3.js') }}"></script>
+        <script>
+            $(document).ready(function(){
+                $(".recompenses #description-recompense").css({
+                    top:"0",
+                    opacity: "0",
+                    height: "0"});
+
+                $(".recompenses #image-recompense").mouseenter(function() {
+                    $(".recompenses #description-recompense").animate({
+                        top:"0",
+                        opacity: "0.95",
+                        height: "50px"
+                    }, 300);
+                });
+                $(".recompenses #image-recompense").mouseout(function() {
+                    $(".recompenses #description-recompense").animate({
+                        top:"0",
+                        opacity: "0",
+                        height: "0"
+                    }, 300);
+                });
+            });
+
+        </script>
+    {% endblock %}
 
 
