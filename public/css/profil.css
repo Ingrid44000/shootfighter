@@ -3,26 +3,25 @@ Fond d'écran de la page
  */
 body {
     background-image: url("images/photoTournois5.png");
-    background-position: center;
-    background-attachment: fixed;
+    background-position: center;/* */
+    background-attachment: fixed;/* */
 }
 /*
 bloc conteneur
 */
 .container {
     display: flex;
-    min-height: 55vh;
+    min-height: 55vh;/*Hauteur minimum */
     bottom: auto;
 }
 /*
 Page d'affichage du profil utilisateur : afficherUtilisateur.html.twig
  */
 #titre-afficherprofil{
-    text-align:center;
-    margin-top: -47px;
-    font-size: 35px;
-    background-color: transparent;
-    border-radius: 10px;
+    text-align:center;/*texte centré */
+    margin-top: -47px;/*Marge du haut*/
+    font-size: 35px; /*Taille écriture */
+    border-radius: 10px;/* Bords arrondis*/
 
 }
 /*
@@ -30,15 +29,15 @@ Fond de l'affichage des données de l'utilisateur
  */
 #afficherprofil{
 
-    width: 90%;
-    height: 95%;
-    opacity:0.96;
+    width: 90%;/*Largeur */
+    height: 95%;/*Hauteur */
+    opacity:0.96;/* Transparence */
     background: linear-gradient(#000000, #132135);
-    color: white;
+    color: white;/*Couleur d'écriture */
     border-radius: 10px;
-    right: 100px;
-    top: 150px;
-    position: absolute;
+    right: 100px;/*Pour centrer le bloc*/
+    top: 150px;/*Pour centrer le bloc*/
+    position: absolute;/*Permet d'utiliser top, bottom, right et left*/
 }
 #avatar-profil{
     margin-top: -10px;
@@ -63,12 +62,12 @@ Liste participations à des tournois sur afficherUtilisateur.html.twig
  */
 
 /*
-Titre tableau de participations dans afficherUtilisateur.html.twig
- */
+Titre tableau de participations dans afficherUtilisateur.html.twig */
 caption {
     font-size: 35px;
 }
 
+/*Tableau */
 table {
     margin-top: 100px;
     margin-left: 190px;
@@ -78,19 +77,18 @@ table {
     border: 2px solid purple;
 
 }
-
+/*En-tête du tableau*/
 thead{
     text-align: center;
     font-size: 25px;
     width: 20px;
-    border-collapse: collapse;
-    border: 1px solid purple;
+    border-collapse: collapse;/*Bordures communes*/
+    border: 1px solid purple;/*Couleur bordures*/
     background-color:black;
 }
 
 /*
-Permet de styliser séparément chaque thead du tableau
- */
+Permet de styliser séparément chaque en-tête du tableau*/
 thead th:nth-child(1) {
     border: 1px solid purple;
     width: 30%;

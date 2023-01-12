@@ -22,7 +22,8 @@
             </span><br>
 
               <span><label>Recompenses</label>
-                    {{ form_widget(inscriptionForm.recompenses) }}
+
+                    {{ form_widget(inscriptionForm.recompenses, {value: goodie}) }}
               </span>
 
             <span><label>Pseudo</label>

@@ -3,8 +3,7 @@ namespace App\Service;
 
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\Mailer\MailerInterface;
-use Symfony\Component\Translation\Translator;
-use Symfony\Component\Translation\Loader\ArrayLoader;
+
 
 class SendMailService
 {
@@ -19,7 +18,6 @@ class SendMailService
         string $from,
         string $to,
         string $subject,
-        string $template,
         array $context
     ): void
     {
@@ -39,7 +37,6 @@ class SendMailService
             string $from,
             string $to,
             string $subject,
-            string $template,
             array $context
         ): void
         {
@@ -60,7 +57,7 @@ $this->mailer->send($mailTournois);
         string $subject,
         string $htmlTemplate,
         array $context,
-        string $to = 'admin@symrecipe.com'
+        string $to = 'admin@shootfighter.fr'
     ): void {
         $email = (new TemplatedEmail())
             ->from($from)

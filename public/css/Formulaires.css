@@ -6,6 +6,7 @@ body {
 en-tête formulaire de connexion : login.html.twig
 */
 #titre-connexion{
+    font-size: 19px;
     text-align:center;
     margin-bottom: auto;
     margin-top: auto;
@@ -55,7 +56,6 @@ label {
 bouton formulaire connexion : login.html.twig
  */
 button {
-
     text-align: center;
     position: relative;
     display: inline-block;
@@ -67,19 +67,45 @@ button {
     padding: 9px;
     margin: 5px;
     cursor: pointer;
-    color: #4ade80;
+    color: darkgreen;
+    text-decoration: none;
 }
 
 button:hover{
     transform: translate(-2px, -2px);
+    color: purple;
 }
 button:hover:before{
     transform: translate(5px, 5px);
 }
+
+.label-connexion{
+    color: darkgreen;
+    text-decoration: none;
+}
+.label-connexion:hover{
+    transform: translate(-2px, -2px);
+    color: purple;
+    text-decoration: none;
+}
+#creation-compte {
+    color: yellow;
+    font-size: 19px;
+    text-decoration: none;
+}
+#creation-compte:hover {
+    transform: translate(-2px, -2px);
+
+}
+a{
+    text-decoration: none;
+}
+
 /*
 Formulaire de création de compte : emailregister.html.twig
 */
 #titre-register{
+    font-size:19px;
     text-align:center;
     margin-bottom: auto;
     margin-top: auto;
@@ -140,13 +166,13 @@ Formulaire d'inscription à un tournoi
     margin-top: -10%;
 
 }
-.btn-inscription-valider{
-
-    left: 100px;
+.label-register{
+    color: darkgreen;
+    text-decoration: none;
 }
-.btn-inscription-retour{
-
-    left: 100px;
+.label-register:hover{
+    transform: translate(-2px, -2px);
+    color: purple;
 }
 
 /*
@@ -186,4 +212,14 @@ Formulaire de contact : contact.html.twig
     outline:none;
     margin-top: auto;
     margin-bottom: auto;
+}
+
+.btn-contact-valider{
+    margin-left: 7%;
+
+}
+
+.btn-contact-retour{
+    margin-left: 7%;
+
 }

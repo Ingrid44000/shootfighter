@@ -34,7 +34,7 @@ class RegistrationController extends AbstractController
                     $form->get('plainPassword')->getData()
                 )
             );
-
+            $user->setImageName('phototournois4-63aa13658fc48093233073.png');
             $entityManager->persist($user);
             $entityManager->flush();
 
@@ -43,7 +43,6 @@ class RegistrationController extends AbstractController
                 'no-reply@monsite.net',
                 $user->getEmail(),
                 'Bienvenue, vous avez créé un compte sur le site de Shootfighter',
-                'emailregister',
                 compact('user'));
 
             return $userAuthenticator->authenticateUser(

@@ -22,13 +22,12 @@
         {% elseif not app.user %}
             <div class="menu_création_compte ">
                 <a href="{{ path('app_register') }}" title = "creation compte">
-                    <span>Créer un compte</span>
+                    <span id ="creation-compte">Créer un compte</span>
                 </a>
             </div>
-    {% endif %}
+    {% endif %}<br>
 
     <span class ="inputsLogin">
-    <h4 class="h3 mb-3 font-weight-normal"></h4>
     <label for="inputLogin">Identifiant</label>
     <input type="text" value="{{ last_username }}" name="username" id="inputUsername" class="form-control" autocomplete="username" required autofocus>
          </span>
@@ -51,10 +50,10 @@
 
     <button class="btn-connexion-retour" type="submit">
         <a href="{{ path('app_accueil') }}" title = "retour">
-            <label>Retour</label></a>
+            <label class = "label-connexion">Retour</label></a>
     </button>
     <button class="btn-forgottenPassword" type="submit">
-        <a href="{{ path('app_forgottenPassword') }}" class="forgottenPassword"><label>Mot de passe oublié</label></a>
+        <a href="{{ path('app_forgottenPassword') }}" class="forgottenPassword"><label class = "label-connexion">Mot de passe oublié</label></a>
     </button>
 
 </form>

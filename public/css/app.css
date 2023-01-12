@@ -195,10 +195,11 @@ Page tournoisDetail.html.twig
 }
 
 #p-places{
+    position: relative;
     display: block;
     width : 700px;
-    right: -300px;
-    top: -800px;
+    right: -565px;
+    top: -400px;
     border-radius: 10px;
     font-size: 18px;
     height: 40px;
@@ -208,13 +209,20 @@ Page tournoisDetail.html.twig
     text-align: justify;
     display: flex;
     height: 200px;
+    border-radius: 10px;
     right: -555px;
+    margin-left:0;
     position: relative;
     width : 760px;
-    top: -405px;
+    top: -418px;
     font-size: 21px;
     background: #222d35;
     background-size: 610px;
+
+}
+#p-tournois{
+    text-justify: auto;
+    margin-block: 20px;
 
 }
 
@@ -227,12 +235,13 @@ Page recompenses.html.twig
 
 #titre-recompenses{
     position: relative;
-    top: -750px;
+    top: -795px;
     text-align:center;
     font-size: 30px;
-    width: 500px;
-    height: 40px;
+    width: 498px;
+    height: 42px;
     padding: 30px;
+    border-radius: 10px;
     background: darkslategrey;
     margin-left: auto;
     margin-right: auto;
@@ -243,20 +252,24 @@ Page recompenses.html.twig
 .recompenses {
     text-align:center;
     position: relative;
-    top: -600px;
+    top: 197px;
     margin-left: auto;
     margin-right: auto;
-    margin-bottom: 200px;
+    margin-bottom: 250px;
     margin-top: auto;
 }
 
 #description-recompense{
-    margin-top:0;
+    position: relative;
+    top : -795px;
+    bottom:0;
     background-color: grey;
 }
 
 #image-recompense{
-
+    position: relative;
+    top: -820px;
+    width: 698px;
 }
 /*
 Bas de page

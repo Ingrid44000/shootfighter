@@ -20,9 +20,7 @@ use Symfony\Component\Security\Http\Util\TargetPathTrait;
 class AppAuthenticator extends AbstractLoginFormAuthenticator
 {
     use TargetPathTrait;
-
     public const LOGIN_ROUTE = 'app_login';
-
     public function __construct(private UrlGeneratorInterface $urlGenerator, UserRepository $userRepository)
     {
         $this->urlGenerator = $urlGenerator;
@@ -46,7 +44,6 @@ class AppAuthenticator extends AbstractLoginFormAuthenticator
             ]
         );
     }
-
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): ?Response
     {
         if ($targetPath = $this->getTargetPath($request->getSession(), $firewallName)) {

@@ -44,10 +44,7 @@ class RegistrationFormType extends AbstractType
                 new Assert\NotBlank(),
                 new Assert\Length(['min' => 6, 'max' => 180])],
             ])
-            ->add('adressePostale')
-            ->add('codePostal')
-            ->add('ville')
-            ->add('pays')
+
         ;
 
     }

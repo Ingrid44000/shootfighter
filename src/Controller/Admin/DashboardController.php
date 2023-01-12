@@ -2,6 +2,7 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Contact;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use App\Entity\Actualites;
 use App\Entity\Participants;
@@ -56,6 +57,7 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Tournois', 'fas fa -tournois', Tournois::class);
         yield MenuItem::linkToCrud('Actualités', 'fas fa -actualites', Actualites::class);
         yield MenuItem::linkToCrud('Récompenses', 'fas fa -recompenses', Recompenses::class);
+        yield MenuItem::linkToCrud('Messagerie', 'fas fa -contact', Contact::class);
 
     }
 }

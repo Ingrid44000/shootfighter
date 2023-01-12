@@ -35,11 +35,11 @@ class InscriptionController extends AbstractController
         {
 
             $user = $userRepository->find($id); //utilisateur connecté
-            $tournois = $tournoisRepository->find($idTournois); //tournois en question
+            $tournois = $tournoisRepository->find($idTournois); //tournoi en question
 
             $goodie = $recompensesRepository->findRecompenseByTournois($idTournois);
 
-            $nbParticipants = count($tournois->getParticipants());//nombre de participants au tournois
+            $nbParticipants = count($tournois->getParticipants());//nombre de participants au tournoi
             $placesRestantes = $tournois->getNbPlacesMax()-$nbParticipants;
 
             $now = new \DateTime('now'); //récupère la date du jour
@@ -54,6 +54,7 @@ class InscriptionController extends AbstractController
             $participant->setUser($user); //on remplit le formulaire avec les données de l'utilisateur
 
             $participant->setTournois($tournois);//on indique le tournoi concerné par l'inscription
+
 
 
             $form = $this->createForm(InscriptionFormType::class, $participant);
@@ -72,7 +73,6 @@ class InscriptionController extends AbstractController
                         'no-reply@shootfighter.fr',
                         $participant->getEmail(),
                         'Inscription tournois',
-                        'inscriptionTournois',
                         compact('participant'));
                 }
 

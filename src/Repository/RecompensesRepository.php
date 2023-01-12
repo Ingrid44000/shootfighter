@@ -54,7 +54,7 @@ class RecompensesRepository extends ServiceEntityRepository
     public function findRecompenseByTournois(int $tournois)
     {
         return $this->createQueryBuilder('r')
-            ->andWhere('r.tournois = :tournois')
+            ->where('r.tournois = :tournois')
             ->setParameter('tournois', $tournois)
             ->getQuery()
             ->getResult();

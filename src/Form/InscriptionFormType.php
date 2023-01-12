@@ -5,11 +5,8 @@ namespace App\Form;
 use App\Entity\Participants;
 use App\Entity\Recompenses;
 use App\Entity\Tournois;
-use App\Entity\User;
 
-use SebastianBergmann\CodeCoverage\Report\Text;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Form\AbstractType;
@@ -26,7 +23,7 @@ class InscriptionFormType extends AbstractType
 
         $builder
             ->add('tournois', EntityType::class, ['class'=>Tournois::class, 'disabled'=>true])
-            ->add ('recompenses', EntityType::class, ['class'=>Recompenses::class,  'constraints'=> new Assert\NotBlank(),])
+            ->add ('recompenses', EntityType::class, ['class'=>Recompenses::class,  'constraints'=> new Assert\NotBlank()])
             ->add('pseudo', TextType::class, ['constraints'=>new Assert\NotBlank])
             ->add('nom', TextType::class, ['constraints'=>new Assert\NotBlank])
             ->add('prenom', TextType::class, ['constraints'=>new Assert\NotBlank])

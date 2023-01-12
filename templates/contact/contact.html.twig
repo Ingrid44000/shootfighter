@@ -31,9 +31,9 @@
         {{ form_widget(contactForm.message)}}
     </span><br>
 
-       <button type="submit" class="btn-inscription-valider">Valider</button>
+       <button type="submit" class="btn-contact-valider">Valider</button>
 
-        <button class="btn-inscription-retour" type="submit">
+        <button class="btn-contact-retour" type="submit">
             <a href="{{ path('app_accueil') }}" title = "retour">Retour</a>
         </button>
        {% for message in app.flashes('success') %}
