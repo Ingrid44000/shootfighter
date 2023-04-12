@@ -11,8 +11,8 @@ bloc conteneur
 */
 .container {
     display: flex;
-    min-height: 55vh;/*Hauteur minimum */
     bottom: auto;
+    min-height: 70vh;
 }
 /*
 Page d'affichage du profil utilisateur : afficherUtilisateur.html.twig
@@ -30,7 +30,7 @@ Fond de l'affichage des données de l'utilisateur
 #afficherprofil{
 
     width: 90%;/*Largeur */
-    height: 95%;/*Hauteur */
+    height: 130%;/*Hauteur */
     opacity:0.96;/* Transparence */
     background: linear-gradient(#000000, #132135);
     color: white;/*Couleur d'écriture */
@@ -54,7 +54,7 @@ Fond de l'affichage des données de l'utilisateur
 .btn-monprofil-modifier{
     text-align: center;
     margin-top: -400px;
-    margin-left: 570px;
+    margin-left: 508px;
     width: 20%;
 }
 /*
@@ -148,7 +148,7 @@ Page de modification du profil utilisateur : monProfil.html.twig
 #form-monProfil{
     position: absolute;
     width: 30%;
-    height: 83%;
+    height: 800px;
     opacity:0.96;
     background: linear-gradient(#000000, #132135);
     background-size: 100px;
@@ -157,7 +157,7 @@ Page de modification du profil utilisateur : monProfil.html.twig
     left: 45%;
     top: 35%;
     margin-left: -10%;
-    margin-top: -10%;
+    margin-top: -5%;
     bottom: 200px;
 }
 /*
@@ -166,7 +166,7 @@ boutons de la page monProfil.html.twig
 .btn-monprofil-annuler{
     width: 50%;
     margin-top : -20px;
-    margin-left: 50px;
+    margin-left: 33px;
     text-align: center;
 
 
@@ -174,7 +174,7 @@ boutons de la page monProfil.html.twig
 .btn-monprofil-valider{
     width: 50%;
     margin-top : -20px;
-    margin-left: 50px;
+    margin-left: 33px;
     text-align: center;
 }
 
@@ -197,7 +197,7 @@ button {
     background-color: transparent;
     font-size: 15px;
     top: 10px;
-    left: 93px;
+    left: 80px;
     width: 55%;
     padding: 5px;
     margin: 5px;

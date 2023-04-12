@@ -58,7 +58,11 @@ class  User implements UserInterface, PasswordAuthenticatedUserInterface, \Seria
     #[ORM\Column(length: 180, nullable: true)]
     private ?string $prenom = null;
 
+    #[ORM\Column(type: 'boolean')]
+    private $is_verified = false;
 
+    #[ORM\Column(type: 'string', length: 100)]
+    private $resetToken;
 
     public function __construct()
     {
@@ -263,6 +267,19 @@ class  User implements UserInterface, PasswordAuthenticatedUserInterface, \Seria
             // see section on salt below
             // $this->salt
             ) = unserialize($serialized);
+    }
+
+
+    public function getResetToken(): ?string
+    {
+        return $this->resetToken;
+    }
+
+    public function setResetToken(?string $resetToken): self
+    {
+        $this->resetToken = $resetToken;
+
+        return $this;
     }
 
 

@@ -15,10 +15,13 @@ class SendMailService
     }
 
     public function send(
+
         string $from,
         string $to,
         string $subject,
+        string $template,
         array $context
+
     ): void
     {
         //On crée le mail
@@ -26,8 +29,9 @@ class SendMailService
             ->from($from)
             ->to($to)
             ->subject($subject)
-            ->htmlTemplate("emails/emailregister.html.twig")
+            ->htmlTemplate("emails/password_reset.html.twig")
             ->context($context);
+            ;
 
         // On envoie le mail
         $this->mailer->send($mail);

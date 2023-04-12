@@ -2,26 +2,25 @@
 
 {% block title %}Shootfighter{% endblock %}
   {% block stylesheets %}
-    <link rel="stylesheet" href="{{ asset ('css/accueil.css') }}">
+    <link rel="stylesheet" href="{{ asset ('css/app.css') }}">
 {% endblock %}
 {% block body %}
     <body>
-    <div id="banniere"></div>
-        <div class = "container">
+    <div id="banniere"><img src = "{{  asset('css/images/imageAccueil.png') }}" alt="bannière shootfighter" height="300px" width="100%">
+     </div>
 
             {% for actualite in actualites %}
                 <div id="texte-actu">
-                    <p id ="p-actu">{{ actualite.texte }}</p>
-                <p id ="actu-createdAt">{{ actualite.createdAt | date ('d-m-Y')}}</p></div>
-                    <div class="actualite">
-                        <h2>{{ actualite.nom }}</h2>
-                        <div id ="image"><img src="{{ asset('images/actualites/' ~ actualite.imageName) }}" alt="image actualite"
-                                              height="140%"
-                             width= "100%"></div>
-
+                    <p id ="titre-actu">{{ actualite.nom }} </p>
+                    <p id ="p-actu">{{ actualite.texte }}</p><br>
+                    <p id ="actu-createdAt">{{ actualite.createdAt | date ('d-m-Y')}}</p><br>
                     </div>
+
+
+                <div id ="image-actu"><img src="{{ asset('images/actualites/' ~ actualite.imageName) }}" alt="image actualite"
+                                              height="50%"
+                             width= "50%"></div>
     {% endfor %}
-            </div>
 
     </body>
 {% endblock %}

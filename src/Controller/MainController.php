@@ -100,6 +100,7 @@ class MainController extends AbstractController
                     $context
                 );
 
+
                 $this->addFlash('success', 'Email envoyé avec succès');
                 return $this->redirectToRoute('app_login');
             }
@@ -120,7 +121,7 @@ class MainController extends AbstractController
         Request $request,
         UserRepository $userRepository,
         EntityManagerInterface $entityManager,
-        UserPasswordHasherInterface $passwordHasher
+        UserPasswordHasherInterface $passwordHasher,
     ): Response
     {
         // On vérifie si on a ce token dans la base
@@ -147,6 +148,7 @@ class MainController extends AbstractController
                 );
                 $entityManager->persist($user);
                 $entityManager->flush();
+
 
                 $this->addFlash('success', 'Mot de passe changé avec succès');
                 return $this->redirectToRoute('app_login');

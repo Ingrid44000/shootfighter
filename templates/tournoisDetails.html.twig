@@ -6,13 +6,13 @@
  {%  endblock %}
 {% block body %}
 <body>
-<div class="container">
+<div class ="container">
     <div class = "detail">
         <div id ="bloc-titre-detail">
             <p id ="titre-detail">{{ tournois.nom }}<br>{{ tournois.date | date ('d-m-Y') }}</p></div>
 
         <div class ="presentation-tournoi">
-           {{ tournois.description }}
+           <p id ="p-tournoi">{{ tournois.description }}</p>
         </div>
         <div id = "p-places">Nombre de places restantes : {{ placesRestantes }}/{{ tournois.nbPlacesMax }}</div>
 
@@ -29,7 +29,7 @@
 
             {% endif %}
         </div>
-    </div>
+</div>
 </body>
 {% endblock %}
 

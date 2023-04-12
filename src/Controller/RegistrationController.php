@@ -34,7 +34,7 @@ class RegistrationController extends AbstractController
                     $form->get('plainPassword')->getData()
                 )
             );
-            $user->setImageName('phototournois4-63aa13658fc48093233073.png');
+            $user->setImageName('phototournois2-643443fc9c375470895877.png');
             $entityManager->persist($user);
             $entityManager->flush();
 

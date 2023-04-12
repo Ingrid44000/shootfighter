@@ -24,48 +24,48 @@
     {% endfor %}
 
         <div class="container">
-            <div class="header-content">
+            <div class="header-content"><br>
                 <nav>
                     <ul>
 
-                        <li class="menu-accueil">
+                        <li><br>
                             <a href="{{ path('app_accueil') }}" title = "accueil">Accueil
                             </a>
                         </li>
-                        <li class="menu-recompenses">
+                        <li><br>
                             <a href="{{ path('app_recompenses') }}" title = "recompenses">Récompenses</a>
 
                         </li>
 
-                        <li class="menu-tournois">
+                        <li><br>
                             <a href="{{ path('app_tournois', {}) }}" title = "tournois">Tournois  </a>
 
                         </li>
 
-                        <li class ="link-contact">
+                        <li><br>
                             <a href="{{ path('app_contact') }}" class = "menu-link" title = "contact">Contact </a>
 
                         </li>
 
                         {% if not app.user %}
-                            <li class ="menu-connexion">
+                            <li><br>
                                 <a href="{{ path('app_login') }}" class = "menu-link" title = "connexion">Se connecter </a>
                             </li>
 
                             {% elseif app.user %}
-                                <li class="menu_deconnexion">
+                                <li><br>
                             <a href="{{ path('app_logout') }}" title = "deconnexion">Se déconnecter </a>
 
                             </li>
                         {% endif %}
 
                         {% if is_granted('ROLE_ADMIN') %}
-                            <li class="admin">
+                            <li><br>
                                 <a href="{{ path('admin') }}" title = "admin">Page administrateur</a>
                             </li>
 
                         {% elseif is_granted ('ROLE_USER') %}
-                            <li class="profil">
+                            <li><br>
                                 <a href="{{ path('app_afficherUtilisateur', {'id': user.id}) }}">Mon profil</a>
                             </li>
                         {% endif %}

@@ -6,7 +6,7 @@
 
 {% endblock %}
 {% block body %}
-    <body>
+    <body id = "form-inscription">
     <div class="container">
     <form method="post" id="inscription-tournoi">
 
@@ -67,7 +67,7 @@
 
 
         <button type="submit" class="btn-inscription-valider">Valider
-            <a href="{{ path('app_afficherUtilisateur', {'id': user.id}) }}" ></a></button>
+            <a href="{{ path('app_accueil') }}"></a></button>
 
         <button class="btn-inscription-retour" type="submit">
             <a href="{{ path('app_tournois') }}" title = "retour">Retour</a>
